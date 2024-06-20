@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-crossmeasure-dev-99ec2-authRole",
+      "UnauthRoleArn": "arn:aws:iam::211125761504:role/amplify-crossmeasure-dev-99ec2-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::211125761504:role/amplify-crossmeasure-dev-99ec2-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
+      "UnauthRoleName": "amplify-crossmeasure-dev-99ec2-unauthRole",
+      "StackName": "amplify-crossmeasure-dev-99ec2",
+      "StackId": "arn:aws:cloudformation:eu-central-1:211125761504:stack/amplify-crossmeasure-dev-99ec2/a44cee50-2edd-11ef-920c-0a7a84cf33ed",
+      "AmplifyAppId": "d2d2xsvlmto5yi"
+    },
+    "categories": {
+      "api": {
+        "crossmeasure": {}
+      }
+    }
+  }
+}
