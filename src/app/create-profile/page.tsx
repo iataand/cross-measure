@@ -1,24 +1,40 @@
+import { Button } from "@/components/ui/button";
 import createProfileAction from "./actions";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function CreateProfile() {
   return (
-    <main>
-      <form action={createProfileAction}>
-        <label>Type</label>
-        <select name="type">
-          <option value="musician">Musician</option>
-          <option value="band">Band</option>
-        </select>
-        <label>Band Name</label>
-        <input name="bandName" />
-        <label>First Name</label>
-        <input name="firstName" />
-        <label>Last Name</label>
-        <input name="lastName" />
-        <button type="submit" className="border-2">
-          Create Profile
-        </button>
-      </form>
-    </main>
+    <form
+      action={createProfileAction}
+      className="container flex flex-col gap-4 border-2 py-4"
+    >
+      <Select name="type">
+        <SelectTrigger>
+          <SelectValue placeholder="Select a profile type" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Profile Type</SelectLabel>
+            <SelectItem value="band">Band</SelectItem>
+            <SelectItem value="musician">Musician</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Input name="bandName" placeholder="Band Name" />
+      <Input name="firstName" placeholder="First Name" />
+      <Input name="lastName" placeholder="Last Name" />
+      <Button type="submit" name="create" variant="outline">
+        Create Profile
+      </Button>
+    </form>
   );
 }
