@@ -1,4 +1,4 @@
-import { CreateProfileInput, Profile, profiles } from "@/API";
+import { CreateProfileInput } from "@/API";
 import { cookiesClient } from ".";
 import * as mutations from "@/graphql/mutations";
 

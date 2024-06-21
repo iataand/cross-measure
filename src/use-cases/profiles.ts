@@ -1,19 +1,19 @@
-import { CreateProfileInput, Profile, profiles } from "@/API";
+import { CreateProfileInput, Profile, profileTypes } from "@/API";
 import { createProfile } from "@/data-access/profiles";
 
 export async function createProfileUseCase(
-  type: profiles,
+  type: profileTypes,
   bandName: string,
   firstName?: string,
-  lastName?: string
+  lastName?: string,
 ) {
   const profile = {} as CreateProfileInput;
 
-  if (type === profiles.band) {
+  if (type === profileTypes.band) {
     profile.bandName = bandName;
   }
 
-  if (type === profiles.musician) {
+  if (type === profileTypes.musician) {
     profile.firstName = firstName;
     profile.lastName = lastName;
   }

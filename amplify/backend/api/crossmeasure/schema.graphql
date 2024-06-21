@@ -3,17 +3,18 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-enum profilesTypes {
+enum profileTypes {
   musician
   band
 }
 
 type Profile @model {
   id: String!
-  type: profiles!
+  type: profileTypes!
   bandName: String
   firstName: String
   lastName: String
+  chatRooms: [ChatRoom] @manyToMany(relationName: "ProfileChatRooms")
 }
 
 type TextMessage @model {
@@ -21,4 +22,17 @@ type TextMessage @model {
   message: String!
   isRead: Boolean @default(value: "false")
   createdAt: String!
+  chatRoomId: ID!
+    @index(
+      name: "byChatRoom"
+      sortKeyFields: ["createdAt"]
+      queryField: "MessagesByChatRoomId"
+    )
+  chatRoom: ChatRoom @belongsTo(fields: ["chatRoomId"])
+}
+
+type ChatRoom @model {
+  id: ID!
+  messages: [TextMessage] @hasMany(indexName: "byChatRoom", fields: ["id"])
+  profiles: [Profile] @manyToMany(relationName: "ProfileChatRooms")
 }

@@ -15,6 +15,10 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -31,6 +35,10 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -47,6 +55,10 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -64,6 +76,13 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -80,6 +99,13 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -96,6 +122,13 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -103,4 +136,160 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
 ` as GeneratedSubscription<
   APITypes.OnDeleteTextMessageSubscriptionVariables,
   APITypes.OnDeleteTextMessageSubscription
+>;
+export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+  onCreateChatRoom(filter: $filter) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateChatRoomSubscriptionVariables,
+  APITypes.OnCreateChatRoomSubscription
+>;
+export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+  onUpdateChatRoom(filter: $filter) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatRoomSubscriptionVariables,
+  APITypes.OnUpdateChatRoomSubscription
+>;
+export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+  onDeleteChatRoom(filter: $filter) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteChatRoomSubscriptionVariables,
+  APITypes.OnDeleteChatRoomSubscription
+>;
+export const onCreateProfileChatRooms = /* GraphQL */ `subscription OnCreateProfileChatRooms(
+  $filter: ModelSubscriptionProfileChatRoomsFilterInput
+) {
+  onCreateProfileChatRooms(filter: $filter) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateProfileChatRoomsSubscriptionVariables,
+  APITypes.OnCreateProfileChatRoomsSubscription
+>;
+export const onUpdateProfileChatRooms = /* GraphQL */ `subscription OnUpdateProfileChatRooms(
+  $filter: ModelSubscriptionProfileChatRoomsFilterInput
+) {
+  onUpdateProfileChatRooms(filter: $filter) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateProfileChatRoomsSubscriptionVariables,
+  APITypes.OnUpdateProfileChatRoomsSubscription
+>;
+export const onDeleteProfileChatRooms = /* GraphQL */ `subscription OnDeleteProfileChatRooms(
+  $filter: ModelSubscriptionProfileChatRoomsFilterInput
+) {
+  onDeleteProfileChatRooms(filter: $filter) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteProfileChatRoomsSubscriptionVariables,
+  APITypes.OnDeleteProfileChatRoomsSubscription
 >;

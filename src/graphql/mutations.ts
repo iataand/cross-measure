@@ -18,6 +18,10 @@ export const createProfile = /* GraphQL */ `mutation CreateProfile(
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -37,6 +41,10 @@ export const updateProfile = /* GraphQL */ `mutation UpdateProfile(
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -56,6 +64,10 @@ export const deleteProfile = /* GraphQL */ `mutation DeleteProfile(
     bandName
     firstName
     lastName
+    chatRooms {
+      nextToken
+      __typename
+    }
     createdAt
     updatedAt
     __typename
@@ -74,6 +86,13 @@ export const createTextMessage = /* GraphQL */ `mutation CreateTextMessage(
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -91,6 +110,13 @@ export const updateTextMessage = /* GraphQL */ `mutation UpdateTextMessage(
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -108,6 +134,13 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
     message
     isRead
     createdAt
+    chatRoomId
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
     updatedAt
     __typename
   }
@@ -115,4 +148,172 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
 ` as GeneratedMutation<
   APITypes.DeleteTextMessageMutationVariables,
   APITypes.DeleteTextMessageMutation
+>;
+export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
+  $input: CreateChatRoomInput!
+  $condition: ModelChatRoomConditionInput
+) {
+  createChatRoom(input: $input, condition: $condition) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateChatRoomMutationVariables,
+  APITypes.CreateChatRoomMutation
+>;
+export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
+  $input: UpdateChatRoomInput!
+  $condition: ModelChatRoomConditionInput
+) {
+  updateChatRoom(input: $input, condition: $condition) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateChatRoomMutationVariables,
+  APITypes.UpdateChatRoomMutation
+>;
+export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
+  $input: DeleteChatRoomInput!
+  $condition: ModelChatRoomConditionInput
+) {
+  deleteChatRoom(input: $input, condition: $condition) {
+    id
+    messages {
+      nextToken
+      __typename
+    }
+    profiles {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteChatRoomMutationVariables,
+  APITypes.DeleteChatRoomMutation
+>;
+export const createProfileChatRooms = /* GraphQL */ `mutation CreateProfileChatRooms(
+  $input: CreateProfileChatRoomsInput!
+  $condition: ModelProfileChatRoomsConditionInput
+) {
+  createProfileChatRooms(input: $input, condition: $condition) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateProfileChatRoomsMutationVariables,
+  APITypes.CreateProfileChatRoomsMutation
+>;
+export const updateProfileChatRooms = /* GraphQL */ `mutation UpdateProfileChatRooms(
+  $input: UpdateProfileChatRoomsInput!
+  $condition: ModelProfileChatRoomsConditionInput
+) {
+  updateProfileChatRooms(input: $input, condition: $condition) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateProfileChatRoomsMutationVariables,
+  APITypes.UpdateProfileChatRoomsMutation
+>;
+export const deleteProfileChatRooms = /* GraphQL */ `mutation DeleteProfileChatRooms(
+  $input: DeleteProfileChatRoomsInput!
+  $condition: ModelProfileChatRoomsConditionInput
+) {
+  deleteProfileChatRooms(input: $input, condition: $condition) {
+    id
+    profileId
+    chatRoomId
+    profile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    chatRoom {
+      id
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteProfileChatRoomsMutationVariables,
+  APITypes.DeleteProfileChatRoomsMutation
 >;
