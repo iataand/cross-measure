@@ -16,6 +16,68 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
     firstName
     lastName
     chatRooms {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -36,6 +98,68 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
     firstName
     lastName
     chatRooms {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -56,6 +180,68 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
     firstName
     lastName
     chatRooms {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -79,6 +265,139 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
     chatRoomId
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    ownerProfileId
+    ownerProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -102,6 +421,139 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
     chatRoomId
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    ownerProfileId
+    ownerProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -125,6 +577,139 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
     chatRoomId
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    ownerProfileId
+    ownerProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -141,10 +726,136 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
   onCreateChatRoom(filter: $filter) {
     id
     messages {
+      items {
+        id
+        message
+        isRead
+        createdAt
+        chatRoomId
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        ownerProfileId
+        ownerProfile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     profiles {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -161,10 +872,136 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
   onUpdateChatRoom(filter: $filter) {
     id
     messages {
+      items {
+        id
+        message
+        isRead
+        createdAt
+        chatRoomId
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        ownerProfileId
+        ownerProfile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     profiles {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -181,10 +1018,136 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
   onDeleteChatRoom(filter: $filter) {
     id
     messages {
+      items {
+        id
+        message
+        isRead
+        createdAt
+        chatRoomId
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        ownerProfileId
+        ownerProfile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
     profiles {
+      items {
+        id
+        profileId
+        chatRoomId
+        profile {
+          id
+          type
+          bandName
+          firstName
+          lastName
+          chatRooms {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        chatRoom {
+          id
+          messages {
+            items {
+              id
+              message
+              isRead
+              createdAt
+              chatRoomId
+              ownerProfileId
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          profiles {
+            items {
+              id
+              profileId
+              chatRoomId
+              createdAt
+              updatedAt
+              __typename
+            }
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       nextToken
       __typename
     }
@@ -210,12 +1173,134 @@ export const onCreateProfileChatRooms = /* GraphQL */ `subscription OnCreateProf
       bandName
       firstName
       lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -242,12 +1327,134 @@ export const onUpdateProfileChatRooms = /* GraphQL */ `subscription OnUpdateProf
       bandName
       firstName
       lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -274,12 +1481,134 @@ export const onDeleteProfileChatRooms = /* GraphQL */ `subscription OnDeleteProf
       bandName
       firstName
       lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
     }
     chatRoom {
       id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

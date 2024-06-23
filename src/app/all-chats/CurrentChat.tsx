@@ -1,3 +1,3 @@
 export default function AllChats() {
-  return <></>;
+  return <>Current chat</>;
 }

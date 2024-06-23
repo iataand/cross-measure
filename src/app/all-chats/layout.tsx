@@ -1,28 +1,19 @@
-"use client";
-
 import { Card } from "@/components/ui/card";
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import AllChatsSideBar from "./AllChatsSideBar";
+import fetchChatRoomsByProfileIdAction from "./actions";
 
-export default function AllChats({
+export default async function AllChats({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { currentChatRoomId } = useParams();
+  const chatRooms = await fetchChatRoomsByProfileIdAction(
+    "b7361082-5c82-4c0b-98f1-0ef0fb7bb895",
+  );
+
   return (
-    <Card className="container flex h-[90vh] gap-2">
-      <ul className="w-1/4">
-        <Link
-          href={`/all-chats/${10}`}
-          className={`block h-16 cursor-pointer border hover:bg-slate-50 ${currentChatRoomId === 10 ? "bg-slate-100" : ""}`}
-        >
-          a
-        </Link>
-        <li>b</li>
-        <li>c</li>
-        <li>d</li>
-      </ul>
+    <Card className="container flex h-[99vh] gap-2 px-0">
+      <AllChatsSideBar chatRooms={chatRooms} />
       {children}
     </Card>
   );

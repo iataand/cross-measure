@@ -1,4 +1,4 @@
-import { CreateProfileInput, Profile, profileTypes } from "@/API";
+import { CreateProfileInput, profileTypes } from "@/API";
 import { createProfile } from "@/data-access/profiles";
 
 export async function createProfileUseCase(

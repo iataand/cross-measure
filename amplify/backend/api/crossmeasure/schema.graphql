@@ -29,6 +29,8 @@ type TextMessage @model {
       queryField: "MessagesByChatRoomId"
     )
   chatRoom: ChatRoom @belongsTo(fields: ["chatRoomId"])
+  ownerProfileId: String!
+  ownerProfile: Profile @hasOne(fields: ["ownerProfileId"])
 }
 
 type ChatRoom @model {
