@@ -3019,7 +3019,7 @@ export type MessagesByChatRoomIdQueryVariables = {
 };
 
 export type MessagesByChatRoomIdQuery = {
-  MessagesByChatRoomId?:  {
+  messagesByChatRoomId?:  {
     __typename: "ModelTextMessageConnection",
     items:  Array< {
       __typename: "TextMessage",
@@ -3384,6 +3384,161 @@ export type ProfileChatRoomsByChatRoomIdQuery = {
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
+  } | null,
+};
+
+export type OnCreateTextMessageByChatRoomIdSubscriptionVariables = {
+  chatRoomId: string,
+};
+
+export type OnCreateTextMessageByChatRoomIdSubscription = {
+  onCreateTextMessageByChatRoomId?:  {
+    __typename: "TextMessage",
+    id: string,
+    message: string,
+    isRead?: boolean | null,
+    createdAt: string,
+    chatRoomId: string,
+    chatRoom?:  {
+      __typename: "ChatRoom",
+      id: string,
+      messages?:  {
+        __typename: "ModelTextMessageConnection",
+        items:  Array< {
+          __typename: "TextMessage",
+          id: string,
+          message: string,
+          isRead?: boolean | null,
+          createdAt: string,
+          chatRoomId: string,
+          chatRoom?:  {
+            __typename: "ChatRoom",
+            id: string,
+            messages?:  {
+              __typename: "ModelTextMessageConnection",
+              nextToken?: string | null,
+            } | null,
+            profiles?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          } | null,
+          ownerProfileId: string,
+          ownerProfile?:  {
+            __typename: "Profile",
+            id: string,
+            type: profileTypes,
+            bandName?: string | null,
+            firstName?: string | null,
+            lastName?: string | null,
+            chatRooms?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          } | null,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      profiles?:  {
+        __typename: "ModelProfileChatRoomsConnection",
+        items:  Array< {
+          __typename: "ProfileChatRooms",
+          id: string,
+          profileId: string,
+          chatRoomId: string,
+          profile:  {
+            __typename: "Profile",
+            id: string,
+            type: profileTypes,
+            bandName?: string | null,
+            firstName?: string | null,
+            lastName?: string | null,
+            chatRooms?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          },
+          chatRoom:  {
+            __typename: "ChatRoom",
+            id: string,
+            messages?:  {
+              __typename: "ModelTextMessageConnection",
+              nextToken?: string | null,
+            } | null,
+            profiles?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          },
+          createdAt: string,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    ownerProfileId: string,
+    ownerProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      chatRooms?:  {
+        __typename: "ModelProfileChatRoomsConnection",
+        items:  Array< {
+          __typename: "ProfileChatRooms",
+          id: string,
+          profileId: string,
+          chatRoomId: string,
+          profile:  {
+            __typename: "Profile",
+            id: string,
+            type: profileTypes,
+            bandName?: string | null,
+            firstName?: string | null,
+            lastName?: string | null,
+            chatRooms?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          },
+          chatRoom:  {
+            __typename: "ChatRoom",
+            id: string,
+            messages?:  {
+              __typename: "ModelTextMessageConnection",
+              nextToken?: string | null,
+            } | null,
+            profiles?:  {
+              __typename: "ModelProfileChatRoomsConnection",
+              nextToken?: string | null,
+            } | null,
+            createdAt: string,
+            updatedAt: string,
+          },
+          createdAt: string,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    updatedAt: string,
   } | null,
 };
 

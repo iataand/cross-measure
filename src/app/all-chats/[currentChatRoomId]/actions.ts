@@ -1,8 +1,11 @@
 "use server";
 import { CreateTextMessageInput } from "@/API";
-import { sendMessageUseCase } from "@/use-cases/textMessage";
+import {
+  listMessagesByChatRoomIdUseCase,
+  sendMessageUseCase,
+} from "@/use-cases/textMessage";
 
-export default async function sendMessage(
+export async function sendMessageAction(
   chatRoomId: string,
   ownerProfileId: string,
   formData: FormData,
@@ -28,4 +31,12 @@ export default async function sendMessage(
   };
 
   await sendMessageUseCase(textMessage);
+}
+
+export async function listMessagesByChatRoomIdAction(chatRoomId: string) {
+  if (!chatRoomId) {
+    throw Error("ChatRoomId not found");
+  }
+
+  return await listMessagesByChatRoomIdUseCase(chatRoomId);
 }

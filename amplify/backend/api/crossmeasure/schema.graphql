@@ -26,7 +26,7 @@ type TextMessage @model {
     @index(
       name: "byChatRoom"
       sortKeyFields: ["createdAt"]
-      queryField: "MessagesByChatRoomId"
+      queryField: "messagesByChatRoomId"
     )
   chatRoom: ChatRoom @belongsTo(fields: ["chatRoomId"])
   ownerProfileId: String!
@@ -37,4 +37,9 @@ type ChatRoom @model {
   id: ID!
   messages: [TextMessage] @hasMany(indexName: "byChatRoom", fields: ["id"])
   profiles: [Profile] @manyToMany(relationName: "ProfileChatRooms")
+}
+
+type Subscription {
+  onCreateTextMessageByChatRoomId(chatRoomId: String!): TextMessage
+    @aws_subscribe(mutations: ["createTextMessage"])
 }

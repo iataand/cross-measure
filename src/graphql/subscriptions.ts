@@ -8,6 +8,160 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
+export const onCreateTextMessageByChatRoomId = /* GraphQL */ `subscription OnCreateTextMessageByChatRoomId($chatRoomId: String!) {
+  onCreateTextMessageByChatRoomId(chatRoomId: $chatRoomId) {
+    id
+    message
+    isRead
+    createdAt
+    chatRoomId
+    chatRoom {
+      id
+      messages {
+        items {
+          id
+          message
+          isRead
+          createdAt
+          chatRoomId
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          ownerProfileId
+          ownerProfile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      profiles {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    ownerProfileId
+    ownerProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      chatRooms {
+        items {
+          id
+          profileId
+          chatRoomId
+          profile {
+            id
+            type
+            bandName
+            firstName
+            lastName
+            chatRooms {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          chatRoom {
+            id
+            messages {
+              nextToken
+              __typename
+            }
+            profiles {
+              nextToken
+              __typename
+            }
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateTextMessageByChatRoomIdSubscriptionVariables,
+  APITypes.OnCreateTextMessageByChatRoomIdSubscription
+>;
 export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
   onCreateProfile(filter: $filter) {
     id

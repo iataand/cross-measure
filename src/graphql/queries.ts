@@ -958,7 +958,7 @@ export const listProfileChatRooms = /* GraphQL */ `query ListProfileChatRooms(
   APITypes.ListProfileChatRoomsQueryVariables,
   APITypes.ListProfileChatRoomsQuery
 >;
-export const MessagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
+export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
   $chatRoomId: ID!
   $createdAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
@@ -966,7 +966,7 @@ export const MessagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
   $limit: Int
   $nextToken: String
 ) {
-  MessagesByChatRoomId(
+  messagesByChatRoomId(
     chatRoomId: $chatRoomId
     createdAt: $createdAt
     sortDirection: $sortDirection
