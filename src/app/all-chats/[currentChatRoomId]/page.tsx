@@ -12,7 +12,7 @@ export default async function CurrentChat({
 
   return (
     <main className="flex w-full flex-col justify-between border p-2">
-      <ChatHistory />
+      <ChatHistory currentChatRoomId={currentChatRoomId} />
       <form
         action={sendMessageAction.bind(
           null,
