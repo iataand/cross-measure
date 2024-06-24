@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import createProfileAction from "./actions";
 import { Input } from "@/components/ui/input";
@@ -10,11 +12,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFormState } from "react-dom";
+import { profileTypes } from "@/API";
+import { useEffect, useRef } from "react";
 
 export default function CreateProfile() {
+  const [formState, formAction] = useFormState(createProfileAction, {
+    message: "",
+    errors: undefined,
+    fieldValues: {
+      type: profileTypes.band,
+      firstName: "",
+      lastName: "",
+      bandName: "",
+    },
+  });
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formState.message === "success") {
+      formRef.current?.reset();
+    }
+  }, [formState]);
+
   return (
     <form
-      action={createProfileAction}
+      action={formAction}
+      ref={formRef}
       className="container flex flex-col gap-4 border-2 py-4"
     >
       <Select name="type">

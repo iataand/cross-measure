@@ -5,27 +5,31 @@ import {
   sendMessageUseCase,
 } from "@/use-cases/textMessage";
 import { revalidatePath } from "next/cache";
-import { RefObject } from "react";
+import z, { ZodError } from "zod";
+
+const textMessageSchema = z.object({
+  message: z.string().min(1).max(100),
+  chatRoomId: z.string(),
+  ownerProfileId: z.string(),
+});
+
+type Fields = {
+  message: string;
+};
+
+export type FormState = {
+  message: string;
+  errors: Record<keyof Fields, string> | undefined;
+  fieldValues: Fields;
+};
 
 export async function sendMessageAction(
   chatRoomId: string,
   ownerProfileId: string,
-  formState: any,
+  formState: FormState,
   formData: FormData,
-) {
+): Promise<FormState> {
   const message = formData.get("message") as string;
-
-  if (!chatRoomId) {
-    throw Error("ChatRoomId not found");
-  }
-
-  if (!ownerProfileId) {
-    throw Error("OwnerProfileId not found");
-  }
-
-  if (!message) {
-    throw Error("Message not found");
-  }
 
   const textMessage: CreateTextMessageInput = {
     chatRoomId,
@@ -33,23 +37,34 @@ export async function sendMessageAction(
     message,
   };
 
-  revalidatePath(`/all-chats/${chatRoomId}`);
+  try {
+    textMessageSchema.parse(textMessage);
+    await sendMessageUseCase(textMessage);
+    return {
+      message: "success",
+      errors: undefined,
+      fieldValues: { message: "" },
+    };
+  } catch (error) {
+    const zodError = error as ZodError;
+    const errorMap = zodError.flatten().fieldErrors;
 
-  await sendMessageUseCase(textMessage);
-
-  return {
-    message: "success",
-    errors: undefined,
-    fieldValues: { message: "" },
-  };
+    return {
+      message: "error",
+      errors: { message: errorMap["message"]?.[0] ?? "" },
+      fieldValues: { message: "" },
+    };
+  } finally {
+    revalidatePath(`/all-chats/${chatRoomId}`);
+  }
 }
 
 export async function listMessagesByChatRoomIdAction(chatRoomId: string) {
-  if (!chatRoomId) {
-    throw Error("ChatRoomId not found");
+  try {
+    return await listMessagesByChatRoomIdUseCase(chatRoomId);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    revalidatePath(`/all-chats/${chatRoomId}`);
   }
-
-  revalidatePath(`/all-chats/${chatRoomId}`);
-
-  return await listMessagesByChatRoomIdUseCase(chatRoomId);
 }
