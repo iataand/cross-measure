@@ -20,60 +20,6 @@ export const getProfile = /* GraphQL */ `query GetProfile($id: ID!) {
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -103,42 +49,6 @@ export const listProfiles = /* GraphQL */ `query ListProfiles(
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -161,94 +71,6 @@ export const getTextMessage = /* GraphQL */ `query GetTextMessage($id: ID!) {
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -257,42 +79,6 @@ export const getTextMessage = /* GraphQL */ `query GetTextMessage($id: ID!) {
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -320,70 +106,6 @@ export const listTextMessages = /* GraphQL */ `query ListTextMessages(
       isRead
       createdAt
       chatRoomId
-      chatRoom {
-        id
-        messages {
-          items {
-            id
-            message
-            isRead
-            createdAt
-            chatRoomId
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            ownerProfileId
-            ownerProfile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profiles {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
       ownerProfileId
       ownerProfile {
         id
@@ -391,34 +113,6 @@ export const listTextMessages = /* GraphQL */ `query ListTextMessages(
         bandName
         firstName
         lastName
-        chatRooms {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -444,61 +138,7 @@ export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -510,60 +150,6 @@ export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -589,84 +175,10 @@ export const listChatRooms = /* GraphQL */ `query ListChatRooms(
     items {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -694,42 +206,6 @@ export const getProfileChatRooms = /* GraphQL */ `query GetProfileChatRooms($id:
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -740,84 +216,10 @@ export const getProfileChatRooms = /* GraphQL */ `query GetProfileChatRooms($id:
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -850,98 +252,12 @@ export const listProfileChatRooms = /* GraphQL */ `query ListProfileChatRooms(
         bandName
         firstName
         lastName
-        chatRooms {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
       }
       chatRoom {
         id
-        messages {
-          items {
-            id
-            message
-            isRead
-            createdAt
-            chatRoomId
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            ownerProfileId
-            ownerProfile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profiles {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -980,70 +296,6 @@ export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
       isRead
       createdAt
       chatRoomId
-      chatRoom {
-        id
-        messages {
-          items {
-            id
-            message
-            isRead
-            createdAt
-            chatRoomId
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            ownerProfileId
-            ownerProfile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profiles {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
       ownerProfileId
       ownerProfile {
         id
@@ -1051,34 +303,6 @@ export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
         bandName
         firstName
         lastName
-        chatRooms {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1118,98 +342,12 @@ export const profileChatRoomsByProfileId = /* GraphQL */ `query ProfileChatRooms
         bandName
         firstName
         lastName
-        chatRooms {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
       }
       chatRoom {
         id
-        messages {
-          items {
-            id
-            message
-            isRead
-            createdAt
-            chatRoomId
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            ownerProfileId
-            ownerProfile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profiles {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1250,98 +388,12 @@ export const profileChatRoomsByChatRoomId = /* GraphQL */ `query ProfileChatRoom
         bandName
         firstName
         lastName
-        chatRooms {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename
       }
       chatRoom {
         id
-        messages {
-          items {
-            id
-            message
-            isRead
-            createdAt
-            chatRoomId
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            ownerProfileId
-            ownerProfile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profiles {
-          items {
-            id
-            profileId
-            chatRoomId
-            profile {
-              id
-              type
-              bandName
-              firstName
-              lastName
-              createdAt
-              updatedAt
-              __typename
-            }
-            chatRoom {
-              id
-              createdAt
-              updatedAt
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
         createdAt
         updatedAt
         __typename

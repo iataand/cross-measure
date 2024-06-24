@@ -23,60 +23,6 @@ export const createProfile = /* GraphQL */ `mutation CreateProfile(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -108,60 +54,6 @@ export const updateProfile = /* GraphQL */ `mutation UpdateProfile(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -193,60 +85,6 @@ export const deleteProfile = /* GraphQL */ `mutation DeleteProfile(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -273,94 +111,6 @@ export const createTextMessage = /* GraphQL */ `mutation CreateTextMessage(
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -369,42 +119,6 @@ export const createTextMessage = /* GraphQL */ `mutation CreateTextMessage(
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -430,94 +144,6 @@ export const updateTextMessage = /* GraphQL */ `mutation UpdateTextMessage(
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -526,42 +152,6 @@ export const updateTextMessage = /* GraphQL */ `mutation UpdateTextMessage(
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -587,94 +177,6 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -683,42 +185,6 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -747,61 +213,7 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -813,60 +225,6 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -896,61 +254,7 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -962,60 +266,6 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1045,61 +295,7 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -1111,60 +307,6 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1196,42 +338,6 @@ export const createProfileChatRooms = /* GraphQL */ `mutation CreateProfileChatR
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1242,84 +348,10 @@ export const createProfileChatRooms = /* GraphQL */ `mutation CreateProfileChatR
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1351,42 +383,6 @@ export const updateProfileChatRooms = /* GraphQL */ `mutation UpdateProfileChatR
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1397,84 +393,10 @@ export const updateProfileChatRooms = /* GraphQL */ `mutation UpdateProfileChatR
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1506,42 +428,6 @@ export const deleteProfileChatRooms = /* GraphQL */ `mutation DeleteProfileChatR
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1552,84 +438,10 @@ export const deleteProfileChatRooms = /* GraphQL */ `mutation DeleteProfileChatR
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }

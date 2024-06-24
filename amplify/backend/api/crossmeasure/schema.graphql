@@ -28,7 +28,6 @@ type TextMessage @model {
       sortKeyFields: ["createdAt"]
       queryField: "messagesByChatRoomId"
     )
-  chatRoom: ChatRoom @belongsTo(fields: ["chatRoomId"])
   ownerProfileId: String!
   ownerProfile: Profile @hasOne(fields: ["ownerProfileId"])
 }

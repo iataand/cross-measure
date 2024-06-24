@@ -15,94 +15,6 @@ export const onCreateTextMessageByChatRoomId = /* GraphQL */ `subscription OnCre
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -111,42 +23,6 @@ export const onCreateTextMessageByChatRoomId = /* GraphQL */ `subscription OnCre
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -174,60 +50,6 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -256,60 +78,6 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -338,60 +106,6 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -417,94 +131,6 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -513,42 +139,6 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -573,94 +163,6 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -669,42 +171,6 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -729,94 +195,6 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
     isRead
     createdAt
     chatRoomId
-    chatRoom {
-      id
-      messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
     ownerProfileId
     ownerProfile {
       id
@@ -825,42 +203,6 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -886,61 +228,7 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -952,60 +240,6 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1032,61 +266,7 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -1098,60 +278,6 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1178,61 +304,7 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
         isRead
         createdAt
         chatRoomId
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         ownerProfileId
-        ownerProfile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         updatedAt
         __typename
       }
@@ -1244,60 +316,6 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
         id
         profileId
         chatRoomId
-        profile {
-          id
-          type
-          bandName
-          firstName
-          lastName
-          chatRooms {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        chatRoom {
-          id
-          messages {
-            items {
-              id
-              message
-              isRead
-              createdAt
-              chatRoomId
-              ownerProfileId
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          profiles {
-            items {
-              id
-              profileId
-              chatRoomId
-              createdAt
-              updatedAt
-              __typename
-            }
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         createdAt
         updatedAt
         __typename
@@ -1328,42 +346,6 @@ export const onCreateProfileChatRooms = /* GraphQL */ `subscription OnCreateProf
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1374,84 +356,10 @@ export const onCreateProfileChatRooms = /* GraphQL */ `subscription OnCreateProf
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1482,42 +390,6 @@ export const onUpdateProfileChatRooms = /* GraphQL */ `subscription OnUpdateProf
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1528,84 +400,10 @@ export const onUpdateProfileChatRooms = /* GraphQL */ `subscription OnUpdateProf
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1636,42 +434,6 @@ export const onDeleteProfileChatRooms = /* GraphQL */ `subscription OnDeleteProf
       firstName
       lastName
       chatRooms {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
@@ -1682,84 +444,10 @@ export const onDeleteProfileChatRooms = /* GraphQL */ `subscription OnDeleteProf
     chatRoom {
       id
       messages {
-        items {
-          id
-          message
-          isRead
-          createdAt
-          chatRoomId
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          ownerProfileId
-          ownerProfile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
       profiles {
-        items {
-          id
-          profileId
-          chatRoomId
-          profile {
-            id
-            type
-            bandName
-            firstName
-            lastName
-            chatRooms {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          chatRoom {
-            id
-            messages {
-              nextToken
-              __typename
-            }
-            profiles {
-              nextToken
-              __typename
-            }
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
         nextToken
         __typename
       }
