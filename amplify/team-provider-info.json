@@ -9,11 +9,27 @@
       "UnauthRoleName": "amplify-crossmeasure-dev-99ec2-unauthRole",
       "StackName": "amplify-crossmeasure-dev-99ec2",
       "StackId": "arn:aws:cloudformation:eu-central-1:211125761504:stack/amplify-crossmeasure-dev-99ec2/a44cee50-2edd-11ef-920c-0a7a84cf33ed",
-      "AmplifyAppId": "d2d2xsvlmto5yi"
+      "AmplifyAppId": "d2d2xsvlmto5yi",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-crossmeasure-dev-99ec2-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "api": {
         "crossmeasure": {}
+      },
+      "function": {
+        "crossmeasure5ff4bf50DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
+          "s3Key": "amplify-builds/crossmeasure5ff4bf50DefineAuthChallenge-3257593544524d6e5738-build.zip"
+        },
+        "crossmeasure5ff4bf50CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
+          "s3Key": "amplify-builds/crossmeasure5ff4bf50CreateAuthChallenge-777532334a6962576c61-build.zip"
+        },
+        "crossmeasure5ff4bf50VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "cross-measure",
+          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
+          "s3Key": "amplify-builds/crossmeasure5ff4bf50VerifyAuthChallengeResponse-4b6550724536795a3438-build.zip"
+        }
       },
       "auth": {
         "crossmeasure5ff4bf50": {}

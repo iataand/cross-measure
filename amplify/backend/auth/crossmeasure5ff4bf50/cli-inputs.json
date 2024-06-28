@@ -1,8 +1,6 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "crossmeasure5ff4bf50_identitypool_5ff4bf50",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "crossm5ff4bf50",
     "userPoolName": "crossmeasure5ff4bf50_userpool_5ff4bf50",
     "autoVerifiedAttributes": [
@@ -35,7 +33,7 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "5ff4bf50",
     "resourceName": "crossmeasure5ff4bf50",
-    "authSelections": "identityPoolAndUserPool",
+    "authSelections": "userPoolOnly",
     "useDefault": "default",
     "usernameAttributes": [
       "email"
@@ -43,6 +41,68 @@
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "crossmeasure5ff4bf50DefineAuthChallenge",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "crossmeasure5ff4bf50CreateAuthChallenge",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "crossmeasure5ff4bf50VerifyAuthChallengeResponse",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {
+      "DefineAuthChallenge": [
+        "captcha-define-challenge"
+      ],
+      "CreateAuthChallenge": [
+        "captcha-create-challenge"
+      ],
+      "VerifyAuthChallengeResponse": [
+        "captcha-verify"
+      ]
+    },
+    "hostedUI": false,
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"DefineAuthChallenge\",\n    \"lambdaFunctionName\": \"crossmeasure5ff4bf50DefineAuthChallenge\"\n  },\n  {\n    \"triggerType\": \"CreateAuthChallenge\",\n    \"lambdaFunctionName\": \"crossmeasure5ff4bf50CreateAuthChallenge\"\n  },\n  {\n    \"triggerType\": \"VerifyAuthChallengeResponse\",\n    \"lambdaFunctionName\": \"crossmeasure5ff4bf50VerifyAuthChallengeResponse\"\n  }\n]",
+    "permissions": [],
+    "authProviders": []
   }
 }
