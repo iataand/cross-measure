@@ -1,9 +1,7 @@
 "use client";
 
 import { TextMessage, profileTypes } from "@/API";
-import { client } from "@/data-access/index-client";
-import { onCreateTextMessageByChatRoomId } from "@/graphql/subscriptions";
-import { useEffect, useState } from "react";
+import { useChatHistory } from "@/custom-hooks.ts";
 
 export default function ChatHistory({
   chatHistory,
@@ -12,28 +10,7 @@ export default function ChatHistory({
   chatHistory: TextMessage[];
   chatRoomId: string;
 }) {
-  const [chatMessages, setChatMessages] = useState(chatHistory);
-
-  useEffect(() => {
-    const subscription = client
-      .graphql({
-        query: onCreateTextMessageByChatRoomId,
-        variables: { chatRoomId },
-      })
-      .subscribe({
-        next: (messageData) => {
-          const newMessage = messageData.data
-            .onCreateTextMessageByChatRoomId as TextMessage;
-
-          setChatMessages((prevMessages) => [...prevMessages, newMessage]);
-        },
-        error: (err) => console.error(err),
-      });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+  const chatMessages = useChatHistory(chatRoomId, chatHistory);
 
   return (
     <ul>

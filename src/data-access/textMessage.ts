@@ -1,7 +1,7 @@
 import { CreateTextMessageInput, ModelSortDirection } from "@/API";
 import { cookiesClient } from ".";
 import { createTextMessage } from "@/graphql/mutations";
-import { messagesByChatRoomId } from "@/graphql/queries";
+import { getMessagesByChatRoomId } from "@/graphql/queries";
 import { onCreateTextMessageByChatRoomId } from "@/graphql/subscriptions";
 import { client } from "./index-client";
 
@@ -14,11 +14,11 @@ export async function sendTextMessage(textMessage: CreateTextMessageInput) {
 
 export async function listMessagesByChatRoomId(chatRoomId: string) {
   const res = await cookiesClient.graphql({
-    query: messagesByChatRoomId,
+    query: getMessagesByChatRoomId,
     variables: { chatRoomId, sortDirection: ModelSortDirection.ASC },
   });
 
-  return res.data.messagesByChatRoomId.items;
+  return res.data.getMessagesByChatRoomId.items;
 }
 
 export async function subscribeToChatRoomById(chatRoomId: string) {

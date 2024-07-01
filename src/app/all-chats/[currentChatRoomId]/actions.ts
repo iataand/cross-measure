@@ -64,7 +64,6 @@ export async function listMessagesByChatRoomIdAction(chatRoomId: string) {
     return await listMessagesByChatRoomIdUseCase(chatRoomId);
   } catch (error) {
     console.error(error);
-  } finally {
-    revalidatePath(`/all-chats/${chatRoomId}`);
   }
+  revalidatePath(`/all-chats/${chatRoomId}`);
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import { ChatRoom } from "@/API";
 import ChatSideBarItem from "./ChatSideBarItem";
 

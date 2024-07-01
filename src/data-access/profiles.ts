@@ -24,7 +24,5 @@ export async function fetchChatRoomsByProfileId(profileId: string) {
     variables: { filter: { musicianProfileId: { eq: profileId } } },
   });
 
-  console.log(res.data.listChatRooms.items);
-
   return res.data.listChatRooms.items;
 }
