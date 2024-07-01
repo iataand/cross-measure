@@ -33,7 +33,7 @@ export default function ChatHistory({
     return () => {
       subscription.unsubscribe();
     };
-  }, [chatMessages]);
+  }, []);
 
   return (
     <ul>

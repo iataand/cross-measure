@@ -14,7 +14,6 @@ type Profile @model {
   bandName: String
   firstName: String
   lastName: String
-  chatRooms: [ChatRoom] @manyToMany(relationName: "ProfileChatRooms")
 }
 
 type TextMessage @model {
@@ -26,7 +25,7 @@ type TextMessage @model {
     @index(
       name: "byChatRoom"
       sortKeyFields: ["createdAt"]
-      queryField: "messagesByChatRoomId"
+      queryField: "getMessagesByChatRoomId"
     )
   ownerProfileId: String!
   ownerProfile: Profile @hasOne(fields: ["ownerProfileId"])
@@ -34,8 +33,11 @@ type TextMessage @model {
 
 type ChatRoom @model {
   id: ID!
+  musicianProfileId: String!
+  musicianProfile: Profile @hasOne(fields: ["musicianProfileId"])
+  bandProfileId: String!
+  bandProfile: Profile @hasOne(fields: ["bandProfileId"])
   messages: [TextMessage] @hasMany(indexName: "byChatRoom", fields: ["id"])
-  profiles: [Profile] @manyToMany(relationName: "ProfileChatRooms")
 }
 
 type Subscription {

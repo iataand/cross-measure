@@ -2,24 +2,34 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
+export type CreateProfileInput = {
+  id?: string | null,
+  type: profileTypes,
+  bandName?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+};
+
+export enum profileTypes {
+  musician = "musician",
+  band = "band",
 }
 
 
-export type ModelProfileChatRoomsFilterInput = {
-  id?: ModelIDInput | null,
-  profileId?: ModelStringInput | null,
-  chatRoomId?: ModelIDInput | null,
+export type ModelProfileConditionInput = {
+  id?: ModelStringInput | null,
+  type?: ModelprofileTypesInput | null,
+  bandName?: ModelStringInput | null,
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  and?: Array< ModelProfileConditionInput | null > | null,
+  or?: Array< ModelProfileConditionInput | null > | null,
+  not?: ModelProfileConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  and?: Array< ModelProfileChatRoomsFilterInput | null > | null,
-  or?: Array< ModelProfileChatRoomsFilterInput | null > | null,
-  not?: ModelProfileChatRoomsFilterInput | null,
 };
 
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -59,37 +69,9 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type ModelProfileChatRoomsConnection = {
-  __typename: "ModelProfileChatRoomsConnection",
-  items:  Array<ProfileChatRooms | null >,
-  nextToken?: string | null,
-};
-
-export type ProfileChatRooms = {
-  __typename: "ProfileChatRooms",
-  id: string,
-  profileId: string,
-  chatRoomId: string,
-  profile: Profile,
-  chatRoom: ChatRoom,
-  createdAt: string,
-  updatedAt: string,
+export type ModelprofileTypesInput = {
+  eq?: profileTypes | null,
+  ne?: profileTypes | null,
 };
 
 export type Profile = {
@@ -99,68 +81,8 @@ export type Profile = {
   bandName?: string | null,
   firstName?: string | null,
   lastName?: string | null,
-  chatRooms?: ModelProfileChatRoomsConnection | null,
   createdAt: string,
   updatedAt: string,
-};
-
-export enum profileTypes {
-  musician = "musician",
-  band = "band",
-}
-
-
-export type ChatRoom = {
-  __typename: "ChatRoom",
-  id: string,
-  messages?: ModelTextMessageConnection | null,
-  profiles?: ModelProfileChatRoomsConnection | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type ModelTextMessageConnection = {
-  __typename: "ModelTextMessageConnection",
-  items:  Array<TextMessage | null >,
-  nextToken?: string | null,
-};
-
-export type TextMessage = {
-  __typename: "TextMessage",
-  id: string,
-  message: string,
-  isRead?: boolean | null,
-  createdAt: string,
-  chatRoomId: string,
-  ownerProfileId: string,
-  ownerProfile?: Profile | null,
-  updatedAt: string,
-};
-
-export type CreateProfileInput = {
-  id?: string | null,
-  type: profileTypes,
-  bandName?: string | null,
-  firstName?: string | null,
-  lastName?: string | null,
-};
-
-export type ModelProfileConditionInput = {
-  id?: ModelStringInput | null,
-  type?: ModelprofileTypesInput | null,
-  bandName?: ModelStringInput | null,
-  firstName?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  and?: Array< ModelProfileConditionInput | null > | null,
-  or?: Array< ModelProfileConditionInput | null > | null,
-  not?: ModelProfileConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-};
-
-export type ModelprofileTypesInput = {
-  eq?: profileTypes | null,
-  ne?: profileTypes | null,
 };
 
 export type UpdateProfileInput = {
@@ -203,6 +125,34 @@ export type ModelBooleanInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type TextMessage = {
+  __typename: "TextMessage",
+  id: string,
+  message: string,
+  isRead?: boolean | null,
+  createdAt: string,
+  chatRoomId: string,
+  ownerProfileId: string,
+  ownerProfile?: Profile | null,
+  updatedAt: string,
+};
+
 export type UpdateTextMessageInput = {
   id: string,
   message?: string | null,
@@ -218,9 +168,13 @@ export type DeleteTextMessageInput = {
 
 export type CreateChatRoomInput = {
   id?: string | null,
+  musicianProfileId: string,
+  bandProfileId: string,
 };
 
 export type ModelChatRoomConditionInput = {
+  musicianProfileId?: ModelStringInput | null,
+  bandProfileId?: ModelStringInput | null,
   and?: Array< ModelChatRoomConditionInput | null > | null,
   or?: Array< ModelChatRoomConditionInput | null > | null,
   not?: ModelChatRoomConditionInput | null,
@@ -228,37 +182,31 @@ export type ModelChatRoomConditionInput = {
   updatedAt?: ModelStringInput | null,
 };
 
+export type ChatRoom = {
+  __typename: "ChatRoom",
+  id: string,
+  musicianProfileId: string,
+  musicianProfile?: Profile | null,
+  bandProfileId: string,
+  bandProfile?: Profile | null,
+  messages?: ModelTextMessageConnection | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type ModelTextMessageConnection = {
+  __typename: "ModelTextMessageConnection",
+  items:  Array<TextMessage | null >,
+  nextToken?: string | null,
+};
+
 export type UpdateChatRoomInput = {
   id: string,
+  musicianProfileId?: string | null,
+  bandProfileId?: string | null,
 };
 
 export type DeleteChatRoomInput = {
-  id: string,
-};
-
-export type CreateProfileChatRoomsInput = {
-  id?: string | null,
-  profileId: string,
-  chatRoomId: string,
-};
-
-export type ModelProfileChatRoomsConditionInput = {
-  profileId?: ModelStringInput | null,
-  chatRoomId?: ModelIDInput | null,
-  and?: Array< ModelProfileChatRoomsConditionInput | null > | null,
-  or?: Array< ModelProfileChatRoomsConditionInput | null > | null,
-  not?: ModelProfileChatRoomsConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-};
-
-export type UpdateProfileChatRoomsInput = {
-  id: string,
-  profileId?: string | null,
-  chatRoomId?: string | null,
-};
-
-export type DeleteProfileChatRoomsInput = {
   id: string,
 };
 
@@ -296,6 +244,8 @@ export type ModelTextMessageFilterInput = {
 
 export type ModelChatRoomFilterInput = {
   id?: ModelIDInput | null,
+  musicianProfileId?: ModelStringInput | null,
+  bandProfileId?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelChatRoomFilterInput | null > | null,
@@ -318,6 +268,12 @@ export type ModelStringKeyConditionInput = {
   between?: Array< string | null > | null,
   beginsWith?: string | null,
 };
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 
 export type ModelSubscriptionProfileFilterInput = {
   id?: ModelSubscriptionStringInput | null,
@@ -380,56 +336,12 @@ export type ModelSubscriptionBooleanInput = {
 
 export type ModelSubscriptionChatRoomFilterInput = {
   id?: ModelSubscriptionIDInput | null,
+  musicianProfileId?: ModelSubscriptionStringInput | null,
+  bandProfileId?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionChatRoomFilterInput | null > | null,
   or?: Array< ModelSubscriptionChatRoomFilterInput | null > | null,
-};
-
-export type ModelSubscriptionProfileChatRoomsFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  profileId?: ModelSubscriptionStringInput | null,
-  chatRoomId?: ModelSubscriptionIDInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionProfileChatRoomsFilterInput | null > | null,
-  or?: Array< ModelSubscriptionProfileChatRoomsFilterInput | null > | null,
-};
-
-export type getChatRoomsByProfileIdQueryVariables = {
-  profileId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelProfileChatRoomsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type getChatRoomsByProfileIdQuery = {
-  profileChatRoomsByProfileId?:  {
-    __typename: "ModelProfileChatRoomsConnection",
-    nextToken?: string | null,
-    items:  Array< {
-      __typename: "ProfileChatRooms",
-      chatRoom:  {
-        __typename: "ChatRoom",
-        profiles?:  {
-          __typename: "ModelProfileChatRoomsConnection",
-          items:  Array< {
-            __typename: "ProfileChatRooms",
-            profile:  {
-              __typename: "Profile",
-              bandName?: string | null,
-              firstName?: string | null,
-              lastName?: string | null,
-            },
-            chatRoomId: string,
-            createdAt: string,
-            id: string,
-          } | null >,
-        } | null,
-      },
-    } | null >,
-  } | null,
 };
 
 export type CreateProfileMutationVariables = {
@@ -445,18 +357,6 @@ export type CreateProfileMutation = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -475,18 +375,6 @@ export type UpdateProfileMutation = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -505,18 +393,6 @@ export type DeleteProfileMutation = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -543,10 +419,6 @@ export type CreateTextMessageMutation = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -575,10 +447,6 @@ export type UpdateTextMessageMutation = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -607,10 +475,6 @@ export type DeleteTextMessageMutation = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -627,6 +491,28 @@ export type CreateChatRoomMutation = {
   createChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -637,18 +523,6 @@ export type CreateChatRoomMutation = {
         createdAt: string,
         chatRoomId: string,
         ownerProfileId: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
         updatedAt: string,
       } | null >,
       nextToken?: string | null,
@@ -667,6 +541,28 @@ export type UpdateChatRoomMutation = {
   updateChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -677,18 +573,6 @@ export type UpdateChatRoomMutation = {
         createdAt: string,
         chatRoomId: string,
         ownerProfileId: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
         updatedAt: string,
       } | null >,
       nextToken?: string | null,
@@ -707,6 +591,28 @@ export type DeleteChatRoomMutation = {
   deleteChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -721,150 +627,6 @@ export type DeleteChatRoomMutation = {
       } | null >,
       nextToken?: string | null,
     } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateProfileChatRoomsMutationVariables = {
-  input: CreateProfileChatRoomsInput,
-  condition?: ModelProfileChatRoomsConditionInput | null,
-};
-
-export type CreateProfileChatRoomsMutation = {
-  createProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateProfileChatRoomsMutationVariables = {
-  input: UpdateProfileChatRoomsInput,
-  condition?: ModelProfileChatRoomsConditionInput | null,
-};
-
-export type UpdateProfileChatRoomsMutation = {
-  updateProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteProfileChatRoomsMutationVariables = {
-  input: DeleteProfileChatRoomsInput,
-  condition?: ModelProfileChatRoomsConditionInput | null,
-};
-
-export type DeleteProfileChatRoomsMutation = {
-  deleteProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -882,18 +644,6 @@ export type GetProfileQuery = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -915,10 +665,6 @@ export type ListProfilesQuery = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -946,10 +692,6 @@ export type GetTextMessageQuery = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -998,6 +740,28 @@ export type GetChatRoomQuery = {
   getChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -1008,18 +772,6 @@ export type GetChatRoomQuery = {
         createdAt: string,
         chatRoomId: string,
         ownerProfileId: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
         updatedAt: string,
       } | null >,
       nextToken?: string | null,
@@ -1041,79 +793,8 @@ export type ListChatRoomsQuery = {
     items:  Array< {
       __typename: "ChatRoom",
       id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetProfileChatRoomsQueryVariables = {
-  id: string,
-};
-
-export type GetProfileChatRoomsQuery = {
-  getProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListProfileChatRoomsQueryVariables = {
-  filter?: ModelProfileChatRoomsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListProfileChatRoomsQuery = {
-  listProfileChatRooms?:  {
-    __typename: "ModelProfileChatRoomsConnection",
-    items:  Array< {
-      __typename: "ProfileChatRooms",
-      id: string,
-      profileId: string,
-      chatRoomId: string,
-      profile:  {
+      musicianProfileId: string,
+      musicianProfile?:  {
         __typename: "Profile",
         id: string,
         type: profileTypes,
@@ -1122,13 +803,22 @@ export type ListProfileChatRoomsQuery = {
         lastName?: string | null,
         createdAt: string,
         updatedAt: string,
-      },
-      chatRoom:  {
-        __typename: "ChatRoom",
+      } | null,
+      bandProfileId: string,
+      bandProfile?:  {
+        __typename: "Profile",
         id: string,
+        type: profileTypes,
+        bandName?: string | null,
+        firstName?: string | null,
+        lastName?: string | null,
         createdAt: string,
         updatedAt: string,
-      },
+      } | null,
+      messages?:  {
+        __typename: "ModelTextMessageConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -1136,7 +826,7 @@ export type ListProfileChatRoomsQuery = {
   } | null,
 };
 
-export type MessagesByChatRoomIdQueryVariables = {
+export type GetMessagesByChatRoomIdQueryVariables = {
   chatRoomId: string,
   createdAt?: ModelStringKeyConditionInput | null,
   sortDirection?: ModelSortDirection | null,
@@ -1145,8 +835,8 @@ export type MessagesByChatRoomIdQueryVariables = {
   nextToken?: string | null,
 };
 
-export type MessagesByChatRoomIdQuery = {
-  messagesByChatRoomId?:  {
+export type GetMessagesByChatRoomIdQuery = {
+  getMessagesByChatRoomId?:  {
     __typename: "ModelTextMessageConnection",
     items:  Array< {
       __typename: "TextMessage",
@@ -1166,84 +856,6 @@ export type MessagesByChatRoomIdQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ProfileChatRoomsByProfileIdQueryVariables = {
-  profileId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelProfileChatRoomsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ProfileChatRoomsByProfileIdQuery = {
-  profileChatRoomsByProfileId?:  {
-    __typename: "ModelProfileChatRoomsConnection",
-    items:  Array< {
-      __typename: "ProfileChatRooms",
-      id: string,
-      profileId: string,
-      chatRoomId: string,
-      profile:  {
-        __typename: "Profile",
-        id: string,
-        type: profileTypes,
-        bandName?: string | null,
-        firstName?: string | null,
-        lastName?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      },
-      chatRoom:  {
-        __typename: "ChatRoom",
-        id: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ProfileChatRoomsByChatRoomIdQueryVariables = {
-  chatRoomId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelProfileChatRoomsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ProfileChatRoomsByChatRoomIdQuery = {
-  profileChatRoomsByChatRoomId?:  {
-    __typename: "ModelProfileChatRoomsConnection",
-    items:  Array< {
-      __typename: "ProfileChatRooms",
-      id: string,
-      profileId: string,
-      chatRoomId: string,
-      profile:  {
-        __typename: "Profile",
-        id: string,
-        type: profileTypes,
-        bandName?: string | null,
-        firstName?: string | null,
-        lastName?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      },
-      chatRoom:  {
-        __typename: "ChatRoom",
-        id: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      createdAt: string,
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
@@ -1270,10 +882,6 @@ export type OnCreateTextMessageByChatRoomIdSubscription = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1293,18 +901,6 @@ export type OnCreateProfileSubscription = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1322,18 +918,6 @@ export type OnUpdateProfileSubscription = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1351,18 +935,6 @@ export type OnDeleteProfileSubscription = {
     bandName?: string | null,
     firstName?: string | null,
     lastName?: string | null,
-    chatRooms?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1388,10 +960,6 @@ export type OnCreateTextMessageSubscription = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1419,10 +987,6 @@ export type OnUpdateTextMessageSubscription = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1450,10 +1014,6 @@ export type OnDeleteTextMessageSubscription = {
       bandName?: string | null,
       firstName?: string | null,
       lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1469,6 +1029,28 @@ export type OnCreateChatRoomSubscription = {
   onCreateChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -1479,18 +1061,6 @@ export type OnCreateChatRoomSubscription = {
         createdAt: string,
         chatRoomId: string,
         ownerProfileId: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
         updatedAt: string,
       } | null >,
       nextToken?: string | null,
@@ -1508,6 +1078,28 @@ export type OnUpdateChatRoomSubscription = {
   onUpdateChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -1518,18 +1110,6 @@ export type OnUpdateChatRoomSubscription = {
         createdAt: string,
         chatRoomId: string,
         ownerProfileId: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
         updatedAt: string,
       } | null >,
       nextToken?: string | null,
@@ -1547,6 +1127,28 @@ export type OnDeleteChatRoomSubscription = {
   onDeleteChatRoom?:  {
     __typename: "ChatRoom",
     id: string,
+    musicianProfileId: string,
+    musicianProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    bandProfileId: string,
+    bandProfile?:  {
+      __typename: "Profile",
+      id: string,
+      type: profileTypes,
+      bandName?: string | null,
+      firstName?: string | null,
+      lastName?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
     messages?:  {
       __typename: "ModelTextMessageConnection",
       items:  Array< {
@@ -1561,147 +1163,6 @@ export type OnDeleteChatRoomSubscription = {
       } | null >,
       nextToken?: string | null,
     } | null,
-    profiles?:  {
-      __typename: "ModelProfileChatRoomsConnection",
-      items:  Array< {
-        __typename: "ProfileChatRooms",
-        id: string,
-        profileId: string,
-        chatRoomId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateProfileChatRoomsSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileChatRoomsFilterInput | null,
-};
-
-export type OnCreateProfileChatRoomsSubscription = {
-  onCreateProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateProfileChatRoomsSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileChatRoomsFilterInput | null,
-};
-
-export type OnUpdateProfileChatRoomsSubscription = {
-  onUpdateProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteProfileChatRoomsSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileChatRoomsFilterInput | null,
-};
-
-export type OnDeleteProfileChatRoomsSubscription = {
-  onDeleteProfileChatRooms?:  {
-    __typename: "ProfileChatRooms",
-    id: string,
-    profileId: string,
-    chatRoomId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      type: profileTypes,
-      bandName?: string | null,
-      firstName?: string | null,
-      lastName?: string | null,
-      chatRooms?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    chatRoom:  {
-      __typename: "ChatRoom",
-      id: string,
-      messages?:  {
-        __typename: "ModelTextMessageConnection",
-        nextToken?: string | null,
-      } | null,
-      profiles?:  {
-        __typename: "ModelProfileChatRoomsConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
     createdAt: string,
     updatedAt: string,
   } | null,

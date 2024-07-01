@@ -18,18 +18,6 @@ export const createProfile = /* GraphQL */ `mutation CreateProfile(
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -49,18 +37,6 @@ export const updateProfile = /* GraphQL */ `mutation UpdateProfile(
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -80,18 +56,6 @@ export const deleteProfile = /* GraphQL */ `mutation DeleteProfile(
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -118,10 +82,6 @@ export const createTextMessage = /* GraphQL */ `mutation CreateTextMessage(
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -151,10 +111,6 @@ export const updateTextMessage = /* GraphQL */ `mutation UpdateTextMessage(
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -184,10 +140,6 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -206,6 +158,28 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
 ) {
   createChatRoom(input: $input, condition: $condition) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -214,18 +188,6 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
         createdAt
         chatRoomId
         ownerProfileId
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
         updatedAt
         __typename
       }
@@ -247,6 +209,28 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
 ) {
   updateChatRoom(input: $input, condition: $condition) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -255,18 +239,6 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
         createdAt
         chatRoomId
         ownerProfileId
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
         updatedAt
         __typename
       }
@@ -288,6 +260,28 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
 ) {
   deleteChatRoom(input: $input, condition: $condition) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -302,18 +296,6 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
       nextToken
       __typename
     }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -322,139 +304,4 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
 ` as GeneratedMutation<
   APITypes.DeleteChatRoomMutationVariables,
   APITypes.DeleteChatRoomMutation
->;
-export const createProfileChatRooms = /* GraphQL */ `mutation CreateProfileChatRooms(
-  $input: CreateProfileChatRoomsInput!
-  $condition: ModelProfileChatRoomsConditionInput
-) {
-  createProfileChatRooms(input: $input, condition: $condition) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateProfileChatRoomsMutationVariables,
-  APITypes.CreateProfileChatRoomsMutation
->;
-export const updateProfileChatRooms = /* GraphQL */ `mutation UpdateProfileChatRooms(
-  $input: UpdateProfileChatRoomsInput!
-  $condition: ModelProfileChatRoomsConditionInput
-) {
-  updateProfileChatRooms(input: $input, condition: $condition) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateProfileChatRoomsMutationVariables,
-  APITypes.UpdateProfileChatRoomsMutation
->;
-export const deleteProfileChatRooms = /* GraphQL */ `mutation DeleteProfileChatRooms(
-  $input: DeleteProfileChatRoomsInput!
-  $condition: ModelProfileChatRoomsConditionInput
-) {
-  deleteProfileChatRooms(input: $input, condition: $condition) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteProfileChatRoomsMutationVariables,
-  APITypes.DeleteProfileChatRoomsMutation
 >;

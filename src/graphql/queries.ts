@@ -15,18 +15,6 @@ export const getProfile = /* GraphQL */ `query GetProfile($id: ID!) {
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -48,10 +36,6 @@ export const listProfiles = /* GraphQL */ `query ListProfiles(
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -78,10 +62,6 @@ export const getTextMessage = /* GraphQL */ `query GetTextMessage($id: ID!) {
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -131,6 +111,28 @@ export const listTextMessages = /* GraphQL */ `query ListTextMessages(
 export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
   getChatRoom(id: $id) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -139,18 +141,6 @@ export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
         createdAt
         chatRoomId
         ownerProfileId
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
         updatedAt
         __typename
       }
@@ -174,11 +164,29 @@ export const listChatRooms = /* GraphQL */ `query ListChatRooms(
   listChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      messages {
-        nextToken
+      musicianProfileId
+      musicianProfile {
+        id
+        type
+        bandName
+        firstName
+        lastName
+        createdAt
+        updatedAt
         __typename
       }
-      profiles {
+      bandProfileId
+      bandProfile {
+        id
+        type
+        bandName
+        firstName
+        lastName
+        createdAt
+        updatedAt
+        __typename
+      }
+      messages {
         nextToken
         __typename
       }
@@ -194,87 +202,7 @@ export const listChatRooms = /* GraphQL */ `query ListChatRooms(
   APITypes.ListChatRoomsQueryVariables,
   APITypes.ListChatRoomsQuery
 >;
-export const getProfileChatRooms = /* GraphQL */ `query GetProfileChatRooms($id: ID!) {
-  getProfileChatRooms(id: $id) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetProfileChatRoomsQueryVariables,
-  APITypes.GetProfileChatRoomsQuery
->;
-export const listProfileChatRooms = /* GraphQL */ `query ListProfileChatRooms(
-  $filter: ModelProfileChatRoomsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listProfileChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      profileId
-      chatRoomId
-      profile {
-        id
-        type
-        bandName
-        firstName
-        lastName
-        createdAt
-        updatedAt
-        __typename
-      }
-      chatRoom {
-        id
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListProfileChatRoomsQueryVariables,
-  APITypes.ListProfileChatRoomsQuery
->;
-export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
+export const getMessagesByChatRoomId = /* GraphQL */ `query GetMessagesByChatRoomId(
   $chatRoomId: ID!
   $createdAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
@@ -282,7 +210,7 @@ export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
   $limit: Int
   $nextToken: String
 ) {
-  messagesByChatRoomId(
+  getMessagesByChatRoomId(
     chatRoomId: $chatRoomId
     createdAt: $createdAt
     sortDirection: $sortDirection
@@ -315,98 +243,6 @@ export const messagesByChatRoomId = /* GraphQL */ `query MessagesByChatRoomId(
   }
 }
 ` as GeneratedQuery<
-  APITypes.MessagesByChatRoomIdQueryVariables,
-  APITypes.MessagesByChatRoomIdQuery
->;
-export const profileChatRoomsByProfileId = /* GraphQL */ `query ProfileChatRoomsByProfileId(
-  $profileId: String!
-  $sortDirection: ModelSortDirection
-  $filter: ModelProfileChatRoomsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  profileChatRoomsByProfileId(
-    profileId: $profileId
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      profileId
-      chatRoomId
-      profile {
-        id
-        type
-        bandName
-        firstName
-        lastName
-        createdAt
-        updatedAt
-        __typename
-      }
-      chatRoom {
-        id
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ProfileChatRoomsByProfileIdQueryVariables,
-  APITypes.ProfileChatRoomsByProfileIdQuery
->;
-export const profileChatRoomsByChatRoomId = /* GraphQL */ `query ProfileChatRoomsByChatRoomId(
-  $chatRoomId: ID!
-  $sortDirection: ModelSortDirection
-  $filter: ModelProfileChatRoomsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  profileChatRoomsByChatRoomId(
-    chatRoomId: $chatRoomId
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      profileId
-      chatRoomId
-      profile {
-        id
-        type
-        bandName
-        firstName
-        lastName
-        createdAt
-        updatedAt
-        __typename
-      }
-      chatRoom {
-        id
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ProfileChatRoomsByChatRoomIdQueryVariables,
-  APITypes.ProfileChatRoomsByChatRoomIdQuery
+  APITypes.GetMessagesByChatRoomIdQueryVariables,
+  APITypes.GetMessagesByChatRoomIdQuery
 >;

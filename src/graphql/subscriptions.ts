@@ -22,10 +22,6 @@ export const onCreateTextMessageByChatRoomId = /* GraphQL */ `subscription OnCre
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -45,18 +41,6 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -73,18 +57,6 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -101,18 +73,6 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
     bandName
     firstName
     lastName
-    chatRooms {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -138,10 +98,6 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -170,10 +126,6 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -202,10 +154,6 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
       bandName
       firstName
       lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -221,6 +169,28 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
 export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
   onCreateChatRoom(filter: $filter) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -229,18 +199,6 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
         createdAt
         chatRoomId
         ownerProfileId
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
         updatedAt
         __typename
       }
@@ -259,6 +217,28 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
 export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
   onUpdateChatRoom(filter: $filter) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -267,18 +247,6 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
         createdAt
         chatRoomId
         ownerProfileId
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
         updatedAt
         __typename
       }
@@ -297,6 +265,28 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
 export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
   onDeleteChatRoom(filter: $filter) {
     id
+    musicianProfileId
+    musicianProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
+    bandProfileId
+    bandProfile {
+      id
+      type
+      bandName
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      __typename
+    }
     messages {
       items {
         id
@@ -311,18 +301,6 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
       nextToken
       __typename
     }
-    profiles {
-      items {
-        id
-        profileId
-        chatRoomId
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -331,136 +309,4 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
 ` as GeneratedSubscription<
   APITypes.OnDeleteChatRoomSubscriptionVariables,
   APITypes.OnDeleteChatRoomSubscription
->;
-export const onCreateProfileChatRooms = /* GraphQL */ `subscription OnCreateProfileChatRooms(
-  $filter: ModelSubscriptionProfileChatRoomsFilterInput
-) {
-  onCreateProfileChatRooms(filter: $filter) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateProfileChatRoomsSubscriptionVariables,
-  APITypes.OnCreateProfileChatRoomsSubscription
->;
-export const onUpdateProfileChatRooms = /* GraphQL */ `subscription OnUpdateProfileChatRooms(
-  $filter: ModelSubscriptionProfileChatRoomsFilterInput
-) {
-  onUpdateProfileChatRooms(filter: $filter) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateProfileChatRoomsSubscriptionVariables,
-  APITypes.OnUpdateProfileChatRoomsSubscription
->;
-export const onDeleteProfileChatRooms = /* GraphQL */ `subscription OnDeleteProfileChatRooms(
-  $filter: ModelSubscriptionProfileChatRoomsFilterInput
-) {
-  onDeleteProfileChatRooms(filter: $filter) {
-    id
-    profileId
-    chatRoomId
-    profile {
-      id
-      type
-      bandName
-      firstName
-      lastName
-      chatRooms {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    chatRoom {
-      id
-      messages {
-        nextToken
-        __typename
-      }
-      profiles {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteProfileChatRoomsSubscriptionVariables,
-  APITypes.OnDeleteProfileChatRoomsSubscription
 >;

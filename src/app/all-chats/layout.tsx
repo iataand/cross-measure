@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import AllChatsSideBar from "./AllChatsSideBar";
 import fetchChatRoomsByProfileIdAction from "./actions";
+import { ChatRoom } from "@/API";
 
 export default async function AllChats({
   children,
@@ -12,8 +13,8 @@ export default async function AllChats({
   );
 
   return (
-    <Card className="container flex h-[99vh] gap-2 px-0">
-      <AllChatsSideBar chatRooms={chatRooms} />
+    <Card className="container flex h-[95vh] gap-2 px-0">
+      <AllChatsSideBar chatRooms={chatRooms as ChatRoom[]} />
       {children}
     </Card>
   );
