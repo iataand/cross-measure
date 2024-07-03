@@ -21,6 +21,17 @@ export async function listMessagesByChatRoomId(chatRoomId: string) {
   return res.data.getMessagesByChatRoomId.items;
 }
 
+export async function getLatestMessageByChatRoomId(chatRoomId: string) {
+  const res = await cookiesClient.graphql({
+    query: getMessagesByChatRoomId,
+    variables: { chatRoomId, sortDirection: ModelSortDirection.ASC, limit: 1 },
+  });
+
+  console.log(res.data.getMessagesByChatRoomId.items);
+
+  return res.data.getMessagesByChatRoomId.items[0];
+}
+
 export async function subscribeToChatRoomById(chatRoomId: string) {
   return client.graphql({
     query: onCreateTextMessageByChatRoomId,

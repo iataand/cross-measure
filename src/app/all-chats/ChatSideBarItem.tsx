@@ -1,13 +1,21 @@
 "use client";
 
-import { ChatRoom } from "@/API";
+import { ChatRoom, TextMessage } from "@/API";
 import { useParams } from "next/navigation";
-import useLatestMessage from "@/custom-hooks.ts";
+import { useLatestMessage } from "@/custom-hooks.ts";
 import Link from "next/link";
 
-export default function ChatSideBarItem({ chatRoom }: { chatRoom: ChatRoom }) {
+export default function ChatSideBarItem({
+  chatRoom,
+  lastMessage,
+}: {
+  chatRoom: ChatRoom;
+  lastMessage: TextMessage;
+}) {
   const { currentChatRoomId } = useParams();
-  const latestMessage = useLatestMessage(chatRoom.id);
+  const latestMessage = useLatestMessage(lastMessage, chatRoom.id);
+
+  console.log(chatRoom);
 
   return (
     <Link
@@ -17,10 +25,8 @@ export default function ChatSideBarItem({ chatRoom }: { chatRoom: ChatRoom }) {
     >
       <li className="font-bold">{chatRoom.bandProfile?.bandName}</li>
       <li>
-        <span className="font-bold">
-          {latestMessage?.ownerProfile?.bandName}
-        </span>
-        : {latestMessage?.message}
+        <span>{latestMessage?.ownerProfile?.firstName}</span>:{" "}
+        {latestMessage?.message}
       </li>
     </Link>
   );

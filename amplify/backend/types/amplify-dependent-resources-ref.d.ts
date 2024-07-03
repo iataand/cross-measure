@@ -7,9 +7,11 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "crossmeasure5ff4bf50": {
+    "crossmeasuref646c262": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "IdentityPoolId": "string",
+      "IdentityPoolName": "string",
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"

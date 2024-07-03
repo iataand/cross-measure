@@ -1,10 +1,10 @@
-import { ChatRoom, TextMessage } from "@/API";
+import { TextMessage } from "@/API";
 import { client } from "@/data-access/index-client";
 import { onCreateTextMessageByChatRoomId } from "@/graphql/subscriptions";
 import { useEffect, useState } from "react";
 
-export function useLatestMessage(chatRoomId: string) {
-  const [latestMessage, setLatestMessage] = useState<TextMessage>();
+export function useLatestMessage(lastMessage: TextMessage, chatRoomId: string) {
+  const [latestMessage, setLatestMessage] = useState<TextMessage>(lastMessage);
 
   useEffect(() => {
     const subscription = client
@@ -31,7 +31,7 @@ export function useLatestMessage(chatRoomId: string) {
 }
 
 export function useChatHistory(chatRoomId: string, chatHistory: TextMessage[]) {
-  const [chatMessages, setChatMessages] = useState(chatHistory);
+  const [chatMessages, setChatMessages] = useState<TextMessage[]>(chatHistory);
 
   useEffect(() => {
     const subscription = client
@@ -43,7 +43,6 @@ export function useChatHistory(chatRoomId: string, chatHistory: TextMessage[]) {
         next: (messageData) => {
           const newMessage = messageData.data
             .onCreateTextMessageByChatRoomId as TextMessage;
-          console.log(newMessage);
 
           setChatMessages((prevMessages) => [...prevMessages, newMessage]);
         },
