@@ -15,8 +15,6 @@ export default function ChatSideBarItem({
   const { currentChatRoomId } = useParams();
   const latestMessage = useLatestMessage(lastMessage, chatRoom.id);
 
-  console.log(chatRoom);
-
   return (
     <Link
       key={chatRoom.bandProfile?.id}

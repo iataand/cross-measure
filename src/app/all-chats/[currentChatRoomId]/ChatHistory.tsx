@@ -13,7 +13,7 @@ export default function ChatHistory({
   const chatMessages = useChatHistory(chatRoomId, chatHistory);
 
   return (
-    <ul>
+    <ul className="overflow-scroll overflow-x-hidden">
       {chatMessages.map((textMessage) => (
         <li key={textMessage.id}>
           <span className="font-bold">

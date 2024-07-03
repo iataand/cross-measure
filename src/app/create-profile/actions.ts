@@ -63,7 +63,12 @@ export default async function createProfileAction(
 
     schema.parse(profileData);
 
-    await createProfileUseCase(type, firstName ?? "", lastName ?? "");
+    await createProfileUseCase(
+      type,
+      bandName ?? "",
+      firstName ?? "",
+      lastName ?? "",
+    );
     revalidatePath("/create-profile");
 
     return {

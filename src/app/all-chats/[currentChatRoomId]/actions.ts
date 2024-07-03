@@ -40,6 +40,8 @@ export async function sendMessageAction(
   try {
     textMessageSchema.parse(textMessage);
     await sendMessageUseCase(textMessage);
+    revalidatePath(`/all-chats/${chatRoomId}`);
+
     return {
       message: "success",
       errors: undefined,
@@ -54,8 +56,6 @@ export async function sendMessageAction(
       errors: { message: errorMap["message"]?.[0] ?? "" },
       fieldValues: { message: "" },
     };
-  } finally {
-    revalidatePath(`/all-chats/${chatRoomId}`);
   }
 }
 

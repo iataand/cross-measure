@@ -26,3 +26,14 @@ export async function fetchChatRoomsByProfileId(profileId: string) {
 
   return res.data.listChatRooms.items;
 }
+
+export async function getProfileById(id: string | undefined) {
+  if (!id) return;
+
+  const res = await cookiesClient.graphql({
+    query: queries.getProfile,
+    variables: { id },
+  });
+
+  return res.data.getProfile;
+}

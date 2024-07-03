@@ -27,8 +27,6 @@ export async function getLatestMessageByChatRoomId(chatRoomId: string) {
     variables: { chatRoomId, sortDirection: ModelSortDirection.ASC, limit: 1 },
   });
 
-  console.log(res.data.getMessagesByChatRoomId.items);
-
   return res.data.getMessagesByChatRoomId.items[0];
 }
 
