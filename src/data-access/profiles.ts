@@ -21,7 +21,14 @@ export async function listProfiles() {
 export async function fetchChatRoomsByProfileId(profileId: string) {
   const res = await cookiesClient.graphql({
     query: queries.listChatRooms,
-    variables: { filter: { musicianProfileId: { eq: profileId } } },
+    variables: {
+      filter: {
+        or: [
+          { bandProfileId: { eq: profileId } },
+          { musicianProfileId: { eq: profileId } },
+        ],
+      },
+    },
   });
 
   return res.data.listChatRooms.items;

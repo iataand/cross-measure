@@ -1,6 +1,6 @@
 "use client";
 
-import { ChatRoom, TextMessage } from "@/API";
+import { ChatRoom, Profile, TextMessage } from "@/API";
 import { useParams } from "next/navigation";
 import { useLatestMessage } from "@/custom-hooks.ts";
 import Link from "next/link";
@@ -14,6 +14,7 @@ export default function ChatSideBarItem({
 }) {
   const { currentChatRoomId } = useParams();
   const latestMessage = useLatestMessage(lastMessage, chatRoom.id);
+  console.log(chatRoom);
 
   return (
     <Link
@@ -21,10 +22,15 @@ export default function ChatSideBarItem({
       href={`/all-chats/${chatRoom.id}`}
       className={`block h-16 cursor-pointer border p-2 hover:bg-slate-50 ${chatRoom.id === currentChatRoomId ? "bg-slate-100" : ""}`}
     >
-      <li className="font-bold">{chatRoom.bandProfile?.bandName}</li>
+      <li className="font-bold">
+        {chatRoom.bandProfile?.bandName}, {chatRoom.musicianProfile?.lastName}
+      </li>
       <li>
-        <span>{latestMessage?.ownerProfile?.firstName}</span>:{" "}
-        {latestMessage?.message}
+        <span>
+          {latestMessage?.ownerProfile?.lastName ||
+            latestMessage?.ownerProfile?.bandName}
+        </span>
+        : {latestMessage?.message}
       </li>
     </Link>
   );

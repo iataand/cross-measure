@@ -4,8 +4,10 @@ import { getLatestMessageByChatRoomId } from "@/data-access/textMessage";
 
 export default async function AllChatsSideBar({
   chatRooms,
+  currentProfileId,
 }: {
   chatRooms: ChatRoom[];
+  currentProfileId: string;
 }) {
   const latestMessagesList: TextMessage[] = [];
 

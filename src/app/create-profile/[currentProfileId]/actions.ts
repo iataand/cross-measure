@@ -45,6 +45,7 @@ export type FormStatus = {
 };
 
 export default async function createProfileAction(
+  profileId: string,
   formStatus: FormStatus,
   formData: FormData,
 ) {
@@ -64,6 +65,7 @@ export default async function createProfileAction(
     schema.parse(profileData);
 
     await createProfileUseCase(
+      profileId,
       type,
       bandName ?? "",
       firstName ?? "",

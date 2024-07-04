@@ -16,17 +16,28 @@ import { useFormState } from "react-dom";
 import { profileTypes } from "@/API";
 import { useEffect, useRef } from "react";
 
-export default function CreateProfile() {
-  const [formState, formAction] = useFormState(createProfileAction, {
-    message: "",
-    errors: undefined,
-    fieldValues: {
-      type: profileTypes.band,
-      firstName: "",
-      lastName: "",
-      bandName: "",
-    },
-  });
+const defaultFormValues = {
+  message: "",
+  errors: undefined,
+  fieldValues: {
+    type: profileTypes.band,
+    firstName: "",
+    lastName: "",
+    bandName: "",
+  },
+};
+
+export default function CreateProfile({
+  params,
+}: {
+  params: { currentProfileId: string };
+}) {
+  const { currentProfileId } = params;
+
+  const [formState, formAction] = useFormState(
+    createProfileAction.bind(null, currentProfileId),
+    defaultFormValues,
+  );
 
   const formRef = useRef<HTMLFormElement>(null);
 

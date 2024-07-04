@@ -1,6 +1,7 @@
 import { TextMessage } from "@/API";
 import { client } from "@/data-access/index-client";
 import { onCreateTextMessageByChatRoomId } from "@/graphql/subscriptions";
+import { getCurrentUser } from "aws-amplify/auth";
 import { useEffect, useState } from "react";
 
 export function useLatestMessage(lastMessage: TextMessage, chatRoomId: string) {
@@ -55,4 +56,17 @@ export function useChatHistory(chatRoomId: string, chatHistory: TextMessage[]) {
   }, []);
 
   return chatMessages;
+}
+
+export function useCurrentProfileId() {
+  const [profileId, setProfileId] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const { userId } = await getCurrentUser();
+      setProfileId(userId);
+    })();
+  }, []);
+
+  return profileId;
 }

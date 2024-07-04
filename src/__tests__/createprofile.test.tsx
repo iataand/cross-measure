@@ -1,4 +1,4 @@
-import Page from "@/app/create-profile/page";
+import Page from "@/app/create-profile/[currentProfileId]/page";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 

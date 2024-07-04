@@ -2,6 +2,7 @@ import { CreateProfileInput, profileTypes } from "@/API";
 import { createProfile } from "@/data-access/profiles";
 
 export async function createProfileUseCase(
+  profileId: string,
   type: profileTypes,
   bandName: string,
   firstName?: string,
@@ -19,6 +20,7 @@ export async function createProfileUseCase(
   }
 
   profile.type = type;
+  profile.id = profileId;
 
   await createProfile(profile);
 }
