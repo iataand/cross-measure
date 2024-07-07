@@ -7,7 +7,7 @@ import { ConfigureAmplifyClientSide } from "@/data-access/index-client";
 
 export const metadata: Metadata = {
   title: "Cross Measure",
-  description: "Find you match in music",
+  description: "Find your match in music",
 };
 
 const fontSans = FontSans({
