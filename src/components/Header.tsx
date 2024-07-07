@@ -15,7 +15,7 @@ export default async function Header() {
   }
 
   return (
-    <main className="flex h-12 items-center justify-around border bg-slate-50">
+    <main className="flex items-center justify-around border bg-slate-50 py-3">
       <span>CrossMeasure</span>
       <ul className="flex gap-10">
         <Link href="/" className="flex gap-2">
@@ -26,7 +26,7 @@ export default async function Header() {
           <LibraryMusicIcon />
           Connections
         </Link>
-        <Link href="/" className="flex gap-2">
+        <Link href="/all-chats" className="flex gap-2">
           <TextsmsIcon />
           Messages
         </Link>
