@@ -16,21 +16,6 @@
       "api": {
         "crossmeasure": {}
       },
-      "function": {
-        "crossmeasure5ff4bf50DefineAuthChallenge": {
-          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
-          "s3Key": "amplify-builds/crossmeasure5ff4bf50DefineAuthChallenge-3257593544524d6e5738-build.zip"
-        },
-        "crossmeasure5ff4bf50CreateAuthChallenge": {
-          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
-          "s3Key": "amplify-builds/crossmeasure5ff4bf50CreateAuthChallenge-777532334a6962576c61-build.zip"
-        },
-        "crossmeasure5ff4bf50VerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": "cross-measure",
-          "deploymentBucketName": "amplify-crossmeasure-dev-99ec2-deployment",
-          "s3Key": "amplify-builds/crossmeasure5ff4bf50VerifyAuthChallengeResponse-4b6550724536795a3438-build.zip"
-        }
-      },
       "auth": {
         "crossmeasuref646c262": {}
       }

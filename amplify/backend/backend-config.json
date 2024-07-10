@@ -7,7 +7,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2025-07-10T11:24:45.685Z",
+              "apiKeyExpirationDays": 365,
+              "description": "descr"
             },
             "authenticationType": "API_KEY"
           }
@@ -45,79 +47,5 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "crossmeasure5ff4bf50CreateAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "crossmeasure5ff4bf50DefineAuthChallenge": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "crossmeasure5ff4bf50VerifyAuthChallengeResponse": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_crossmeasure5ff4bf50CreateAuthChallenge_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50CreateAuthChallenge"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50CreateAuthChallenge_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50CreateAuthChallenge"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50DefineAuthChallenge_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50DefineAuthChallenge"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50DefineAuthChallenge_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50DefineAuthChallenge"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50VerifyAuthChallengeResponse_RECAPTCHASECRET": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50VerifyAuthChallengeResponse"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50VerifyAuthChallengeResponse_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50VerifyAuthChallengeResponse"
-        }
-      ]
-    },
-    "AMPLIFY_function_crossmeasure5ff4bf50VerifyAuthChallengeResponse_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "crossmeasure5ff4bf50VerifyAuthChallengeResponse"
-        }
-      ]
-    }
-  }
+  "function": {}
 }
