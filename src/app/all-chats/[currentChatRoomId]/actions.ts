@@ -38,9 +38,8 @@ export async function sendMessageAction(
   };
 
   try {
-    textMessageSchema.parse(textMessage);
+    // textMessageSchema.parse(textMessage);
     await sendMessageUseCase(textMessage);
-    revalidatePath(`/all-chats/${chatRoomId}`);
 
     return {
       message: "success",
@@ -65,5 +64,4 @@ export async function listMessagesByChatRoomIdAction(chatRoomId: string) {
   } catch (error) {
     console.error(error);
   }
-  revalidatePath(`/all-chats/${chatRoomId}`);
 }

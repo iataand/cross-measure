@@ -5,10 +5,18 @@ import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import Link from "next/link";
+import ProfileMenu from "./AuthComponent";
 
 export default async function Header() {
-  const { userId } = await getCurrentProfile();
-  const profile = await getProfileById(userId);
+  let user;
+  try {
+    user = await getCurrentProfile();
+  } catch (error) {
+    console.log(error);
+
+    return <></>;
+  }
+  const profile = await getProfileById(user.userId);
 
   if (!profile) {
     <>please login</>;
@@ -31,21 +39,8 @@ export default async function Header() {
           Messages
         </Link>
       </ul>
-      {renderProfileName(profile as Profile)}
+
+      <ProfileMenu profile={profile!} />
     </main>
   );
-}
-
-function renderProfileName(profile: Profile) {
-  if (profile.type === profileTypes.band) {
-    return <>{profile.bandName}</>;
-  }
-
-  if (profile.type === profileTypes.musician) {
-    return (
-      <>
-        <>{profile.firstName} </> <>{profile.lastName}</>
-      </>
-    );
-  }
 }

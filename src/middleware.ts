@@ -8,13 +8,17 @@ export async function middleware(request: NextRequest) {
   let hasProfile = false;
   let profileSub: string | null = null;
 
+  console.log("from middleware");
+
   const authenticated = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {
       try {
         const session = await fetchAuthSession(contextSpec);
         profileSub = session.userSub ?? null;
-        hasProfile = !!(await getProfileById(session.userSub));
+        if (profileSub) {
+          hasProfile = !!(await getProfileById(session.userSub));
+        }
 
         return (
           session.tokens?.accessToken !== undefined &&

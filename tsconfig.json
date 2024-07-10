@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "jest.config.ts",
-    "src/__tests__/CreateProfile.test.jsx"
+    "src/__tests__/CreateProfile.test.jsx",
+    "src/__tests__/page.test.jsx"
   ],
   "exclude": ["node_modules"]
 }

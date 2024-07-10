@@ -12,8 +12,10 @@ export default async function AllChats({
   const { userId: currentProfileId } = await getCurrentProfile();
   const chatRooms = await fetchChatRoomsByProfileIdAction(currentProfileId);
 
+  console.log("here222");
+
   return (
-    <Card className="container flex min-h-[94vh] gap-2 px-0">
+    <Card className="container flex min-h-[90vh] px-0">
       <AllChatsSideBar
         chatRooms={chatRooms as ChatRoom[]}
         currentProfileId={currentProfileId}
