@@ -10,6 +10,7 @@ type State = {
   genres: Genre[];
   currentGenre: string;
   selectedGenres: Genre[];
+  file: File | undefined;
 };
 
 type Action =
@@ -17,13 +18,15 @@ type Action =
   | { type: "SET_GENRES"; payload: Genre[] }
   | { type: "SET_CURRENT_GENRE"; payload: string }
   | { type: "ADD_SELECTED_GENRE"; payload: Genre }
-  | { type: "DELETE_SELECTED_GENRE"; payload: string };
+  | { type: "DELETE_SELECTED_GENRE"; payload: string }
+  | { type: "UPLOAD_FILE"; payload: File | undefined };
 
 const initialState: State = {
   profileType: profileTypes.musician,
   genres: [],
   currentGenre: "",
   selectedGenres: [],
+  file: undefined,
 };
 
 export function reducer(state: State, action: Action) {
@@ -47,6 +50,8 @@ export function reducer(state: State, action: Action) {
           (genre) => genre.id !== action.payload,
         ),
       };
+    case "UPLOAD_FILE":
+      return { ...state, file: action.payload };
     default:
       throw new Error("Unkown action type");
   }
@@ -54,18 +59,6 @@ export function reducer(state: State, action: Action) {
 
 export function useCreateProfile() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  function handleSelect(option: Genre) {
-    dispatch({ type: "ADD_SELECTED_GENRE", payload: option });
-  }
-
-  function handleChange(event: ChangeEvent<{ value: string }>) {
-    dispatch({ type: "SET_CURRENT_GENRE", payload: event.target.value });
-  }
-
-  function handleDeleteGenre(id: string) {
-    dispatch({ type: "DELETE_SELECTED_GENRE", payload: id });
-  }
 
   useEffect(() => {
     (async () => {
@@ -85,13 +78,7 @@ export function useCreateProfile() {
 
   return {
     state,
-    handleSelect,
-    handleChange,
-    handleDeleteGenre,
-    setProfileType: (profileType: profileTypes) =>
-      dispatch({ type: "SET_PROFILE_TYPE", payload: profileType }),
-    setGenres: (genres: Genre[]) =>
-      dispatch({ type: "SET_GENRES", payload: genres }),
+    dispatch,
   };
 }
 

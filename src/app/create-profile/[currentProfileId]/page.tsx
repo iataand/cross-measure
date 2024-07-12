@@ -18,8 +18,6 @@ import {
   useCreateProfile,
   useCreateProfileForm,
 } from "@/custom-hooks.ts/create-profile";
-import { useState } from "react";
-import { uploadData } from "aws-amplify/storage";
 
 export default function CreateProfile({
   params,
@@ -29,27 +27,7 @@ export default function CreateProfile({
   const { currentProfileId } = params;
 
   const { formAction, formRef } = useCreateProfileForm(currentProfileId);
-  const {
-    setProfileType,
-    handleSelect,
-    handleChange,
-    handleDeleteGenre,
-    state,
-  } = useCreateProfile();
-  const [file, setFile] = useState<any>();
-
-  async function handleUpload() {
-    try {
-      const result = await uploadData({
-        path: `public/${file.name}`,
-        // Alternatively, path: ({identityId}) => `protected/${identityId}/album/2024/1.jpg`
-        data: file,
-      }).result;
-      console.log("Succeeded: ", result);
-    } catch (error) {
-      console.log("Error : ", error);
-    }
-  }
+  const { state, dispatch } = useCreateProfile();
 
   return (
     <form
@@ -58,7 +36,15 @@ export default function CreateProfile({
       className="container flex max-w-[864px] flex-col gap-4 border-2 py-4"
     >
       <h1 className="text-center text-3xl">Create Profile</h1>
-      <Select name="type" onValueChange={setProfileType}>
+      <Select
+        name="type"
+        onValueChange={(value) =>
+          dispatch({
+            type: "SET_PROFILE_TYPE",
+            payload: value as profileTypes,
+          })
+        }
+      >
         <SelectTrigger>
           <SelectValue placeholder="Select a profile type" />
         </SelectTrigger>
@@ -84,9 +70,16 @@ export default function CreateProfile({
           <Autocomplete
             label="Select up to 5 genres"
             options={state.genres}
-            onSelect={handleSelect}
+            onSelect={(option) =>
+              dispatch({ type: "ADD_SELECTED_GENRE", payload: option })
+            }
             value={state.currentGenre}
-            onChange={handleChange}
+            onChange={(event) =>
+              dispatch({
+                type: "SET_CURRENT_GENRE",
+                payload: event.target.value,
+              })
+            }
             disabled={state.selectedGenres.length >= 5}
           />
           <div className="flex flex-wrap gap-2">
@@ -99,7 +92,12 @@ export default function CreateProfile({
                 <CloseIcon
                   className="cursor-pointer"
                   fontSize="small"
-                  onClick={() => handleDeleteGenre(genre.id)}
+                  onClick={() =>
+                    dispatch({
+                      type: "DELETE_SELECTED_GENRE",
+                      payload: genre.id,
+                    })
+                  }
                 />
               </span>
             ))}
@@ -107,9 +105,13 @@ export default function CreateProfile({
           <Input
             className="cursor-pointer"
             type="file"
-            onChange={(e: any) => setFile(e.target?.files[0])}
+            onChange={(event) =>
+              dispatch({
+                type: "UPLOAD_FILE",
+                payload: event.target.files?.[0],
+              })
+            }
           />
-          <Button onClick={handleUpload}>Upload</Button>
         </>
       ) : (
         <>
