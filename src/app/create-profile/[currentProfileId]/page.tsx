@@ -18,6 +18,8 @@ import {
   useCreateProfile,
   useCreateProfileForm,
 } from "@/custom-hooks.ts/create-profile";
+import { useState } from "react";
+import { uploadData } from "aws-amplify/storage";
 
 export default function CreateProfile({
   params,
@@ -28,15 +30,26 @@ export default function CreateProfile({
 
   const { formAction, formRef } = useCreateProfileForm(currentProfileId);
   const {
-    genres,
-    profileType,
     setProfileType,
-    currentGenre,
     handleSelect,
     handleChange,
     handleDeleteGenre,
-    selectedGenres,
+    state,
   } = useCreateProfile();
+  const [file, setFile] = useState<any>();
+
+  async function handleUpload() {
+    try {
+      const result = await uploadData({
+        path: `public/${file.name}`,
+        // Alternatively, path: ({identityId}) => `protected/${identityId}/album/2024/1.jpg`
+        data: file,
+      }).result;
+      console.log("Succeeded: ", result);
+    } catch (error) {
+      console.log("Error : ", error);
+    }
+  }
 
   return (
     <form
@@ -45,10 +58,7 @@ export default function CreateProfile({
       className="container flex max-w-[864px] flex-col gap-4 border-2 py-4"
     >
       <h1 className="text-center text-3xl">Create Profile</h1>
-      <Select
-        name="type"
-        onValueChange={(value) => setProfileType(value as profileTypes)}
-      >
+      <Select name="type" onValueChange={setProfileType}>
         <SelectTrigger>
           <SelectValue placeholder="Select a profile type" />
         </SelectTrigger>
@@ -67,20 +77,20 @@ export default function CreateProfile({
           </SelectGroup>
         </SelectContent>
       </Select>
-      {profileType === profileTypes.band ? (
+      {state.profileType === profileTypes.band ? (
         <>
           <Input name="bandName" placeholder="Band Name" />
           Please select up to 5 genres that best describe your music:
           <Autocomplete
             label="Select up to 5 genres"
-            options={genres}
+            options={state.genres}
             onSelect={handleSelect}
-            value={currentGenre}
+            value={state.currentGenre}
             onChange={handleChange}
-            disabled={selectedGenres.length >= 5}
+            disabled={state.selectedGenres.length >= 5}
           />
           <div className="flex flex-wrap gap-2">
-            {selectedGenres.map((genre, index) => (
+            {state.selectedGenres.map((genre, index) => (
               <span
                 className="rounded-2xl border-2 p-2"
                 key={`${genre.id}-${index}`}
@@ -94,6 +104,12 @@ export default function CreateProfile({
               </span>
             ))}
           </div>
+          <Input
+            className="cursor-pointer"
+            type="file"
+            onChange={(e: any) => setFile(e.target?.files[0])}
+          />
+          <Button onClick={handleUpload}>Upload</Button>
         </>
       ) : (
         <>

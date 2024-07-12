@@ -18,6 +18,7 @@ export const createProfile = /* GraphQL */ `mutation CreateProfile(
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -37,6 +38,7 @@ export const updateProfile = /* GraphQL */ `mutation UpdateProfile(
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -56,6 +58,7 @@ export const deleteProfile = /* GraphQL */ `mutation DeleteProfile(
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -82,6 +85,7 @@ export const createTextMessage = /* GraphQL */ `mutation CreateTextMessage(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -111,6 +115,7 @@ export const updateTextMessage = /* GraphQL */ `mutation UpdateTextMessage(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -140,6 +145,7 @@ export const deleteTextMessage = /* GraphQL */ `mutation DeleteTextMessage(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -165,6 +171,7 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -176,6 +183,7 @@ export const createChatRoom = /* GraphQL */ `mutation CreateChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -216,6 +224,7 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -227,6 +236,7 @@ export const updateChatRoom = /* GraphQL */ `mutation UpdateChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -267,6 +277,7 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -278,6 +289,7 @@ export const deleteChatRoom = /* GraphQL */ `mutation DeleteChatRoom(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename

@@ -15,6 +15,7 @@ export const getProfile = /* GraphQL */ `query GetProfile($id: ID!) {
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -36,6 +37,7 @@ export const listProfiles = /* GraphQL */ `query ListProfiles(
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -62,6 +64,7 @@ export const getTextMessage = /* GraphQL */ `query GetTextMessage($id: ID!) {
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -93,6 +96,7 @@ export const listTextMessages = /* GraphQL */ `query ListTextMessages(
         bandName
         firstName
         lastName
+        genres
         createdAt
         updatedAt
         __typename
@@ -118,6 +122,7 @@ export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -129,6 +134,7 @@ export const getChatRoom = /* GraphQL */ `query GetChatRoom($id: ID!) {
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -171,6 +177,7 @@ export const listChatRooms = /* GraphQL */ `query ListChatRooms(
         bandName
         firstName
         lastName
+        genres
         createdAt
         updatedAt
         __typename
@@ -182,6 +189,7 @@ export const listChatRooms = /* GraphQL */ `query ListChatRooms(
         bandName
         firstName
         lastName
+        genres
         createdAt
         updatedAt
         __typename
@@ -231,6 +239,7 @@ export const getMessagesByChatRoomId = /* GraphQL */ `query GetMessagesByChatRoo
         bandName
         firstName
         lastName
+        genres
         createdAt
         updatedAt
         __typename

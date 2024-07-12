@@ -8,8 +8,6 @@ export async function middleware(request: NextRequest) {
   let hasProfile = false;
   let profileSub: string | null = null;
 
-  console.log("from middleware");
-
   const authenticated = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {

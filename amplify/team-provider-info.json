@@ -16,8 +16,11 @@
       "api": {
         "crossmeasure": {}
       },
+      "storage": {
+        "s35b802758": {}
+      },
       "auth": {
-        "crossmeasuref646c262": {}
+        "crossmeasureee12fbfe": {}
       }
     }
   }

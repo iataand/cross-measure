@@ -22,6 +22,7 @@ export const onCreateTextMessageByChatRoomId = /* GraphQL */ `subscription OnCre
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -41,6 +42,7 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -57,6 +59,7 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -73,6 +76,7 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
     bandName
     firstName
     lastName
+    genres
     createdAt
     updatedAt
     __typename
@@ -98,6 +102,7 @@ export const onCreateTextMessage = /* GraphQL */ `subscription OnCreateTextMessa
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -126,6 +131,7 @@ export const onUpdateTextMessage = /* GraphQL */ `subscription OnUpdateTextMessa
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -154,6 +160,7 @@ export const onDeleteTextMessage = /* GraphQL */ `subscription OnDeleteTextMessa
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -176,6 +183,7 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -187,6 +195,7 @@ export const onCreateChatRoom = /* GraphQL */ `subscription OnCreateChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -224,6 +233,7 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -235,6 +245,7 @@ export const onUpdateChatRoom = /* GraphQL */ `subscription OnUpdateChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -272,6 +283,7 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename
@@ -283,6 +295,7 @@ export const onDeleteChatRoom = /* GraphQL */ `subscription OnDeleteChatRoom($fi
       bandName
       firstName
       lastName
+      genres
       createdAt
       updatedAt
       __typename

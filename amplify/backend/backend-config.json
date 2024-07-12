@@ -20,7 +20,7 @@
     }
   },
   "auth": {
-    "crossmeasuref646c262": {
+    "crossmeasureee12fbfe": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -47,5 +47,12 @@
       "service": "Cognito"
     }
   },
-  "function": {}
+  "function": {},
+  "storage": {
+    "s35b802758": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

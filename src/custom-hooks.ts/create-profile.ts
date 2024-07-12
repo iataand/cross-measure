@@ -1,36 +1,70 @@
 import { useFormState } from "react-dom";
 import createProfileAction from "@/app/create-profile/[currentProfileId]/actions";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useReducer, useRef } from "react";
 import { profileTypes } from "@/API";
 
 type Genre = { label: string; id: string };
 
+type State = {
+  profileType: profileTypes;
+  genres: Genre[];
+  currentGenre: string;
+  selectedGenres: Genre[];
+};
+
+type Action =
+  | { type: "SET_PROFILE_TYPE"; payload: profileTypes }
+  | { type: "SET_GENRES"; payload: Genre[] }
+  | { type: "SET_CURRENT_GENRE"; payload: string }
+  | { type: "ADD_SELECTED_GENRE"; payload: Genre }
+  | { type: "DELETE_SELECTED_GENRE"; payload: string };
+
+const initialState: State = {
+  profileType: profileTypes.musician,
+  genres: [],
+  currentGenre: "",
+  selectedGenres: [],
+};
+
+export function reducer(state: State, action: Action) {
+  switch (action.type) {
+    case "SET_PROFILE_TYPE":
+      return { ...state, profileType: action.payload };
+    case "SET_GENRES":
+      return { ...state, genres: action.payload };
+    case "SET_CURRENT_GENRE":
+      return { ...state, currentGenre: action.payload };
+    case "ADD_SELECTED_GENRE":
+      return {
+        ...state,
+        selectedGenres: [...state.selectedGenres, action.payload],
+        currentGenre: "",
+      };
+    case "DELETE_SELECTED_GENRE":
+      return {
+        ...state,
+        selectedGenres: state.selectedGenres.filter(
+          (genre) => genre.id !== action.payload,
+        ),
+      };
+    default:
+      throw new Error("Unkown action type");
+  }
+}
+
 export function useCreateProfile() {
-  const [profileType, setProfileType] = useState<profileTypes>(
-    profileTypes.musician,
-  );
-  const [genres, setGenres] = useState<Genre[]>([]);
-  const [currentGenre, setCurrentGenre] = useState<string>("");
-  const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleSelect(option: Genre) {
-    setSelectedGenres([...selectedGenres, option]);
-    setCurrentGenre("");
+    dispatch({ type: "ADD_SELECTED_GENRE", payload: option });
   }
 
   function handleChange(event: ChangeEvent<{ value: string }>) {
-    setCurrentGenre(event.target.value);
+    dispatch({ type: "SET_CURRENT_GENRE", payload: event.target.value });
   }
 
   function handleDeleteGenre(id: string) {
-    const deleteGenreAtIndex = selectedGenres.findIndex(
-      (genre) => genre.id === id,
-    );
-
-    const tempSelectedGenres = [...selectedGenres];
-    tempSelectedGenres.splice(deleteGenreAtIndex, 1);
-
-    setSelectedGenres(tempSelectedGenres);
+    dispatch({ type: "DELETE_SELECTED_GENRE", payload: id });
   }
 
   useEffect(() => {
@@ -38,12 +72,11 @@ export function useCreateProfile() {
       try {
         const res = await fetch("http://localhost:3000/api/get-music-genres");
         const genres = await res.json();
-        setGenres(
-          genres.map((genre: string, index: number) => ({
-            label: genre,
-            id: `${index}-${genre}`,
-          })),
-        );
+        const formattedGenres = genres.map((genre: string, index: number) => ({
+          label: genre,
+          id: `${index}-${genre}`,
+        }));
+        dispatch({ type: "SET_GENRES", payload: formattedGenres });
       } catch (error) {
         console.log(error);
       }
@@ -51,16 +84,14 @@ export function useCreateProfile() {
   }, []);
 
   return {
-    genres,
-    setGenres,
-    profileType,
-    setProfileType,
-    currentGenre,
-    setCurrentGenre,
+    state,
     handleSelect,
     handleChange,
     handleDeleteGenre,
-    selectedGenres,
+    setProfileType: (profileType: profileTypes) =>
+      dispatch({ type: "SET_PROFILE_TYPE", payload: profileType }),
+    setGenres: (genres: Genre[]) =>
+      dispatch({ type: "SET_GENRES", payload: genres }),
   };
 }
 

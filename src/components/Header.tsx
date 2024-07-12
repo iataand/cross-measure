@@ -1,4 +1,3 @@
-import { Profile, profileTypes } from "@/API";
 import { getProfileById } from "@/data-access/profiles";
 import { getCurrentProfile } from "@/data-access/user-details";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,7 +18,7 @@ export default async function Header() {
   const profile = await getProfileById(user.userId);
 
   if (!profile) {
-    <>please login</>;
+    return <>please login</>;
   }
 
   return (

@@ -6,7 +6,6 @@ export async function GET() {
       },
     });
     const { genres } = await res.json();
-    console.log(genres);
     return Response.json(genres);
   } catch (error) {
     console.log(error);
