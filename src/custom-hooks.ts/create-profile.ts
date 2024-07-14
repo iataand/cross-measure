@@ -5,7 +5,7 @@ import { profileTypes } from "@/API";
 
 type Genre = { label: string; id: string };
 
-type State = {
+export type State = {
   profileType: profileTypes;
   genres: Genre[];
   currentGenre: string;
@@ -13,7 +13,7 @@ type State = {
   file: File | undefined;
 };
 
-type Action =
+export type Action =
   | { type: "SET_PROFILE_TYPE"; payload: profileTypes }
   | { type: "SET_GENRES"; payload: Genre[] }
   | { type: "SET_CURRENT_GENRE"; payload: string }
