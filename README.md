@@ -8,7 +8,7 @@
   
 ## Introduction
 
-CrossMeasure is a mathching system website destined to musicians that are looking to find a new band vice-versa.
+CrossMeasure is a matching system website destined to musicians and bands.
 
 ## Features
 
