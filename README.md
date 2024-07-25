@@ -33,3 +33,4 @@ To run the application locally, follow these steps:
 1. Clone the repository: `git clone https://github.com/iataand/cross-measure.git`
 2. Navigate to the root project directory: `cd cross-measure`
 3. Install dependencies: `npm install`
+4. Use the Amplify CLI in order to create a GraphQl api on AWS.
