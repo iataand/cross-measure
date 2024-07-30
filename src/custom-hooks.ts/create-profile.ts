@@ -1,6 +1,6 @@
 import { useFormState } from "react-dom";
 import createProfileAction from "@/app/create-profile/[currentProfileId]/actions";
-import { ChangeEvent, useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { profileTypes } from "@/API";
 
 type Genre = { label: string; id: string };
@@ -10,7 +10,7 @@ export type State = {
   genres: Genre[];
   currentGenre: string;
   selectedGenres: Genre[];
-  file: File | undefined;
+  files: File[];
 };
 
 export type Action =
@@ -19,17 +19,17 @@ export type Action =
   | { type: "SET_CURRENT_GENRE"; payload: string }
   | { type: "ADD_SELECTED_GENRE"; payload: Genre }
   | { type: "DELETE_SELECTED_GENRE"; payload: string }
-  | { type: "UPLOAD_FILE"; payload: File | undefined };
+  | { type: "UPLOAD_FILE"; payload: File[] };
 
 const initialState: State = {
   profileType: profileTypes.musician,
   genres: [],
   currentGenre: "",
   selectedGenres: [],
-  file: undefined,
+  files: [],
 };
 
-export function reducer(state: State, action: Action) {
+export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "SET_PROFILE_TYPE":
       return { ...state, profileType: action.payload };
@@ -51,7 +51,7 @@ export function reducer(state: State, action: Action) {
         ),
       };
     case "UPLOAD_FILE":
-      return { ...state, file: action.payload };
+      return { ...state, files: action.payload };
     default:
       throw new Error("Unkown action type");
   }
