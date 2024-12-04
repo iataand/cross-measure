@@ -11,6 +11,8 @@ export default {
     },
     colors: {
       transparent: "transparent",
+      white: "#ffffff",
+      black: "#000000",
       gamboge: {
         100: "#faeecb",
         200: "#f4dd93",
