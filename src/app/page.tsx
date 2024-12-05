@@ -3,7 +3,7 @@ import LoginModal from "~/components/LoginModal";
 
 export default function HomePage() {
   return (
-    <main className="bg-gamboge-100 bg-[url('https://images.pexels.com/photos/145707/pexels-photo-145707.jpeg')] bg-cover">
+    <main className="bg-[url('https://images.pexels.com/photos/145707/pexels-photo-145707.jpeg')] bg-cover">
       <div className="flex h-[72px] items-center justify-between p-4">
         <Text className="text-2xl font-bold text-white">CrossMeasure</Text>
         <span className="hidden h-10 md:block">
