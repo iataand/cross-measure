@@ -1,12 +1,9 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@radix-ui/themes";
-import {
-  IconBrandGoogleFilled,
-  IconPhoneFilled,
-  IconBrandMeta,
-  IconX,
-} from "@tabler/icons-react";
+import { IconPhoneFilled, IconBrandMeta, IconX } from "@tabler/icons-react";
+import GoogleLoginButton from "./GoogleLoginButton";
+
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (
     <Dialog.Root>
@@ -34,9 +31,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
             </Dialog.Description>
           </div>
           <div className="flex w-full max-w-[315px] flex-col gap-4">
-            <Button className="flex h-10 w-full cursor-pointer gap-2 rounded-3xl bg-[#1a73e8] text-lg font-semibold text-white hover:opacity-70">
-              <IconBrandGoogleFilled /> Login with google
-            </Button>
+            <GoogleLoginButton />
             <Button className="onh flex h-10 w-full cursor-pointer gap-2 rounded-3xl border border-solid border-gray-100 bg-transparent text-lg font-semibold text-white hover:opacity-70">
               <IconBrandMeta /> Log in with Facebook
             </Button>
