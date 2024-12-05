@@ -13,7 +13,7 @@ export default function HomePage() {
       <div className="flex h-[calc(100dvh-72px)] items-center justify-center">
         <div className="flex flex-col items-center gap-8 px-4">
           <Text className="text-3xl font-bold text-white md:text-6xl lg:text-8xl">
-            Find you musical peer.
+            Find your musical peer.
           </Text>
           <div className="flex w-full flex-col items-center gap-2">
             <LoginModal hasAccount={true} />

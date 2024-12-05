@@ -1,4 +1,4 @@
-import { expect, it, describe, beforeAll } from "vitest";
+import { it, describe, beforeAll, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Page from "../app/page";
 
@@ -37,5 +37,15 @@ describe("Landing Page", () => {
     });
 
     expect(modalTitle).toBeDefined();
+  });
+
+  it("should close modal", async () => {
+    const closeButton = screen.getByRole("button", { name: /close/i });
+    const modalTitle = screen.getByText(/get started/i, {
+      selector: "h2",
+    });
+    await closeButton.click();
+    // expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(modalTitle).not.toBeInTheDocument();
   });
 });

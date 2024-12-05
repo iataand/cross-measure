@@ -51,7 +51,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
           </div>
           <Dialog.Close asChild>
             <Button
-              className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute right-2.5 top-2.5 inline-flex size-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+              className="text-violet11 hover:bg-gray-50/10 focus:shadow-violet7 absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
               aria-label="Close"
             >
               <IconX />
