@@ -13,13 +13,13 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {props.hasAccount ? (
-          <button className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white md:w-52">
+          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white md:w-52">
             Create Account
-          </button>
+          </Button>
         ) : (
-          <button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black md:w-52">
+          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black md:w-52">
             Log in
-          </button>
+          </Button>
         )}
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -50,12 +50,12 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
             </a>
           </div>
           <Dialog.Close asChild>
-            <button
+            <Button
               className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute right-2.5 top-2.5 inline-flex size-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
               aria-label="Close"
             >
               <IconX />
-            </button>
+            </Button>
           </Dialog.Close>
         </Dialog.Content>
       </Dialog.Portal>
