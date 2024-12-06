@@ -3,17 +3,18 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@radix-ui/themes";
 import { IconPhoneFilled, IconBrandMeta, IconX } from "@tabler/icons-react";
 import GoogleLoginButton from "./GoogleLoginButton";
+import MetaLoginButton from "./MetaLoginButton";
 
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {props.hasAccount ? (
-          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white md:w-52">
+          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:w-52">
             Create Account
           </Button>
         ) : (
-          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black md:w-52">
+          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black hover:opacity-85 md:w-52">
             Log in
           </Button>
         )}
@@ -32,9 +33,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
           </div>
           <div className="flex w-full max-w-[315px] flex-col gap-4">
             <GoogleLoginButton />
-            <Button className="onh flex h-10 w-full cursor-pointer gap-2 rounded-3xl border border-solid border-gray-100 bg-transparent text-lg font-semibold text-white hover:opacity-70">
-              <IconBrandMeta /> Log in with Facebook
-            </Button>
+            <MetaLoginButton />
             <Button className="onh flex h-10 w-full cursor-pointer gap-2 rounded-3xl border border-solid border-gray-100 bg-transparent text-lg font-semibold text-white hover:opacity-70">
               <IconPhoneFilled />
               Log in with Phone Number
@@ -45,7 +44,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
           </div>
           <Dialog.Close asChild>
             <Button
-              className="text-violet11 focus:shadow-violet7 absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:bg-gray-50/10 focus:shadow-[0_0_0_2px] focus:outline-none"
+              className="absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:bg-gray-50/10 focus:shadow-[0_0_0_2px] focus:outline-none"
               aria-label="Close"
             >
               <IconX />

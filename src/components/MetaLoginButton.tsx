@@ -1,17 +1,17 @@
 "use client";
 
 import { Button } from "@radix-ui/themes";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "./firebase-providers";
-import { IconBrandGoogleFilled } from "@tabler/icons-react";
+import { IconBrandMeta } from "@tabler/icons-react";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase-providers";
 import Image from "next/image";
 
-export default function ButtonWrapper() {
+export default function MetaLoginButton() {
   const [user] = useAuthState(auth);
 
   async function handleClick() {
-    const provider = new GoogleAuthProvider();
+    const provider = new FacebookAuthProvider();
     try {
       await signInWithPopup(auth, provider);
     } catch (error) {
@@ -19,15 +19,12 @@ export default function ButtonWrapper() {
     }
   }
 
-  // console.log(user);
-  // return <></>;
-
   return (
     <Button
-      className="flex h-10 w-full cursor-pointer gap-2 rounded-3xl bg-[#1a73e8] text-white hover:opacity-70"
+      className="onh flex h-10 w-full cursor-pointer gap-2 rounded-3xl border border-solid border-gray-100 bg-transparent text-lg font-semibold text-white hover:opacity-70"
       onClick={handleClick}
     >
-      {user?.providerData[0]?.providerId === "google.com" ? (
+      {user?.providerData[0]?.providerId === "facebook.com" ? (
         <div className="flex w-full items-center justify-between px-2">
           <div className="flex items-center">
             <span>
@@ -44,11 +41,11 @@ export default function ButtonWrapper() {
               <p>{user.email}</p>
             </div>
           </div>
-          <IconBrandGoogleFilled />
+          <IconBrandMeta />
         </div>
       ) : (
         <span className="flex items-center gap-2 text-lg font-semibold">
-          <IconBrandGoogleFilled /> Login with google
+          <IconBrandMeta /> Login with Facebook
         </span>
       )}
     </Button>
