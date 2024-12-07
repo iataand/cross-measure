@@ -4,16 +4,15 @@ import { Button } from "@radix-ui/themes";
 import { IconBrandMeta } from "@tabler/icons-react";
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase-providers";
 import Image from "next/image";
+import { auth, singInWithFacebook } from "~/lib/configs/firebase-config";
 
 export default function MetaLoginButton() {
   const [user] = useAuthState(auth);
 
   async function handleClick() {
-    const provider = new FacebookAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      await singInWithFacebook();
     } catch (error) {
       console.error(error);
     }

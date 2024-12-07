@@ -2,25 +2,21 @@
 
 import { Button } from "@radix-ui/themes";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "./firebase-providers";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
+import { auth, singInWithGoogle } from "~/lib/configs/firebase-config";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
 
   async function handleClick() {
-    const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      await singInWithGoogle();
     } catch (error) {
       console.error(error);
     }
   }
-
-  // console.log(user);
-  // return <></>;
 
   return (
     <Button
