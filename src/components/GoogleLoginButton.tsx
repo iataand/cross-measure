@@ -5,7 +5,6 @@ import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithGoogle } from "~/lib/configs/firebase-config";
-import admin from "~/lib/configs/firebase-admin-config";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);

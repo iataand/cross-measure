@@ -1,6 +1,10 @@
 import { getApp, getApps, initializeApp } from "@firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { FacebookAuthProvider } from "firebase/auth/web-extension";
+import {
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { env } from "~/env";
 
 export const firebaseApp =

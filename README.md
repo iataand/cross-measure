@@ -6,3 +6,4 @@
 [ ] Check out firebase module bundler documentation
 [ ] Reseach GDPR and Cookie policy
 [ ] Fix ugly opacity for modal buttons
+[ ] Implement phone login feature
