@@ -4,6 +4,7 @@ import { Button } from "@radix-ui/themes";
 import { IconPhoneFilled, IconBrandMeta, IconX } from "@tabler/icons-react";
 import GoogleLoginButton from "./GoogleLoginButton";
 import MetaLoginButton from "./MetaLoginButton";
+import PhoneLoginButton from "./PhoneLoginButton";
 
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (
@@ -34,10 +35,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
           <div className="flex w-full max-w-[315px] flex-col gap-4">
             <GoogleLoginButton />
             <MetaLoginButton />
-            <Button className="onh flex h-10 w-full cursor-pointer gap-2 rounded-3xl border border-solid border-gray-100 bg-transparent text-lg font-semibold text-white hover:opacity-70">
-              <IconPhoneFilled />
-              Log in with Phone Number
-            </Button>
+            <PhoneLoginButton />
             <a href="/" className="text-blue-400 underline">
               Trouble Logging In?
             </a>

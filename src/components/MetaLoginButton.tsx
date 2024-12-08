@@ -2,7 +2,7 @@
 
 import { Button } from "@radix-ui/themes";
 import { IconBrandMeta } from "@tabler/icons-react";
-import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithFacebook } from "~/lib/configs/firebase-config";
