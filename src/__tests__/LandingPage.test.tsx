@@ -1,10 +1,16 @@
-import { it, describe, beforeAll, expect } from "vitest";
+import { it, describe, beforeAll, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Page from "../app/page";
+import { AppRouterContextProviderMock } from "./mocks/app-router-context-provider-mock";
 
 describe("Landing Page", () => {
   beforeAll(() => {
-    render(<Page />);
+    const push = vi.fn();
+    render(
+      <AppRouterContextProviderMock router={{ push }}>
+        <Page />
+      </AppRouterContextProviderMock>,
+    );
   });
 
   it("should render logo text", async () => {

@@ -5,17 +5,15 @@ import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithGoogle } from "~/lib/configs/firebase-config";
+import { useRouter } from "next/navigation";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
+  const router = useRouter();
 
   async function handleClick() {
     try {
       const userData = await singInWithGoogle();
-      // console.log(userData.user.accessToken);
-      // const verifiedToken = await admin
-      //   .auth()
-      //   .verifyIdToken(userData.user.accessToken);
       const idToken = await userData.user.getIdToken();
 
       await fetch("/api/login", {
@@ -23,6 +21,8 @@ export default function ButtonWrapper() {
           Authorization: `Bearer ${idToken}`,
         },
       });
+
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
