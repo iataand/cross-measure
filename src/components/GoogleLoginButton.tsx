@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
+  //replace this with data from cookie
   const router = useRouter();
 
   async function handleClick() {

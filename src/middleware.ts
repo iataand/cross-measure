@@ -23,6 +23,9 @@ export async function middleware(request: NextRequest) {
         return redirectToHome(request);
       }
 
+      console.log(decodedToken.uid);
+      //implement redirect to create profile or dashboard here
+
       return NextResponse.next({
         request: {
           headers,

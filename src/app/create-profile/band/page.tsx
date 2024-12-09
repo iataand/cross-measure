@@ -5,5 +5,5 @@ export default async function CreateProfile({
 }) {
   const uid = (await params).uid;
 
-  return <>{uid}</>;
+  return <div>asdasd</div>;
 }
