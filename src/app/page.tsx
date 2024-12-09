@@ -1,20 +1,20 @@
 import { Text } from "@radix-ui/themes";
-import { getTokens } from "next-firebase-auth-edge";
-import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
-import { env } from "process";
+// import { getTokens } from "next-firebase-auth-edge";
+// import { cookies } from "next/headers";
+// import { notFound } from "next/navigation";
+// import { env } from "process";
 import LoginModal from "~/components/LoginModal";
-import { serverConfig } from "~/lib/configs/firebase-config";
+// import { serverConfig } from "~/lib/configs/firebase-config";
 
-export default async function HomePage() {
-  const tokens = await getTokens(await cookies(), {
-    apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-    cookieName: serverConfig.cookieName,
-    cookieSignatureKeys: serverConfig.cookieSignatureKeys,
-    serviceAccount: serverConfig.serviceAccount,
-  });
+export default function HomePage() {
+  // const tokens = await getTokens(await cookies(), {
+  //   apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  //   cookieName: serverConfig.cookieName,
+  //   cookieSignatureKeys: serverConfig.cookieSignatureKeys,
+  //   serviceAccount: serverConfig.serviceAccount,
+  // });
 
-  console.log(tokens);
+  // console.log(tokens);
 
   // if (!tokens) {
   //   notFound();

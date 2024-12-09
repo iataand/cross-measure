@@ -22,7 +22,7 @@ export default function ButtonWrapper() {
         },
       });
 
-      router.push("/create-profile/100");
+      router.push("/");
     } catch (error) {
       console.error(error);
     }

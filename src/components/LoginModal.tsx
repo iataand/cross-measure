@@ -1,7 +1,7 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@radix-ui/themes";
-import { IconPhoneFilled, IconBrandMeta, IconX } from "@tabler/icons-react";
+import { IconX } from "@tabler/icons-react";
 import GoogleLoginButton from "./GoogleLoginButton";
 import MetaLoginButton from "./MetaLoginButton";
 import PhoneLoginButton from "./PhoneLoginButton";
