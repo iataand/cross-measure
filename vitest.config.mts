@@ -7,5 +7,9 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: ["./setupTests.js"],
+    env: {
+      NEXT_PUBLIC_FIREBASE_API_KEY: "MOCKED_API_KEY",
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "MOCKED_AUTH_DOMAIN",
+    },
   },
 });
