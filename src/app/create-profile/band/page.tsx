@@ -1,6 +1,15 @@
-import { IconPlus } from "@tabler/icons-react";
+import GenresSelectModal from "~/components/GenresSelectModal";
 
 export default async function CreateProfile() {
+  let allGenres: string[] = [];
+
+  try {
+    const res = await fetch("http://localhost:3000/api/get-music-genres");
+    allGenres = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+
   return (
     <div>
       <h2 className="py-6 text-center text-2xl font-bold">
@@ -19,12 +28,7 @@ export default async function CreateProfile() {
               placeholder="a few words about the band..."
             />
             <p className="py-2">Interested in</p>
-            <div className="w-20">
-              <div className="flex w-full min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
-                <IconPlus />
-                Add Genres
-              </div>
-            </div>
+            <GenresSelectModal allGenres={allGenres} />
           </div>
           <div className="min-w-[300px] flex-1">videos here</div>
         </form>
