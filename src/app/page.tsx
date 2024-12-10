@@ -1,9 +1,9 @@
 import { Text } from "@radix-ui/themes";
+import LoginModal from "~/components/LoginModal";
 // import { getTokens } from "next-firebase-auth-edge";
 // import { cookies } from "next/headers";
 // import { notFound } from "next/navigation";
 // import { env } from "process";
-import LoginModal from "~/components/LoginModal";
 // import { serverConfig } from "~/lib/configs/firebase-config";
 
 export default function HomePage() {
