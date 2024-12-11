@@ -5,15 +5,14 @@ import { IconX } from "@tabler/icons-react";
 import GoogleLoginButton from "./GoogleLoginButton";
 import MetaLoginButton from "./MetaLoginButton";
 import PhoneLoginButton from "./PhoneLoginButton";
+import MainButton from "./MainButton";
 
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {props.hasAccount ? (
-          <Button className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:w-52">
-            Create Account
-          </Button>
+          <MainButton>Create Account</MainButton>
         ) : (
           <Button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black hover:opacity-85 md:w-52">
             Log in
