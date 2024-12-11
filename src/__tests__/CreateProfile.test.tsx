@@ -2,7 +2,6 @@ import { it, describe, beforeAll, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import CreateBandProfile from "~/app/create-profile/band/page";
 import userEvent from "@testing-library/user-event";
-import { afterEach } from "node:test";
 
 describe("Create Band Profile", async () => {
   beforeAll(async () => {
