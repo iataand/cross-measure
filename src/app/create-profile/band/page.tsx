@@ -1,7 +1,8 @@
-import GenresSelectModal from "~/components/GenresSelectModal";
+import SelectedGenres from "~/components/SelectedGenres";
 
 export default async function CreateProfile() {
   let allGenres: string[] = [];
+  let allMusicRoles: {} = {};
 
   try {
     const res = await fetch("http://localhost:3000/api/get-music-genres");
@@ -9,6 +10,15 @@ export default async function CreateProfile() {
   } catch (error) {
     console.log(error);
   }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/get-music-roles");
+    allMusicRoles = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log(allMusicRoles);
 
   return (
     <div>
@@ -27,8 +37,10 @@ export default async function CreateProfile() {
               className="h-32 w-full border-2 border-gray-700 bg-black p-1"
               placeholder="a few words about the band..."
             />
-            <p className="py-2">Interested in</p>
-            <GenresSelectModal allGenres={allGenres} />
+            <p className="py-2">Genres that best describe you</p>
+            <SelectedGenres allGenres={allGenres} />
+            <p className="py-2">What are you looking for?</p>
+            <div></div>
           </div>
           <div className="min-w-[300px] flex-1">videos here</div>
         </form>
