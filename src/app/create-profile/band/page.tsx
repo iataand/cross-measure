@@ -1,24 +1,16 @@
 import SelectedGenres from "~/components/SelectedGenres";
+import {
+  getCountries,
+  getMusicGenres,
+  getMusicRoles,
+} from "~/services/createProfileData";
 
 export default async function CreateProfile() {
-  let allGenres: string[] = [];
-  let allMusicRoles: {} = {};
-
-  try {
-    const res = await fetch("http://localhost:3000/api/get-music-genres");
-    allGenres = await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    const res = await fetch("http://localhost:3000/api/get-music-roles");
-    allMusicRoles = await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-
-  console.log(allMusicRoles);
+  const [allGenres, allMusicRoles, allCountries] = await Promise.all([
+    getMusicGenres(),
+    getMusicRoles(),
+    getCountries(),
+  ]);
 
   return (
     <div>
