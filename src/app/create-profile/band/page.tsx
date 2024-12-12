@@ -37,7 +37,7 @@ export default async function CreateProfile() {
               className="h-32 w-full border-2 border-gray-700 bg-black p-1"
               placeholder="a few words about the band..."
             />
-            <p className="py-2">Genres that best describe you</p>
+
             <SelectedGenres allGenres={allGenres} />
             <p className="py-2">What are you looking for?</p>
             <div></div>

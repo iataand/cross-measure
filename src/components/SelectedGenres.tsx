@@ -1,6 +1,6 @@
 "use client";
 
-import useGenres from "~/hooks/genres-modal";
+import { useGenres } from "~/hooks/genres-modal";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IconPlus, IconX } from "@tabler/icons-react";
 import MainButton from "./MainButton";
@@ -17,6 +17,7 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
 
   return (
     <div>
+      <p className="py-2">Genres that best describe you</p>
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
@@ -41,11 +42,15 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
                 placeholder="search genre"
               />
             </fieldset>
-            <div className="no-scrollbar flex flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll">
-              {genres.map((genre, index) => (
+            <div
+              className="no-scrollbar flex flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll"
+              role="listbox"
+            >
+              {genres.map((genre) => (
                 <div
+                  role="option"
                   onClick={() => handleSelectGenre(genre)}
-                  key={`${index}-${genre}`}
+                  key={genre}
                   className={`cursor-pointer rounded-3xl border-2 border-gray-700 px-2 py-1 ${selectedGenresTemp.includes(genre) && "border-red-700"}`}
                 >
                   {genre}
@@ -74,9 +79,10 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
-      <div className="mt-4 flex flex-wrap gap-1">
+      <div className="mt-4 flex flex-wrap gap-1" role="listbox">
         {selectedGenres.map((genre) => (
           <span
+            role="option"
             key={genre}
             className="rounded-3xl border-2 border-red-700 px-2 py-1"
           >

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-export default function useGenres(allGenres: string[]) {
+export function useGenres(allGenres: string[]) {
   const [searchGenre, setSearchGenre] = useState("");
   const [genres, setGenres] = useState(allGenres);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [selectedGenresTemp, setSelectedGenresTemp] = useState<string[]>([]);
+  const [selectedGenresTemp, setSelectedGenresTemp] =
+    useState<string[]>(selectedGenres);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
