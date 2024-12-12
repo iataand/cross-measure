@@ -1,5 +1,3 @@
-import { Button } from "@radix-ui/themes";
-
 type MainButtonProps = {
   styles?: string;
   onClick?: () => void;
@@ -8,7 +6,6 @@ type MainButtonProps = {
 };
 
 export default function MainButton({
-  styles,
   onClick,
   children,
   props,
