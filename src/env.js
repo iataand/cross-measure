@@ -11,6 +11,7 @@ export const env = createEnv({
     FIREBASE_PROJECT_ID: z.string(),
     FIREBASE_CLIENT_EMAIL: z.string(),
     FIREBASE_PRIVATE_KEY: z.string(),
+    LOCATION_API_KEY: z.string(),
   },
 
   /**
@@ -35,6 +36,7 @@ export const env = createEnv({
     FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
     FIREBASE_CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL,
     FIREBASE_PRIVATE_KEY: process.env.FIREBASE_PRIVATE_KEY,
+    LOCATION_API_KEY: process.env.LOCATION_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
