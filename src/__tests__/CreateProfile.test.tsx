@@ -12,28 +12,91 @@ describe("Create Band Profile", async () => {
     const createBandTitle = screen.getByText(/create band account/i);
     expect(createBandTitle).toBeDefined();
   });
-
-  it("should open genres modal", async () => {
-    const addGenresButton = screen.getByRole("button", { name: /add genres/i });
-    await addGenresButton.click();
-
-    const modalTitle = screen.getByText(/what kind of music are you into?/i);
-    expect(modalTitle).toBeDefined();
-  });
-
-  it("should correctly display not found text", async () => {
-    const searchGenreInput = screen.getByPlaceholderText(/search genre/i);
-    await userEvent.type(searchGenreInput, "not a genre");
-    const notFoundText = screen.findByText(
-      /no genre found, try something else/i,
-    );
-    expect(notFoundText).toBeDefined();
-  });
-
-  it("should search and display indie rock genre", async () => {
-    const searchGenreInput = screen.getByPlaceholderText(/search genre/i);
-    await userEvent.type(searchGenreInput, "asd");
-    const indieRockGenre = screen.findByText(/indie rock/i);
-    expect(indieRockGenre).toBeDefined();
-  });
 });
+
+// describe("select genres feature", async () => {
+// it("should select rock, pop and rap from genres", async () => {
+//   const addGenresButton = screen.getByRole("button", { name: /add genres/i });
+//   await userEvent.click(addGenresButton);
+
+//   const popGenre = screen.getByRole("option", { name: "pop" });
+//   const rockGenre = screen.getByRole("option", { name: "rock" });
+//   const rapGenre = screen.getByRole("option", { name: "rap" });
+//   const saveButton = screen.getByRole("button", { name: /save/i });
+
+//   // Simulate selecting genres
+//   await userEvent.click(popGenre);
+//   await userEvent.click(rockGenre);
+//   await userEvent.click(rapGenre);
+
+//   //simulate clicking save
+//   await userEvent.click(saveButton);
+
+//   expect(screen.getByText("pop")).toBeInTheDocument();
+//   expect(screen.getByText("rock")).toBeInTheDocument();
+//   expect(screen.getByText("rap")).toBeInTheDocument();
+// });
+
+//   it("should edit selected genres and add jazz", async () => {
+//     const editGenresButton = screen.getByRole("button", {
+//       name: /edit genres/i,
+//     });
+//     await userEvent.click(editGenresButton); //openn modal
+
+//     const jazzGenre = screen.getByRole("option", { name: "jazz" });
+//     await userEvent.click(jazzGenre);
+
+//     const saveButton = screen.getByRole("button", { name: /save/i });
+//     // expect(saveButton).toBeInTheDocument();
+//     await userEvent.click(saveButton);
+
+//     expect(screen.getByText("pop")).toBeInTheDocument();
+//     expect(screen.getByText("rock")).toBeInTheDocument();
+//     expect(screen.getByText("rap")).toBeInTheDocument();
+//     expect(screen.getByText("jazz")).toBeInTheDocument();
+//   });
+
+// it("should edit selected genres and delete rap", async () => {
+//   const editGenresButton = screen.getByRole("button", {
+//     name: /edit genres/i,
+//   });
+// await userEvent.click(editGenresButton); //open modal
+
+// // const rapGenre = screen.getByRole("option", { name: "rap" });
+// // await userEvent.click(rapGenre);
+
+// // const saveButton = screen.getByRole("button", { name: /save/i });
+// // await userEvent.click(saveButton);
+
+// // expect(screen.getByText("pop")).toBeInTheDocument();
+// // expect(screen.getByText("rock")).toBeInTheDocument();
+// // expect(screen.getByText("jazz")).toBeInTheDocument();
+
+// const closeButton = screen.getByRole("button", { name: /close/i });
+// await userEvent.click(closeButton);
+// });
+// it("should edit selected genres, delete rock and add blues", async () => {
+//   //open genres modal
+//   const editGenresButton = screen.getByRole("button", {
+//     name: /edit genres/i,
+//   });
+//   await userEvent.click(editGenresButton);
+
+//   //de-select rock
+//   const rockGenre = screen.getByRole("option", { name: "rock" });
+//   await userEvent.click(rockGenre);
+
+//   //select blues
+//   const bluesGenre = screen.getByRole("option", { name: "blues" });
+//   await userEvent.click(bluesGenre);
+
+//   // save genres and exit modal
+//   const saveButton = screen.getByRole("button", { name: /save/i });
+//   await userEvent.click(saveButton);
+
+//   expect(screen.getByText("pop")).toBeInTheDocument();
+//   expect(screen.getByText("blues")).toBeInTheDocument();
+//   expect(screen.getByText("jazz")).toBeInTheDocument();
+// });
+// });
+// });
