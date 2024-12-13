@@ -59,7 +59,7 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
             </div>
             <Dialog.Close asChild>
               <button
-                className="h-10 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52"
+                className={`h-10 w-full cursor-pointer rounded-3xl ${selectedGenresTemp.length < 3 ? "bg-gray-400 hover:opacity-100" : "bg-gradient-to-r from-red-500 to-gamboge-500"} text-lg font-bold text-white hover:opacity-85 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52`}
                 onClick={handleSave}
                 disabled={selectedGenresTemp.length < 3}
               >
