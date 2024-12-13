@@ -3,7 +3,6 @@
 import { useGenres } from "~/hooks/genres-modal";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IconPlus, IconX } from "@tabler/icons-react";
-import MainButton from "./MainButton";
 
 export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
   const {
@@ -37,7 +36,7 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
             <fieldset>
               <input
                 type="text"
-                className="bg-black p-2"
+                className="w-full bg-black p-2"
                 onChange={(e) => setSearchGenre(e.target.value)}
                 placeholder="search genre"
               />
@@ -60,12 +59,13 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
             </div>
             <Dialog.Close asChild>
               <div className="h-8">
-                <MainButton
-                  props={selectedGenresTemp.length < 3 && { disabled: true }}
+                <button
+                  className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:w-52"
                   onClick={handleSave}
+                  disabled={selectedGenresTemp.length < 3}
                 >
                   Save ({selectedGenresTemp.length}/5)
-                </MainButton>
+                </button>
               </div>
             </Dialog.Close>
             <Dialog.Close asChild>
