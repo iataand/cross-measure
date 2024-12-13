@@ -42,7 +42,7 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
               />
             </fieldset>
             <div
-              className="no-scrollbar flex flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll"
+              className="no-scrollbar flex max-h-[289px] flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll"
               role="listbox"
             >
               {genres.map((genre) => (
@@ -58,15 +58,13 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
               {genres.length === 0 && "No genre found, try something else"}
             </div>
             <Dialog.Close asChild>
-              <div className="h-8">
-                <button
-                  className="h-12 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:w-52"
-                  onClick={handleSave}
-                  disabled={selectedGenresTemp.length < 3}
-                >
-                  Save ({selectedGenresTemp.length}/5)
-                </button>
-              </div>
+              <button
+                className="h-10 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52"
+                onClick={handleSave}
+                disabled={selectedGenresTemp.length < 3}
+              >
+                Save ({selectedGenresTemp.length}/5)
+              </button>
             </Dialog.Close>
             <Dialog.Close asChild>
               <button

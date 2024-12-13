@@ -9,3 +9,12 @@ export type Country = {
   native: string;
   emoji: string;
 };
+
+export type MusicRoles = {
+  Strings: string[];
+  Keyboard: string[];
+  Wind: string[];
+  Percussion: string[];
+  Vocals: string[];
+  Other: string[];
+};

@@ -2,10 +2,10 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@radix-ui/themes";
 import { IconX } from "@tabler/icons-react";
-import GoogleLoginButton from "./GoogleLoginButton";
-import MetaLoginButton from "./MetaLoginButton";
-import PhoneLoginButton from "./PhoneLoginButton";
-import MainButton from "./MainButton";
+import GoogleLoginButton from "../buttons/GoogleLoginButton";
+import MetaLoginButton from "../buttons/MetaLoginButton";
+import PhoneLoginButton from "../buttons/PhoneLoginButton";
+import MainButton from "../buttons/MainButton";
 
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (

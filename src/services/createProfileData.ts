@@ -1,4 +1,4 @@
-import { Country } from "~/utils/types";
+import { Country, MusicRoles } from "~/utils/types";
 
 export async function getMusicGenres(): Promise<string[]> {
   try {
@@ -10,13 +10,13 @@ export async function getMusicGenres(): Promise<string[]> {
   }
 }
 
-export async function getMusicRoles(): Promise<string[]> {
+export async function getMusicRoles(): Promise<MusicRoles> {
   try {
     const res = await fetch("http://localhost:3000/api/get-music-roles");
     return await res.json();
   } catch (error) {
     console.error(error);
-    return [];
+    return {} as MusicRoles;
   }
 }
 

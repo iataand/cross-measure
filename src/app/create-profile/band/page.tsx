@@ -1,4 +1,5 @@
-import SelectedGenres from "~/components/SelectedGenres";
+import LookingForRoles from "~/components/create-profile/select-roles/LookingForRoles";
+import SelectedGenres from "~/components/create-profile/select-genres/SelectedGenres";
 import {
   getCountries,
   getMusicGenres,
@@ -11,6 +12,8 @@ export default async function CreateProfile() {
     getMusicRoles(),
     getCountries(),
   ]);
+
+  console.log(typeof allMusicRoles);
 
   return (
     <div>
@@ -31,8 +34,7 @@ export default async function CreateProfile() {
             />
 
             <SelectedGenres allGenres={allGenres} />
-            <p className="py-2">What are you looking for?</p>
-            <div></div>
+            <LookingForRoles allMusicRoles={allMusicRoles} />
           </div>
           <div className="min-w-[300px] flex-1">videos here</div>
         </form>

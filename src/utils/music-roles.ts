@@ -1,5 +1,5 @@
 export const musician_roles = {
-  string_instruments: [
+  Strings: [
     "Guitar",
     "Violin",
     "Bass",
@@ -10,8 +10,8 @@ export const musician_roles = {
     "Banjo",
     "Sitar",
   ],
-  keyboard_instruments: ["Piano", "Organ", "Keyboard", "Harpsichord"],
-  wind_instruments: [
+  Keyboards: ["Piano", "Organ", "Keyboard", "Harpsichord"],
+  Wind: [
     "Flute",
     "Clarinet",
     "Saxophone",
@@ -23,14 +23,8 @@ export const musician_roles = {
     "Tuba",
     "Recorder",
   ],
-  percussion_instruments: [
-    "Drums",
-    "Timpani",
-    "Xylophone",
-    "Marimba",
-    "Percussion",
-  ],
-  vocals: [
+  Percussion: ["Drums", "Timpani", "Xylophone", "Marimba", "Percussion"],
+  Vocals: [
     "Lead Vocal",
     "Backing Vocal",
     "Soprano",
@@ -41,5 +35,5 @@ export const musician_roles = {
     "Choir",
     "Opera Singer",
   ],
-  other_instruments: ["Accordion", "Harmonica", "Bagpipes", "Lute", "Fiddle"],
+  Other: ["Accordion", "Harmonica", "Bagpipes", "Lute", "Fiddle"],
 };
