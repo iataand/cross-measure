@@ -10,7 +10,7 @@ export const musician_roles = {
     "Banjo",
     "Sitar",
   ],
-  Keyboards: ["Piano", "Organ", "Keyboard", "Harpsichord"],
+  Keyboard: ["Piano", "Organ", "Keyboard", "Harpsichord"],
   Wind: [
     "Flute",
     "Clarinet",

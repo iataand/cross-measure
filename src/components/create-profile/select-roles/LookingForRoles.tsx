@@ -1,19 +1,41 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import MainButton from "../../buttons/MainButton";
 import { IconPlus, IconX } from "@tabler/icons-react";
 import { MusicRoles } from "~/utils/types";
-import SelectRoles from "./SelectRoles";
+import { useRoles } from "~/hooks/roles-modal";
 
 export default function LookingForRoles({
   allMusicRoles,
 }: {
   allMusicRoles: MusicRoles;
 }) {
+  const {
+    canAddRole,
+    currentInstrumentType,
+    handleAddRole,
+    handleDeleteSelectedInstrument,
+    handleSelectInstrumentType,
+    setCanAddRole,
+    selectedRoles,
+    handleSaveRoles,
+    savedRoles,
+  } = useRoles();
+
   return (
-    <>
-      <p className="font-2xl p-2">What are you looking for?</p>
+    <div>
+      <p className="font-2xl">What are you looking for?</p>
+      <div className="no-scrollbar my-2 overflow-y-scroll" role="listbox">
+        {savedRoles.map((role, index) => (
+          <div
+            role="option"
+            className="flex"
+            key={`${role.instrument}-${index}`}
+          >
+            {index + 1}. {role.instrumentType} {role.instrument}
+          </div>
+        ))}
+      </div>
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
@@ -27,12 +49,66 @@ export default function LookingForRoles({
             <Dialog.Title className="m-0 text-3xl font-medium">
               What instruments are you looking for?
             </Dialog.Title>
-            <Dialog.Description>
-              Please select up to 3 music roles
-            </Dialog.Description>
-            <SelectRoles allMusicRoles={allMusicRoles} />
+            <Dialog.Description />
+            <div className="no-scrollbar overflow-y-scroll" role="listbox">
+              {selectedRoles.map((role, index) => (
+                <div
+                  role="option"
+                  className="flex text-xl"
+                  key={`${role.instrument}-${index}`}
+                >
+                  {index + 1}. {role.instrumentType} {role.instrument}
+                  <IconX
+                    onClick={() => handleDeleteSelectedInstrument(index)}
+                    className="cursor-pointer"
+                  />
+                </div>
+              ))}
+            </div>
+            {canAddRole || selectedRoles.length === 0 ? (
+              <select
+                name="instruments"
+                className="h-10 bg-black"
+                onChange={handleSelectInstrumentType}
+              >
+                <option value="default" className="hidden opacity-80">
+                  Select a type of instrument
+                </option>
+                {Object.keys(allMusicRoles).map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="flex justify-center">
+                <IconPlus
+                  onClick={() => setCanAddRole(true)}
+                  className={`${selectedRoles.length === 3 ? "hidden" : ""} cursor-pointer rounded-xl border hover:bg-slate-600`}
+                />
+              </div>
+            )}
+            <div
+              className="no-scrollbar flex flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll"
+              role="listbox"
+            >
+              {currentInstrumentType !== "" &&
+                allMusicRoles[currentInstrumentType].map((instrument) => (
+                  <div
+                    role="option"
+                    key={instrument}
+                    className="cursor-pointer rounded-3xl border-2 border-gray-700 px-2 py-1 hover:opacity-70"
+                    onClick={() => handleAddRole(instrument)}
+                  >
+                    {instrument}
+                  </div>
+                ))}
+            </div>
             <Dialog.Close asChild>
-              <button className="h-10 w-full cursor-pointer rounded-3xl from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 enabled:bg-red-500 enabled:bg-gradient-to-r disabled:cursor-default disabled:bg-gray-400 disabled:hover:opacity-100 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52">
+              <button
+                className="h-10 w-full cursor-pointer rounded-3xl from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 enabled:bg-red-500 enabled:bg-gradient-to-r disabled:cursor-default disabled:bg-gray-400 disabled:hover:opacity-100 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52"
+                onClick={handleSaveRoles}
+              >
                 Save
               </button>
             </Dialog.Close>
@@ -47,6 +123,6 @@ export default function LookingForRoles({
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
-    </>
+    </div>
   );
 }
