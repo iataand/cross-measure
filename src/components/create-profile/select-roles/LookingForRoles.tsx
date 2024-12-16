@@ -2,7 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import MainButton from "../../buttons/MainButton";
-import { IconX } from "@tabler/icons-react";
+import { IconPlus, IconX } from "@tabler/icons-react";
 import { MusicRoles } from "~/utils/types";
 import SelectRoles from "./SelectRoles";
 
@@ -13,10 +13,13 @@ export default function LookingForRoles({
 }) {
   return (
     <>
-      <p className="font-2xl">What are you looking for?</p>
+      <p className="font-2xl p-2">What are you looking for?</p>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800"></button>
+          <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
+            <IconPlus />
+            Select Roles
+          </button>
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-black/50" />
@@ -28,13 +31,11 @@ export default function LookingForRoles({
               Please select up to 3 music roles
             </Dialog.Description>
             <SelectRoles allMusicRoles={allMusicRoles} />
-            <div>
-              <Dialog.Close asChild>
-                <button className="absolute left-[calc(50%-104px)] top-[calc(100%-72px)] h-10 w-full cursor-pointer rounded-3xl bg-gradient-to-r from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 md:w-52">
-                  Save
-                </button>
-              </Dialog.Close>
-            </div>
+            <Dialog.Close asChild>
+              <button className="h-10 w-full cursor-pointer rounded-3xl from-red-500 to-gamboge-500 text-lg font-bold text-white hover:opacity-85 enabled:bg-red-500 enabled:bg-gradient-to-r disabled:cursor-default disabled:bg-gray-400 disabled:hover:opacity-100 md:absolute md:left-[calc(50%-104px)] md:top-[calc(100%-72px)] md:w-52">
+                Save
+              </button>
+            </Dialog.Close>
             <Dialog.Close asChild>
               <button
                 className="absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:bg-gray-50/10 focus:shadow-[0_0_0_2px] focus:outline-none"

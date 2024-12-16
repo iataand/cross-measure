@@ -15,6 +15,9 @@ export default function SelectRoles({
         className="h-10 bg-black"
         onChange={(e) => setMusicRole(e.target.value as keyof MusicRoles)}
       >
+        <option value="default" className="hidden opacity-80">
+          Select a type of instrument
+        </option>
         {Object.keys(allMusicRoles).map((role) => (
           <option key={role} value={role}>
             {role}
