@@ -2,7 +2,6 @@ import { it, describe, beforeAll, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import SelectedGenres from "~/components/create-profile/select-genres/SelectedGenres";
 import userEvent from "@testing-library/user-event";
-import { beforeEach } from "node:test";
 
 const allGenres = ["rock", "pop", "rap", "hip hop", "jazz", "blues"];
 
