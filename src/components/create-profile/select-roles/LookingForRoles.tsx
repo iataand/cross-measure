@@ -23,9 +23,9 @@ export default function LookingForRoles({
   } = useRoles();
 
   return (
-    <div>
+    <div className="mt-2">
       <p className="font-2xl">What are you looking for?</p>
-      <div className="no-scrollbar my-2 overflow-y-scroll" role="listbox">
+      <div className="no-scrollbar overflow-y-scroll" role="listbox">
         {savedRoles.map((role, index) => (
           <div
             role="option"
@@ -38,7 +38,7 @@ export default function LookingForRoles({
       </div>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
+          <button className="my-2 flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
             <IconPlus />
             Select Roles
           </button>
@@ -66,26 +66,30 @@ export default function LookingForRoles({
               ))}
             </div>
             {canAddRole || selectedRoles.length === 0 ? (
-              <select
-                name="instruments"
-                className="h-10 bg-black"
-                onChange={handleSelectInstrumentType}
-              >
-                <option value="default" className="hidden opacity-80">
-                  Select a type of instrument
-                </option>
-                {Object.keys(allMusicRoles).map((role) => (
-                  <option key={role} value={role}>
-                    {role}
+              <>
+                <select
+                  id="instrument-select"
+                  name="instruments"
+                  className="h-10 bg-black"
+                  onChange={handleSelectInstrumentType}
+                >
+                  <option value="default" className="hidden opacity-80">
+                    Select a type of instrument
                   </option>
-                ))}
-              </select>
+                  {Object.keys(allMusicRoles).map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+              </>
             ) : (
-              <div className="flex justify-center">
-                <IconPlus
-                  onClick={() => setCanAddRole(true)}
-                  className={`${selectedRoles.length === 3 ? "hidden" : ""} cursor-pointer rounded-xl border hover:bg-slate-600`}
-                />
+              <div
+                className={`${selectedRoles.length === 3 ? "hidden" : ""} flex h-8 cursor-pointer items-center justify-center border hover:bg-slate-600`}
+                onClick={() => setCanAddRole(true)}
+              >
+                Add Instrument
+                <IconPlus />
               </div>
             )}
             <div

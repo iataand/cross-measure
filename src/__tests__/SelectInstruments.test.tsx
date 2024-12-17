@@ -76,13 +76,21 @@ describe("Select Genre Modal", async () => {
   });
 
   it("should open the select roles modal", async () => {
-    const addRolesButton = screen.getByRole("button", {
-      name: /select roles/i,
-    });
-    await userEvent.click(addRolesButton);
+    openModal();
+    const modalTitle = await screen.findByText(
+      /What instruments are you looking for?/i,
+    );
 
-    expect(
-      screen.findByText(/What instruments are you looking for?/i),
-    ).toBeDefined();
+    expect(modalTitle).toBeDefined();
+    closeModal();
   });
+
+  // it("should open the select roles modal", async () => {
+  //   openModal();
+
+  //   const selectInstruments = screen.getByLabelText("instrument-select");
+  //   expect(selectInstruments).toBeInTheDocument();
+
+  //   closeModal();
+  // });
 });

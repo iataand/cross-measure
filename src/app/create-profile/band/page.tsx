@@ -5,6 +5,7 @@ import {
   getMusicGenres,
   getMusicRoles,
 } from "~/services/createProfileData";
+import SelectLocation from "~/components/SelectLocation/SelectLocation";
 
 export default async function CreateProfile() {
   const [allGenres, allMusicRoles, allCountries] = await Promise.all([
@@ -12,8 +13,6 @@ export default async function CreateProfile() {
     getMusicRoles(),
     getCountries(),
   ]);
-
-  console.log(typeof allMusicRoles);
 
   return (
     <div>
@@ -32,7 +31,7 @@ export default async function CreateProfile() {
               className="h-32 w-full border-2 border-gray-700 bg-black p-1"
               placeholder="a few words about the band..."
             />
-
+            <SelectLocation allCountries={allCountries} />
             <SelectedGenres allGenres={allGenres} />
             <LookingForRoles allMusicRoles={allMusicRoles} />
           </div>
