@@ -84,13 +84,4 @@ describe("Select Genre Modal", async () => {
     expect(modalTitle).toBeDefined();
     closeModal();
   });
-
-  // it("should open the select roles modal", async () => {
-  //   openModal();
-
-  //   const selectInstruments = screen.getByLabelText("instrument-select");
-  //   expect(selectInstruments).toBeInTheDocument();
-
-  //   closeModal();
-  // });
 });
