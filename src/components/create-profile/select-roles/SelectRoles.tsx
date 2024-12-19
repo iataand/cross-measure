@@ -5,7 +5,7 @@ import { IconPlus, IconX } from "@tabler/icons-react";
 import { MusicRoles } from "~/utils/types";
 import { useRoles } from "~/hooks/roles-modal";
 
-export default function LookingForRoles({
+export default function SelectRoles({
   allMusicRoles,
 }: {
   allMusicRoles: MusicRoles;
@@ -53,11 +53,11 @@ export default function LookingForRoles({
             <div className="no-scrollbar overflow-y-scroll" role="listbox">
               {selectedRoles.map((role, index) => (
                 <div
-                  role="option"
-                  className="flex text-xl"
+                  className="flex items-center text-xl"
                   key={`${role.instrument}-${index}`}
                 >
-                  {index + 1}. {role.instrumentType} {role.instrument}
+                  {index + 1}. Type: {role.instrumentType} | Instrument:
+                  {role.instrument} |
                   <IconX
                     onClick={() => handleDeleteSelectedInstrument(index)}
                     className="cursor-pointer"

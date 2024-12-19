@@ -7,3 +7,4 @@
 [ ] Reseach GDPR and Cookie policy
 [ ] Fix ugly opacity for modal buttons
 [ ] Implement phone login feature
+[ ] Fix location select performance issue
