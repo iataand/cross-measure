@@ -15,11 +15,11 @@ export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
   } = useGenres(allGenres);
 
   return (
-    <div>
-      <p className="py-2">Genres that best describe you</p>
+    <div className="mt-4">
+      <p>Genres that best describe you</p>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
+          <button className="my-2 flex w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
             <IconPlus />
             {selectedGenres.length ? "Edit Genres" : "Add Genres"}
           </button>

@@ -2,7 +2,7 @@ import { it, describe, beforeAll, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import SelectedGenres from "~/components/create-profile/select-genres/SelectedGenres";
 import userEvent from "@testing-library/user-event";
-import LookingForRoles from "~/components/create-profile/select-roles/LookingForRoles";
+import LookingForRoles from "~/components/create-profile/select-roles/SelectRoles";
 import { boolean } from "zod";
 import { beforeEach } from "node:test";
 
@@ -76,13 +76,12 @@ describe("Select Genre Modal", async () => {
   });
 
   it("should open the select roles modal", async () => {
-    const addRolesButton = screen.getByRole("button", {
-      name: /select roles/i,
-    });
-    await userEvent.click(addRolesButton);
+    openModal();
+    const modalTitle = await screen.findByText(
+      /What instruments are you looking for?/i,
+    );
 
-    expect(
-      screen.findByText(/What instruments are you looking for?/i),
-    ).toBeDefined();
+    expect(modalTitle).toBeDefined();
+    closeModal();
   });
 });
