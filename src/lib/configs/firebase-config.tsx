@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { env } from "~/env";
 
 export const serverConfig = {
@@ -33,7 +34,10 @@ export const firebaseApp =
     : initializeApp({
         apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY,
         authDomain: env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+        projectId: env.FIREBASE_PROJECT_ID,
       });
+
+export const db = getFirestore(firebaseApp);
 
 export const auth = getAuth(firebaseApp);
 
