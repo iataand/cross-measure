@@ -4,7 +4,6 @@ import {
   getMusicGenres,
   getMusicRoles,
 } from "~/services/createProfileData";
-import SelectLocation from "~/components/SelectLocation/SelectLocation";
 
 export default async function CreateProfile() {
   const [allGenres, allMusicRoles, allCountries] = await Promise.all([
