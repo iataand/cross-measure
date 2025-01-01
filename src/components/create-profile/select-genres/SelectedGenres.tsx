@@ -1,19 +1,27 @@
 "use client";
 
-import { useGenres } from "~/hooks/genres-modal";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IconPlus, IconX } from "@tabler/icons-react";
+import { FieldError, Merge } from "react-hook-form";
 
-export default function SelectedGenres({ allGenres }: { allGenres: string[] }) {
-  const {
-    setSearchGenre,
-    genres,
-    handleSelectGenre,
-    selectedGenres,
-    handleSave,
-    selectedGenresTemp,
-  } = useGenres(allGenres);
+type Props = {
+  allGenres: string[];
+  setSearchGenre: (genre: string) => void;
+  genres: string[];
+  handleSelectGenre: (genre: string) => void;
+  selectedGenresTemp: string[];
+  selectedGenres: string[];
+  handleSave: () => void;
+};
 
+export default function SelectedGenres({
+  setSearchGenre,
+  genres,
+  handleSelectGenre,
+  selectedGenres,
+  handleSave,
+  selectedGenresTemp,
+}: Props) {
   return (
     <div className="mt-4">
       <p>Genres that best describe you</p>

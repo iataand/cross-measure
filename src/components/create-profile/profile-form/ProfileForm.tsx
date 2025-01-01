@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Button } from "~/components/ui/button";
+import { useGenres } from "~/hooks/genres-modal";
 
 type Props = {
   allCountries: Country[];
@@ -48,16 +49,24 @@ export default function ProfileForm({
       email: "",
       bio: "",
       location: "",
-      genres: [],
       ...(state?.fields ?? {}),
     },
   });
 
   const formRef = useRef<HTMLFormElement>(null);
 
+  const {
+    setSearchGenre,
+    genres,
+    handleSelectGenre,
+    selectedGenres,
+    handleSave,
+    selectedGenresTemp,
+  } = useGenres(allGenres);
+
   useEffect(() => {
-    console.log(form);
-  }, [form]);
+    console.log(form.formState);
+  }, [form.formState]);
 
   return (
     <Form {...form}>
@@ -151,8 +160,15 @@ export default function ProfileForm({
                 </FormItem>
               )}
             />
-
-            <SelectedGenres allGenres={allGenres} />
+            <SelectedGenres
+              allGenres={allGenres}
+              setSearchGenre={setSearchGenre}
+              genres={genres}
+              handleSelectGenre={handleSelectGenre}
+              selectedGenres={selectedGenres}
+              handleSave={handleSave}
+              selectedGenresTemp={selectedGenresTemp}
+            />
             <SelectRoles allMusicRoles={allMusicRoles} />
           </div>
           <div className="min-w-[300px] flex-1">videos here</div>

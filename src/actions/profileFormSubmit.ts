@@ -27,12 +27,5 @@ export async function onSubmitAction(
     };
   }
 
-  if (parsed.data.email.includes("a")) {
-    return {
-      message: "Invalid email",
-      fields: parsed.data,
-    };
-  }
-
   return { message: "User registered" };
 }

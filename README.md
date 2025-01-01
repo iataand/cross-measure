@@ -8,3 +8,4 @@
 [ ] Fix ugly opacity for modal buttons
 [ ] Implement phone login feature
 [ ] Fix location select performance issue
+[ ] Fetch genres from firestore instead of local
