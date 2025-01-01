@@ -25,7 +25,8 @@ export async function getCountries(): Promise<Country[]> {
     const res = await fetch(process.env.LOCATION_API_URL!.toString(), {
       headers: { "X-CSCAPI-KEY": process.env.LOCATION_API_KEY! },
     });
-    return await res.json();
+    const x = await res.json();
+    return x.slice(-10);
   } catch (error) {
     console.error(error);
     return [];

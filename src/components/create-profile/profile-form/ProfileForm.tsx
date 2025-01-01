@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { onSubmitAction } from "~/actions/profileFormSubmit";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import {
   Form,
   FormControl,
@@ -27,6 +27,8 @@ import {
 } from "~/components/ui/select";
 import { Button } from "~/components/ui/button";
 import { useGenres } from "~/hooks/genres-modal";
+import YoutubeEmbed from "~/components/YoutubeEmbed/YoutubeEmbed";
+import { Label } from "~/components/ui/label";
 
 type Props = {
   allCountries: Country[];
@@ -42,6 +44,7 @@ export default function ProfileForm({
   const [state, formAction] = useActionState(onSubmitAction, {
     message: "",
   });
+  const [demoLink, setDemoLink] = useState("");
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -49,6 +52,8 @@ export default function ProfileForm({
       email: "",
       bio: "",
       location: "",
+      youtubeDemo: "",
+      spotifyLink: "",
       ...(state?.fields ?? {}),
     },
   });
@@ -80,7 +85,7 @@ export default function ProfileForm({
           })(event);
         }}
       >
-        <div className="flex w-full max-w-[900px] flex-wrap gap-12">
+        <div className="flex w-full max-w-[900px] flex-wrap gap-12 ">
           <div className="flex min-w-[400px] flex-1 flex-col gap-2">
             <FormField
               control={form.control}
@@ -171,7 +176,45 @@ export default function ProfileForm({
             />
             <SelectRoles allMusicRoles={allMusicRoles} />
           </div>
-          <div className="min-w-[300px] flex-1">videos here</div>
+          <div className="flex-1 min-w-[400px] h-[240px]">
+            <FormField
+              control={form.control}
+              name="spotifyLink"
+              render={({ field }) => (
+                <FormItem className="w-full mb-2">
+                  <FormLabel>Link to your band's Spotify account</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="paste spotify link to your band here"
+                      {...field}
+                      className="border-gray-700 bg-black "
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="youtubeDemo"
+              render={({ field }) => (
+                <FormItem className="w-full mb-2">
+                  <FormLabel>Demo Youtube video of your band</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="paste youtube link to your band's demo here"
+                      {...field}
+                      className="border-gray-700 bg-black "
+                      value={demoLink}
+                      onChange={(e) => setDemoLink(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <YoutubeEmbed embedId={demoLink} />
+          </div>
         </div>
         <div className="mt-2 flex justify-center">
           <Button variant="gradient" type="submit" className="w-full max-w-64">
