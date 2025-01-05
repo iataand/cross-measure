@@ -46,7 +46,7 @@ export default function ButtonWrapper() {
                 className="rounded-full"
               />
             </span>
-            <div className="ml-2 text-start text-sm">
+            <div className="ml-2 text-start text-xs">
               <p>Continue as {user.displayName}</p>
               <p>{user.email}</p>
             </div>

@@ -28,7 +28,7 @@ export default function LoginModal(props: { hasAccount?: boolean }) {
             </Dialog.Title>
             <Dialog.Description className="text-md mb-5 mt-2.5 px-2">
               By tapping Log In or Continue, you agree to our Terms. Learn how
-              we process your data in our Privacy Policy, and Cookie Policy.
+              we process your data in our Privacy Policy and Cookie Policy.
             </Dialog.Description>
           </div>
           <div className="flex w-full max-w-[315px] flex-col gap-4">

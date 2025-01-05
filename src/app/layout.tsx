@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <Theme>{children}</Theme>
+        <Theme className="bg-[#111418]">{children}</Theme>
       </body>
     </html>
   );
