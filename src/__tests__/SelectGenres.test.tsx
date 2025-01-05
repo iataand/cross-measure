@@ -29,7 +29,17 @@ async function closeModal() {
 
 describe("Select Genre Modal", async () => {
   beforeAll(async () => {
-    render(await SelectedGenres({ allGenres }));
+    render(
+      await SelectedGenres({
+        allGenres,
+        setSearchGenre: vi.fn(),
+        genres: allGenres,
+        handleSelectGenre: vi.fn(),
+        selectedGenres: [],
+        handleSave: vi.fn(),
+        selectedGenresTemp: [],
+      }),
+    );
   });
 
   it("should correctly display not found text", async () => {
