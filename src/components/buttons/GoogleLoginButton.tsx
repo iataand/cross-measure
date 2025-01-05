@@ -23,7 +23,7 @@ export default function ButtonWrapper() {
         },
       });
 
-      router.push("/");
+      router.push("/create-profile/band");
     } catch (error) {
       console.error(error);
     }

@@ -2,17 +2,19 @@
 
 import { Button } from "@radix-ui/themes";
 import { IconBrandMeta } from "@tabler/icons-react";
-import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithFacebook } from "~/lib/configs/firebase-config";
+import { useRouter } from "next/navigation";
 
 export default function MetaLoginButton() {
   const [user] = useAuthState(auth);
+  const router = useRouter();
 
   async function handleClick() {
     try {
       await singInWithFacebook();
+      router.push("/create-profile/band");
     } catch (error) {
       console.error(error);
     }
