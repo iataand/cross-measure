@@ -4,10 +4,9 @@ import SelectRoles from "../select-roles/SelectRoles";
 import { Country, MusicRoles } from "~/utils/types";
 import { profileFormSchema } from "~/utils/schemas/profile-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { onSubmitAction } from "~/actions/profileFormSubmit";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -28,7 +27,6 @@ import {
 import { Button } from "~/components/ui/button";
 import { useGenres } from "~/hooks/genres-modal";
 import YoutubeEmbed from "~/components/YoutubeEmbed/YoutubeEmbed";
-import { Label } from "~/components/ui/label";
 
 type Props = {
   allCountries: Country[];
@@ -41,9 +39,6 @@ export default function ProfileForm({
   allGenres,
   allMusicRoles,
 }: Props) {
-  const [state, formAction] = useActionState(onSubmitAction, {
-    message: "",
-  });
   const [demoLink, setDemoLink] = useState("");
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -54,11 +49,8 @@ export default function ProfileForm({
       location: "",
       youtubeDemo: "",
       spotifyLink: "",
-      ...(state?.fields ?? {}),
     },
   });
-
-  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     setSearchGenre,
@@ -69,23 +61,14 @@ export default function ProfileForm({
     selectedGenresTemp,
   } = useGenres(allGenres);
 
-  useEffect(() => {
-    console.log(form.formState);
-  }, [form.formState]);
+  function onSubmit() {
+    console.log(form.getValues());
+  }
 
   return (
     <Form {...form}>
-      <form
-        ref={formRef}
-        action={formAction}
-        onSubmit={(event) => {
-          event.preventDefault();
-          form.handleSubmit(() => {
-            formAction(new FormData(formRef.current!));
-          })(event);
-        }}
-      >
-        <div className="flex w-full max-w-[900px] flex-wrap gap-12 ">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex w-full max-w-[900px] flex-wrap gap-12">
           <div className="flex min-w-[400px] flex-1 flex-col gap-2">
             <FormField
               control={form.control}
@@ -176,18 +159,18 @@ export default function ProfileForm({
             />
             <SelectRoles allMusicRoles={allMusicRoles} />
           </div>
-          <div className="flex-1 min-w-[400px] h-[240px]">
+          <div className="h-[240px] min-w-[400px] flex-1">
             <FormField
               control={form.control}
               name="spotifyLink"
               render={({ field }) => (
-                <FormItem className="w-full mb-2">
+                <FormItem className="mb-2 w-full">
                   <FormLabel>Link to your band's Spotify account</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="paste spotify link to your band here"
                       {...field}
-                      className="border-gray-700 bg-black "
+                      className="border-gray-700 bg-black"
                     />
                   </FormControl>
                   <FormMessage />
@@ -198,13 +181,13 @@ export default function ProfileForm({
               control={form.control}
               name="youtubeDemo"
               render={({ field }) => (
-                <FormItem className="w-full mb-2">
+                <FormItem className="mb-2 w-full">
                   <FormLabel>Demo Youtube video of your band</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="paste youtube link to your band's demo here"
                       {...field}
-                      className="border-gray-700 bg-black "
+                      className="border-gray-700 bg-black"
                       value={demoLink}
                       onChange={(e) => setDemoLink(e.target.value)}
                     />
