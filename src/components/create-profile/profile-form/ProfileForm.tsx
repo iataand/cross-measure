@@ -27,6 +27,8 @@ import {
 import { Button } from "~/components/ui/button";
 import { useGenres } from "~/hooks/genres-modal";
 import YoutubeEmbed from "~/components/YoutubeEmbed/YoutubeEmbed";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "~/lib/configs/firebase-config";
 
 type Props = {
   allCountries: Country[];
@@ -61,8 +63,14 @@ export default function ProfileForm({
     selectedGenresTemp,
   } = useGenres(allGenres);
 
-  function onSubmit() {
-    console.log(form.getValues());
+  async function onSubmit() {
+    try {
+      await addDoc(collection(db, "users"), {
+        ...form.getValues(),
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (

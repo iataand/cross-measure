@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @layer utilities {
+@layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -10,7 +10,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-} */
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
