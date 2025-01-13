@@ -27,7 +27,7 @@ import {
 import { Button } from "~/components/ui/button";
 import { useGenres } from "~/hooks/genres-modal";
 import YoutubeEmbed from "~/components/YoutubeEmbed/YoutubeEmbed";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "~/lib/configs/firebase-config";
 
 type Props = {
