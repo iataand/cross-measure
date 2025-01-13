@@ -27,7 +27,7 @@ import {
 import { Button } from "~/components/ui/button";
 import { useGenres } from "~/hooks/genres-modal";
 import YoutubeEmbed from "~/components/YoutubeEmbed/YoutubeEmbed";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "~/lib/configs/firebase-config";
 
 type Props = {
@@ -65,7 +65,7 @@ export default function ProfileForm({
 
   async function onSubmit() {
     try {
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", form.getValues("email")), {
         ...form.getValues(),
       });
     } catch (e) {
