@@ -18,3 +18,8 @@ export type MusicRoles = {
   Vocals: string[];
   Other: string[];
 };
+
+export type Genre = {
+  id: number;
+  name: string;
+};
