@@ -4,7 +4,7 @@ import { Button } from "@radix-ui/themes";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
-import { auth, singInWithGoogle } from "~/lib/configs/firebase-config";
+import { auth, singInWithGoogle } from "firebase.config";
 import { useRouter } from "next/navigation";
 
 export default function ButtonWrapper() {

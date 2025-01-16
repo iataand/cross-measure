@@ -1,5 +1,5 @@
 import { Text } from "@radix-ui/themes";
-import LoginModal from "~/components/login/LoginModal";
+import LoginModal from "~/app/login-modal";
 // import { getTokens } from "next-firebase-auth-edge";
 // import { cookies } from "next/headers";
 // import { notFound } from "next/navigation";

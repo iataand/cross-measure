@@ -1,18 +1,22 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Button } from "@radix-ui/themes";
 import { IconX } from "@tabler/icons-react";
-import GoogleLoginButton from "../buttons/GoogleLoginButton";
-import MetaLoginButton from "../buttons/MetaLoginButton";
-import PhoneLoginButton from "../buttons/PhoneLoginButton";
-import MainButton from "../buttons/MainButton";
+import GoogleLoginButton from "./google-login-button";
+import MetaLoginButton from "./meta-login-button";
+import PhoneLoginButton from "./phone-login-button";
+import { Button } from "../components/ui/button";
 
 export default function LoginModal(props: { hasAccount?: boolean }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {props.hasAccount ? (
-          <MainButton>Create Account</MainButton>
+          <Button
+            variant="gradient"
+            className="h-12 w-full rounded-3xl text-lg font-bold text-white md:w-[208px]"
+          >
+            Create Account
+          </Button>
         ) : (
           <Button className="h-12 w-full cursor-pointer rounded-3xl bg-white text-lg font-bold text-black hover:opacity-85 md:w-52">
             Log in

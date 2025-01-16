@@ -1,5 +1,5 @@
-import CreateBandProfileButton from "~/components/buttons/CreateBandProfileButton";
-import CreateMusicianProfileButton from "~/components/buttons/CreateMusicianProfileButton";
+import CreateBandProfileButton from "~/app/create-profile/band-profile-button";
+import CreateMusicianProfileButton from "~/app/create-profile/musician-profile-button";
 
 export default function CreateProfile() {
   return (
