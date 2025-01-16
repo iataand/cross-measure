@@ -1,4 +1,4 @@
-import ProfileForm from "~/components/create-profile/profile-form/ProfileForm";
+import ProfileForm from "./profile-form";
 import {
   getCountries,
   getMusicGenres,

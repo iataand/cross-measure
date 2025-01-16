@@ -11,6 +11,4 @@ export const profileFormSchema = z.object({
     message: "Bio is required.",
   }),
   location: z.string().trim().min(1, { message: "Country is required." }),
-  youtubeDemo: z.string(),
-  spotifyLink: z.string(),
 });
