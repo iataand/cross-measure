@@ -9,4 +9,4 @@
 [ ] Fix location select performance issue
 [x] Fetch genres from firestore instead of local
 [ ] Implement autocomplete instead of select for location
-[ ] Fix tests
+[ ] Fix crash on google login popup close
