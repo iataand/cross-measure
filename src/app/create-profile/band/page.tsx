@@ -1,16 +1,8 @@
+import { getCountriesAction } from "./_actions/get-countries.action";
 import ProfileForm from "./profile-form";
-import {
-  getCountries,
-  getMusicGenres,
-  getMusicRoles,
-} from "~/services/createProfileData";
 
 export default async function CreateProfile() {
-  const [allGenres, allMusicRoles, allCountries] = await Promise.all([
-    getMusicGenres(),
-    getMusicRoles(),
-    getCountries(),
-  ]);
+  const countries = await getCountriesAction();
 
   return (
     <div className="p-2">
@@ -18,11 +10,7 @@ export default async function CreateProfile() {
         Create Band Account
       </h2>
       <div className="flex justify-center">
-        <ProfileForm
-          allCountries={allCountries}
-          allGenres={allGenres}
-          allMusicRoles={allMusicRoles}
-        />
+        <ProfileForm countries={countries ?? []} />
       </div>
     </div>
   );

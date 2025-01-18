@@ -1,5 +1,4 @@
 "use client";
-import { Country, MusicRoles } from "~/utils/types";
 import { profileFormSchema } from "~/utils/schemas/profile-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,14 +21,12 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Button } from "~/components/ui/button";
+import { Country } from "~/data-access/countries/get-countries";
+import { FixedSizeList } from "react-window";
+import { createBandProfileAction } from "./_actions/create-profile.action";
+import { BandProfile } from "~/data-access/users/create-band-profile";
 
-type Props = {
-  allCountries: Country[];
-  allMusicRoles: MusicRoles;
-  allGenres: string[];
-};
-
-export default function ProfileForm({ allCountries }: Props) {
+export default function ProfileForm({ countries }: { countries: Country[] }) {
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -40,7 +37,18 @@ export default function ProfileForm({ allCountries }: Props) {
     },
   });
 
-  async function onSubmit() {}
+  const watchCountry = form.watch("location");
+
+  async function onSubmit() {
+    const data = form.getValues() as BandProfile;
+
+    const res = await createBandProfileAction(data);
+    if (res.error && res.field) {
+      form.setError(res.field, {
+        message: res.message,
+      });
+    }
+  }
 
   return (
     <Form {...form}>
@@ -109,14 +117,27 @@ export default function ProfileForm({ allCountries }: Props) {
                     defaultValue={field.value}
                   >
                     <SelectTrigger className="w-full border-gray-700 bg-black">
-                      <SelectValue />
+                      <SelectValue>{watchCountry}</SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      {allCountries.map((country) => (
-                        <SelectItem key={country.id} value={country.name}>
-                          {country.name}
-                        </SelectItem>
-                      ))}
+                      <FixedSizeList
+                        width={"100%"}
+                        height={350}
+                        itemCount={countries?.length ?? 0}
+                        itemSize={40}
+                      >
+                        {({ index, style }) => (
+                          <SelectItem
+                            value={countries[index]?.name ?? ""}
+                            key={countries[index]?.id}
+                            style={{
+                              ...style,
+                            }}
+                          >
+                            {countries[index]?.name}
+                          </SelectItem>
+                        )}
+                      </FixedSizeList>
                     </SelectContent>
                   </Select>
                 </FormControl>

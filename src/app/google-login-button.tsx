@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithGoogle } from "firebase.config";
 import { useRouter } from "next/navigation";
+import { getProfileByEmailAction } from "./_actions/getProfileByEmail.action";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
@@ -22,8 +23,13 @@ export default function ButtonWrapper() {
           Authorization: `Bearer ${idToken}`,
         },
       });
+      const profile = await getProfileByEmailAction(userData.user.email!);
+      if (!profile) {
+        router.push("/create-profile/band");
+        return;
+      }
 
-      router.push("/create-profile/band");
+      router.push(`/profile/${profile.id}`);
     } catch (error) {
       console.error(error);
     }
