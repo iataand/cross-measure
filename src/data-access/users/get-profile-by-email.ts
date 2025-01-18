@@ -1,7 +1,6 @@
-import "server-only";
+"use server";
 import { db } from "~/db";
 import { BandProfile } from "./create-band-profile";
-import { eq } from "drizzle-orm";
 
 export async function getProfileByEmail(
   email: string,
