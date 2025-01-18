@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    restart: no
+    environment:
+      POSTGRES_DB: cross-measure-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty123
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
