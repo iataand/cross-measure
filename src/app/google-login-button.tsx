@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { auth, singInWithGoogle } from "firebase.config";
 import { useRouter } from "next/navigation";
-import { getProfileByEmailAction } from "./_actions/getProfileByEmail.action";
+import { getProfileByEmailAction } from "./_actions/get-profile-by-email-action";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
