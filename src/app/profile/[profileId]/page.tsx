@@ -1,4 +1,5 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
+import Header from "./header";
 
 export default async function ProfilePage({
   params,
@@ -8,5 +9,10 @@ export default async function ProfilePage({
   const profileId = (await params).profileId;
   const profile = await getProfileByProfileIdAction(parseInt(profileId));
 
-  return <>Band Name: {profile.bandName}</>;
+  return (
+    <div>
+      <Header />
+      Band Name: {profile.bandName}
+    </div>
+  );
 }
