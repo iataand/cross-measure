@@ -8,14 +8,17 @@ import {
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui/drawer";
+import Image from "next/image";
 
 type PropTypes = {
   name: string;
+  imageUrl?: string;
 };
 
 export default function Header(props: PropTypes) {
@@ -36,7 +39,13 @@ export default function Header(props: PropTypes) {
           Connections
         </li>
       </ul>
-      <div className="hidden sm:block">img</div>
+      <Image
+        className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
+        src={props.imageUrl || ""}
+        width={50}
+        height={50}
+        alt="Profile Image"
+      />
       <div className="sm:hidden">
         <Drawer direction="right">
           <DrawerTrigger>
@@ -45,10 +54,19 @@ export default function Header(props: PropTypes) {
           <DrawerContent>
             <DrawerHeader>
               <DrawerTitle>CrossMeasure</DrawerTitle>
+              <DrawerDescription />
               <ul className="mt-6">
-                <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
-                  img {props.name}
+                <li className="flex items-center gap-1 rounded-md p-2">
+                  <Image
+                    className="mr-2 aspect-square cursor-pointer rounded-full object-cover"
+                    src={props.imageUrl || ""}
+                    width={30}
+                    height={30}
+                    alt="Profile Image"
+                  />
+                  {props.name}
                 </li>
+                <hr />
                 <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
                   <IconSearch size={17} />
                   Search
