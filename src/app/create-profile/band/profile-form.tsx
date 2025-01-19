@@ -24,7 +24,7 @@ import { Button } from "~/components/ui/button";
 import { Country } from "~/data-access/countries/get-countries";
 import { FixedSizeList } from "react-window";
 import { createBandProfileAction } from "./_actions/create-profile.action";
-import { BandProfile } from "~/data-access/users/create-band-profile";
+import { BandProfile } from "~/data-access/profiles/create-band-profile";
 
 export default function ProfileForm({ countries }: { countries: Country[] }) {
   const form = useForm<z.output<typeof profileFormSchema>>({

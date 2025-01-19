@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { BandProfile } from "~/data-access/users/create-band-profile";
 
 export const profileFormSchema = z.object({
   bandName: z.string().trim().min(1, {
