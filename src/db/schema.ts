@@ -7,6 +7,9 @@ export const bandProfileTable = pgTable("bandProfiles", {
   email: varchar({ length: 255 }).notNull().unique(),
   location: varchar({ length: 255 }).notNull(),
   genres: varchar({ length: 255 }).array(),
+  profileImageUrl: varchar({ length: 255 })
+    .default(process.env.DEFAULT_PROFILE_IMAGE_URL!)
+    .notNull(),
 });
 
 export const genresTable = pgTable("genres", {

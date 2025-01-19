@@ -4,20 +4,22 @@ import { IconCamera, IconLoader } from "@tabler/icons-react";
 import { useState } from "react";
 import { UploadButton } from "~/lib/uploadthing";
 import Image from "next/image";
+import uploadProfileImageAction from "./_actions/upload-profile-image.action";
 
 type PropTypes = {
-  profileImageUrl?: string;
+  profileImageUrl: string;
+  profileId: number;
 };
 
 export default function ProfileImage(props: PropTypes) {
-  const [imageUrl, setImageUrl] = useState(props.profileImageUrl || "");
+  const [imageUrl, setImageUrl] = useState(props.profileImageUrl);
 
   return (
     <div className="position relative">
       <Image
-        width={200}
+        width={250}
         height={250}
-        src="https://utfs.io/f/3oEdKbrCvD625YXqXhUekhVrK3WtJfD12ZlS9LMjszIxBTCX"
+        src={imageUrl}
         alt="Profile image"
         className="position relative"
       />
@@ -46,9 +48,15 @@ export default function ProfileImage(props: PropTypes) {
           },
         }}
         endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
+        onClientUploadComplete={async (res) => {
           // Do something with the response
-          console.log("Files: ", res);
+          if (res[0]) {
+            setImageUrl(`https://utfs.io/f/${res[0].key}`);
+            await uploadProfileImageAction(
+              `https://utfs.io/f/${res[0].key}`,
+              props.profileId,
+            );
+          }
 
           alert("Upload Completed");
         }}

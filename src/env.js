@@ -12,6 +12,8 @@ export const env = createEnv({
     FIREBASE_PRIVATE_KEY: z.string(),
     LOCATION_API_KEY: z.string(),
     LOCATION_API_URL: z.string(),
+    UPLOADTHING_TOKEN: z.string(),
+    DEFAULT_IMAGE: z.string(),
   },
 
   /**
@@ -40,6 +42,8 @@ export const env = createEnv({
     FIREBASE_PRIVATE_KEY: process.env.FIREBASE_PRIVATE_KEY,
     LOCATION_API_KEY: process.env.LOCATION_API_KEY,
     LOCATION_API_URL: process.env.LOCATION_API_URL,
+    UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
+    DEFAULT_IMAGE: process.env.DEFAULT_IMAGE,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

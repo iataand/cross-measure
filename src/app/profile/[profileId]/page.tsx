@@ -23,7 +23,10 @@ export default async function ProfilePage({
         <Card className="m-auto mt-4 max-w-[800px]">
           <CardHeader>
             <div className="flex gap-4">
-              <ProfileImage />
+              <ProfileImage
+                profileImageUrl={profile.profileImageUrl}
+                profileId={profile.id}
+              />
               <div className="flex flex-col justify-between">
                 <CardTitle>
                   {profile.bandName} <hr className="mt-1" />
