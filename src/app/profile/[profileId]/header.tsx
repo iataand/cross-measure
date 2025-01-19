@@ -14,7 +14,11 @@ import {
   DrawerTrigger,
 } from "~/components/ui/drawer";
 
-export default function Header() {
+type PropTypes = {
+  name: string;
+};
+
+export default function Header(props: PropTypes) {
   return (
     <div className="m-auto flex h-[80px] max-w-[1080px] items-center justify-between px-2">
       <h2 className="text-2xl font-bold">CrossMeasure</h2>
@@ -43,7 +47,7 @@ export default function Header() {
               <DrawerTitle>CrossMeasure</DrawerTitle>
               <ul className="mt-6">
                 <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
-                  img Profile name
+                  img {props.name}
                 </li>
                 <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
                   <IconSearch size={17} />
