@@ -13,6 +13,7 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
+import { useRouter } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -26,12 +27,18 @@ import { FixedSizeList } from "react-window";
 import { createBandProfileAction } from "./_actions/create-profile.action";
 import { BandProfile } from "~/data-access/profiles/create-band-profile";
 
-export default function ProfileForm({ countries }: { countries: Country[] }) {
+type PropTypes = {
+  countries: Country[];
+  userId: string;
+  email: string;
+};
+
+export default function ProfileForm(props: PropTypes) {
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       bandName: "",
-      email: "",
+      email: props.email,
       bio: "",
       location: "",
     },
@@ -39,15 +46,21 @@ export default function ProfileForm({ countries }: { countries: Country[] }) {
 
   const watchCountry = form.watch("location");
 
+  const router = useRouter();
+
   async function onSubmit() {
     const data = form.getValues() as BandProfile;
 
-    const res = await createBandProfileAction(data);
+    const res = await createBandProfileAction({
+      ...data,
+      userId: props.userId,
+    });
     if (res.error && res.field) {
       form.setError(res.field, {
         message: res.message,
       });
     }
+    router.push(`/profile/${props.userId}`);
   }
 
   return (
@@ -79,8 +92,10 @@ export default function ProfileForm({ countries }: { countries: Country[] }) {
                 <FormLabel>Band Email</FormLabel>
                 <FormControl>
                   <Input
+                    disabled
                     placeholder="your band's email"
                     {...field}
+                    value={props.email}
                     className="border-gray-700 bg-black"
                   />
                 </FormControl>
@@ -123,18 +138,18 @@ export default function ProfileForm({ countries }: { countries: Country[] }) {
                       <FixedSizeList
                         width={"100%"}
                         height={350}
-                        itemCount={countries?.length ?? 0}
+                        itemCount={props.countries?.length ?? 0}
                         itemSize={40}
                       >
                         {({ index, style }) => (
                           <SelectItem
-                            value={countries[index]?.name ?? ""}
-                            key={countries[index]?.id}
+                            value={props.countries[index]?.name ?? ""}
+                            key={props.countries[index]?.id}
                             style={{
                               ...style,
                             }}
                           >
-                            {countries[index]?.name}
+                            {props.countries[index]?.name}
                           </SelectItem>
                         )}
                       </FixedSizeList>

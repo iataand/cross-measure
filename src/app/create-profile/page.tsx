@@ -1,7 +1,7 @@
 import CreateBandProfileButton from "~/app/create-profile/band-profile-button";
 import CreateMusicianProfileButton from "~/app/create-profile/musician-profile-button";
 
-export default function CreateProfile() {
+export default async function CreateProfile() {
   return (
     <div className="my-12 h-[100dvh]">
       <h1 className="text-center text-2xl font-bold">

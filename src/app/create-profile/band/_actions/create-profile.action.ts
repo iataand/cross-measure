@@ -16,7 +16,11 @@ export async function createBandProfileAction(
   } catch (e) {
     const error = e as Error & { code: string };
     if (error.code === "23505") {
-      return { message: error.message, field: "email", error: true };
+      return {
+        message: "There is already a profile with this email",
+        field: "email",
+        error: true,
+      };
     }
     return { message: "An error occurred", error: true };
   }
