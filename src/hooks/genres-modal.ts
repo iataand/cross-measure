@@ -35,10 +35,6 @@ export function useGenres(allGenres: Genre[]) {
     });
   }
 
-  function handleSave() {
-    setSelectedGenres(selectedGenresTemp);
-  }
-
   return {
     searchGenre,
     genres,
@@ -46,7 +42,6 @@ export function useGenres(allGenres: Genre[]) {
     selectedGenres,
     setSelectedGenres,
     handleSelectGenre,
-    handleSave,
     selectedGenresTemp,
   };
 }

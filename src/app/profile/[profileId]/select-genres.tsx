@@ -5,9 +5,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IconPlus, IconX } from "@tabler/icons-react";
 import { Genre } from "~/data-access/genres/get-genres";
 import { Button } from "~/components/ui/button";
+import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
 
 type PropTypes = {
   genres: Genre[] | undefined;
+  profileId: number;
 };
 
 export default function SelectedGenres(props: PropTypes) {
@@ -20,9 +22,18 @@ export default function SelectedGenres(props: PropTypes) {
     genres,
     handleSelectGenre,
     selectedGenres,
-    handleSave,
     selectedGenresTemp,
+    setSelectedGenres,
   } = useGenres(props.genres);
+
+  async function handleSave() {
+    setSelectedGenres(selectedGenresTemp);
+    try {
+      await updateGenresByProfileId(props.profileId, selectedGenres);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   return (
     <div className="mt-4">
