@@ -6,5 +6,9 @@ export default async function uploadProfileImageAction(
   profileImageUrl: string,
   profileId: number,
 ) {
-  await uploadProfileImage(profileImageUrl, profileId);
+  try {
+    await uploadProfileImage(profileImageUrl, profileId);
+  } catch (e) {
+    console.error(e);
+  }
 }

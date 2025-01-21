@@ -10,3 +10,4 @@
 - [x] Fetch genres from firestore instead of local
 - [ ] Implement autocomplete instead of select for location
 - [ ] Fix crash on google login popup close
+- [ ] Investigate 400 XHR failed error when trying to upload to uploadthing
