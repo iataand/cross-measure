@@ -2,6 +2,7 @@ import { it, describe, expect, beforeAll, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import ProfileForm from "~/app/create-profile/band/profile-form";
 import user from "@testing-library/user-event";
+import { AppRouterContextProviderMock } from "./mocks/app-router-context-provider-mock";
 
 const mockedCountries = [
   {
@@ -48,7 +49,16 @@ const mockedCountries = [
 
 describe("Create profile form", () => {
   beforeAll(() => {
-    render(<ProfileForm countries={mockedCountries} />);
+    const push = vi.fn();
+    render(
+      <AppRouterContextProviderMock router={{ push }}>
+        <ProfileForm
+          countries={mockedCountries}
+          userId={"asd"}
+          email="test@example.com"
+        />
+      </AppRouterContextProviderMock>,
+    );
   });
 
   it("should render the band name field correctly", () => {
@@ -60,12 +70,10 @@ describe("Create profile form", () => {
   it("should try to submit an empty form", async () => {
     clickSubmitButton();
 
-    const errorEmailText = await screen.findByText(/invalid email address/i);
     const errorBioText = await screen.findByText(/bio is required/i);
     const errorCountryText = await screen.findByText(/country is required/i);
     const errorNameText = await screen.findByText(/band name is required/i);
 
-    expect(errorEmailText).toBeInTheDocument();
     expect(errorBioText).toBeInTheDocument();
     expect(errorCountryText).toBeInTheDocument();
     expect(errorNameText).toBeInTheDocument();
