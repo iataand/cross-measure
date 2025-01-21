@@ -26,7 +26,7 @@ describe("SelectedGenres Component", () => {
   const user = userEvent.setup();
 
   beforeAll(() => {
-    render(<SelectedGenres genres={mockGenres} />);
+    render(<SelectedGenres genres={mockGenres} profileId={1} />);
   });
 
   afterEach(() => {
@@ -69,16 +69,12 @@ describe("SelectedGenres Component", () => {
     await waitFor(() => user.type(searchGenreInput, "rock"));
     await waitFor(() => expect(screen.getByText(/rock/i)).toBeInTheDocument());
     await waitFor(() => user.clear(searchGenreInput));
-    await waitFor(() => user.clear(searchGenreInput));
   });
 
-  // it("should search and display indie rock genre", async () => {
-  //   const searchGenreInput = screen.getByPlaceholderText(/search genre/i);
-  //   await user.type(searchGenreInput, "phonk");
-  //   const indieRockGenre = screen.findByText(/indie rock/i);
-  //   expect(indieRockGenre).toBeDefined();
-  //   await user.clear(searchGenreInput);
-  // });
+  // await waitFor(() => user.type(searchGenreInput, "pop"));
+  // await waitFor(() => expect(screen.getByText(/rock/i)).toBeInTheDocument());
+  // // expect(indieRockGenre).toBeInTheDocument();
+  // await user.clear(searchGenreInput);
 
   //   it("disables save button when less than 3 genres are selected", () => {
   //     mockUseGenres.selectedGenresTemp = ["Rock"];
