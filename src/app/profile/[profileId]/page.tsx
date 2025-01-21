@@ -1,7 +1,14 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
 import Header from "./header";
-import { Card, CardHeader, CardTitle } from "~/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import ProfileImage from "./image-upload";
+import SelectGenres from "./select-genres";
+import getGenresAction from "./_actions/get-genres.action";
 
 export default async function ProfilePage({
   params,
@@ -10,6 +17,7 @@ export default async function ProfilePage({
 }) {
   const profileId = (await params).profileId;
   const profile = await getProfileByProfileIdAction(parseInt(profileId));
+  const genres = await getGenresAction();
 
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
@@ -17,8 +25,8 @@ export default async function ProfilePage({
   return (
     <div>
       <Header name={profile.bandName} imageUrl={profileImageUrl} />
-      <div className="px-4">
-        <Card className="m-auto mt-4 max-w-[800px]">
+      <div className="m-auto mt-4 max-w-[800px] px-4">
+        <Card>
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
@@ -41,6 +49,17 @@ export default async function ProfilePage({
                 </div>
               </div>
             </div>
+          </CardHeader>
+        </Card>
+        <Card className="mt-4">
+          <CardHeader>
+            <CardTitle>
+              Genres <hr className="mt-1" />
+            </CardTitle>
+            <CardDescription>
+              Genres that best describe your music
+            </CardDescription>
+            <SelectGenres genres={genres} />
           </CardHeader>
         </Card>
       </div>

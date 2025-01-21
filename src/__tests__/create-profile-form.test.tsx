@@ -1,5 +1,5 @@
 import { it, describe, expect, beforeAll, vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ProfileForm from "~/app/create-profile/band/profile-form";
 import user from "@testing-library/user-event";
 import { AppRouterContextProviderMock } from "./mocks/app-router-context-provider-mock";

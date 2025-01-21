@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Genre } from "~/data-access/genres/get-genres";
 
-export function useGenres(allGenres: string[]) {
+export function useGenres(allGenres: Genre[]) {
   const [searchGenre, setSearchGenre] = useState("");
   const [genres, setGenres] = useState(allGenres);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
@@ -12,7 +13,7 @@ export function useGenres(allGenres: string[]) {
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       const filteredGenres = allGenres.filter((genre) =>
-        genre.toLowerCase().includes(searchGenre.toLowerCase()),
+        genre.name.toLowerCase().includes(searchGenre.toLowerCase()),
       );
       setGenres(filteredGenres);
     }, 300);
