@@ -6,10 +6,12 @@ import { IconPlus, IconX } from "@tabler/icons-react";
 import { Genre } from "~/data-access/genres/get-genres";
 import { Button } from "~/components/ui/button";
 import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
+import { useEffect } from "react";
 
 type PropTypes = {
   genres: Genre[] | undefined;
   profileId: number;
+  selectedGenres: string[];
 };
 
 export default function SelectedGenres(props: PropTypes) {
@@ -24,16 +26,24 @@ export default function SelectedGenres(props: PropTypes) {
     selectedGenres,
     selectedGenresTemp,
     setSelectedGenres,
-  } = useGenres(props.genres);
+  } = useGenres(props.genres, props.selectedGenres);
 
   async function handleSave() {
     setSelectedGenres(selectedGenresTemp);
-    try {
-      await updateGenresByProfileId(props.profileId, selectedGenres);
-    } catch (e) {
-      console.error(e);
-    }
   }
+
+  useEffect(() => {
+    const updateGenres = async () => {
+      try {
+        await updateGenresByProfileId(props.profileId, selectedGenres);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    if (selectedGenres.length) {
+      updateGenres();
+    }
+  }, [selectedGenres]);
 
   return (
     <div className="mt-4">

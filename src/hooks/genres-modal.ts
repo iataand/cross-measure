@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { Genre } from "~/data-access/genres/get-genres";
 
-export function useGenres(allGenres: Genre[]) {
+export function useGenres(allGenres: Genre[], savedGenres?: string[]) {
   const [searchGenre, setSearchGenre] = useState("");
   const [genres, setGenres] = useState(allGenres);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>(
+    savedGenres ?? [],
+  );
   const [selectedGenresTemp, setSelectedGenresTemp] =
     useState<string[]>(selectedGenres);
 

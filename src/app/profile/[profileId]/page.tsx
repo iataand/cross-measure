@@ -59,7 +59,11 @@ export default async function ProfilePage({
             <CardDescription>
               Genres that best describe your music
             </CardDescription>
-            <SelectGenres genres={genres} profileId={profile.id} />
+            <SelectGenres
+              genres={genres}
+              profileId={profile.id}
+              selectedGenres={profile.genres ?? []}
+            />
           </CardHeader>
         </Card>
       </div>
