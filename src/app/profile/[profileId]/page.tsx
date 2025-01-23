@@ -9,6 +9,7 @@ import {
 import ProfileImage from "./image-upload";
 import SelectGenres from "./select-genres";
 import getGenresAction from "./_actions/get-genres.action";
+import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
 
 export default async function ProfilePage({
   params,

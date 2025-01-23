@@ -5,8 +5,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IconPlus, IconX } from "@tabler/icons-react";
 import { Genre } from "~/data-access/genres/get-genres";
 import { Button } from "~/components/ui/button";
-import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
-import { useEffect } from "react";
 
 type PropTypes = {
   genres: Genre[] | undefined;
@@ -26,24 +24,11 @@ export default function SelectedGenres(props: PropTypes) {
     selectedGenres,
     selectedGenresTemp,
     setSelectedGenres,
-  } = useGenres(props.genres, props.selectedGenres);
+  } = useGenres(props.genres, props.profileId, props.selectedGenres);
 
   async function handleSave() {
     setSelectedGenres(selectedGenresTemp);
   }
-
-  useEffect(() => {
-    const updateGenres = async () => {
-      try {
-        await updateGenresByProfileId(props.profileId, selectedGenres);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    if (selectedGenres.length) {
-      updateGenres();
-    }
-  }, [selectedGenres]);
 
   return (
     <div className="mt-4">

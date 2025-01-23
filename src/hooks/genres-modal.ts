@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { Genre } from "~/data-access/genres/get-genres";
+import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
 
-export function useGenres(allGenres: Genre[], savedGenres?: string[]) {
+export function useGenres(
+  allGenres: Genre[],
+  profileId: number,
+  savedGenres?: string[],
+) {
   const [searchGenre, setSearchGenre] = useState("");
   const [genres, setGenres] = useState(allGenres);
   const [selectedGenres, setSelectedGenres] = useState<string[]>(
@@ -24,6 +29,19 @@ export function useGenres(allGenres: Genre[], savedGenres?: string[]) {
       clearTimeout(debounceTimer);
     };
   }, [searchGenre]);
+
+  useEffect(() => {
+    const updateGenres = async () => {
+      try {
+        await updateGenresByProfileId(profileId, selectedGenres);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    if (selectedGenres.length) {
+      updateGenres();
+    }
+  }, [selectedGenres]);
 
   function handleSelectGenre(genre: string) {
     setSelectedGenresTemp((prevGenres) => {
