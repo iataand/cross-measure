@@ -67,6 +67,15 @@ export default async function ProfilePage({
             />
           </CardHeader>
         </Card>
+        <Card className="mt-4">
+          <CardHeader>
+            <CardTitle>
+              Bio <hr className="mt-1" />
+            </CardTitle>
+            <CardDescription />
+            {profile.bio}
+          </CardHeader>
+        </Card>
       </div>
     </div>
   );
