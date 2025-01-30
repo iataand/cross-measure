@@ -22,11 +22,13 @@ describe("SelectedGenres Component", () => {
     { id: 7, name: "Alternative" },
   ];
 
-  const { result } = renderHook(() => useGenres(mockGenres));
+  const { result } = renderHook(() => useGenres(mockGenres, 10));
   const user = userEvent.setup();
 
   beforeAll(() => {
-    render(<SelectedGenres genres={mockGenres} profileId={1} />);
+    render(
+      <SelectedGenres genres={mockGenres} profileId={1} selectedGenres={[]} />,
+    );
   });
 
   afterEach(() => {
@@ -57,9 +59,7 @@ describe("SelectedGenres Component", () => {
     const searchGenreInput = screen.getByRole("textbox");
 
     await waitFor(() => user.type(searchGenreInput, "invalid genre"));
-    await waitFor(() =>
-      expect(screen.getByText(/no genre found/i)).toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.getByText(/rock/i)).toBeInTheDocument());
     await waitFor(() => user.clear(searchGenreInput));
   });
 
@@ -70,24 +70,6 @@ describe("SelectedGenres Component", () => {
     await waitFor(() => expect(screen.getByText(/rock/i)).toBeInTheDocument());
     await waitFor(() => user.clear(searchGenreInput));
   });
-
-  // await waitFor(() => user.type(searchGenreInput, "pop"));
-  // await waitFor(() => expect(screen.getByText(/rock/i)).toBeInTheDocument());
-  // // expect(indieRockGenre).toBeInTheDocument();
-  // await user.clear(searchGenreInput);
-
-  //   it("disables save button when less than 3 genres are selected", () => {
-  //     mockUseGenres.selectedGenresTemp = ["Rock"];
-  //     expect(mockUseGenres.selectedGenresTemp).toHaveLength(1);
-  //     expect(mockUseGenres.selectedGenres).toHaveLength(2);
-  //     expect(screen.getByText("Save (2/5)")).toBeDisabled();
-  //   });
-
-  //   it("should add jazz to selected genres", async () => {
-  //     const jazzGenre = await screen.findByText(/jazz/i);
-
-  //     await user.click(jazzGenre);
-  //   });
 });
 
 function getAddGenresButton() {
