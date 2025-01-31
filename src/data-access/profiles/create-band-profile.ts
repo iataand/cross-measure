@@ -16,7 +16,8 @@ export async function createBandProfile(
   bandProfile: BandProfile,
 ): Promise<void> {
   try {
-    await db.insert(bandProfileTable).values(bandProfile);
+    const res = await db.insert(bandProfileTable).values(bandProfile);
+    console.log(res);
   } catch (e) {
     console.error(e);
   }

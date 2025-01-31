@@ -2,7 +2,7 @@ import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
 
 export const bandProfileTable = pgTable("bandProfiles", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  userId: varchar({ length: 255 }).notNull(),
+  userId: varchar({ length: 255 }),
   bandName: varchar({ length: 255 }).notNull(),
   bio: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),

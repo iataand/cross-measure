@@ -1,4 +1,5 @@
 "use client";
+
 import { profileFormSchema } from "~/utils/schemas/profile-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -92,7 +93,7 @@ export default function ProfileForm(props: PropTypes) {
                 <FormLabel>Band Email</FormLabel>
                 <FormControl>
                   <Input
-                    disabled
+                    disabled={!!props.email}
                     placeholder="your band's email"
                     {...field}
                     value={props.email}

@@ -17,7 +17,7 @@ export default async function ProfilePage({
   params: Promise<{ profileId: string }>;
 }) {
   const profileId = (await params).profileId;
-  const profile = await getProfileByProfileIdAction(parseInt(profileId));
+  const profile = await getProfileByProfileIdAction(profileId);
   const genres = await getGenresAction();
 
   const profileImageUrl =
