@@ -4,9 +4,9 @@ import { Button } from "@radix-ui/themes";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
-import { auth, singInWithGoogle } from "firebase.config";
 import { useRouter } from "next/navigation";
 import { getProfileByEmailAction } from "./_actions/get-profile-by-email-action";
+import { auth, singInWithGoogle } from "~/firebase.config";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);

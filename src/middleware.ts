@@ -5,7 +5,7 @@ import {
   redirectToLogin,
 } from "next-firebase-auth-edge";
 import { env } from "./env";
-import { serverConfig } from "firebase.config";
+import { serverConfig } from "./firebase.config";
 
 const PUBLIC_PATHS = ["/register", "/login"];
 

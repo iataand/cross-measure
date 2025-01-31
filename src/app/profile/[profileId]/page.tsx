@@ -9,7 +9,7 @@ import {
 import ProfileImage from "./image-upload";
 import SelectGenres from "./select-genres";
 import getGenresAction from "./_actions/get-genres.action";
-import updateGenresByProfileId from "~/data-access/genres/update-genres-by-profileId";
+import { EditButton } from "./edit-button";
 
 export default async function ProfilePage({
   params,
@@ -27,7 +27,8 @@ export default async function ProfilePage({
     <div>
       <Header name={profile.bandName} imageUrl={profileImageUrl} />
       <div className="m-auto mt-4 max-w-[800px] px-4">
-        <Card>
+        <Card className="relative">
+          <EditButton />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
