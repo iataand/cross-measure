@@ -10,6 +10,7 @@ import ProfileImage from "./image-upload";
 import SelectGenres from "./select-genres";
 import getGenresAction from "./_actions/get-genres.action";
 import { EditButton } from "./edit-button";
+import { getCountries } from "~/data-access/countries/get-countries";
 
 export default async function ProfilePage({
   params,
@@ -19,6 +20,7 @@ export default async function ProfilePage({
   const profileId = (await params).profileId;
   const profile = await getProfileByProfileIdAction(profileId);
   const genres = await getGenresAction();
+  const countries = await getCountries();
 
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
@@ -28,7 +30,14 @@ export default async function ProfilePage({
       <Header name={profile.bandName} imageUrl={profileImageUrl} />
       <div className="m-auto mt-4 max-w-[800px] px-4">
         <Card className="relative">
-          <EditButton currentProfileId={profileId} />
+          <EditButton
+            currentProfileId={profileId}
+            countries={countries}
+            bio={profile.bio}
+            bandName={profile.bandName}
+            location={profile.location}
+            email={profile.email}
+          />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
