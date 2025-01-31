@@ -28,7 +28,7 @@ export default async function ProfilePage({
       <Header name={profile.bandName} imageUrl={profileImageUrl} />
       <div className="m-auto mt-4 max-w-[800px] px-4">
         <Card className="relative">
-          <EditButton />
+          <EditButton currentProfileId={profileId} />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
