@@ -11,3 +11,10 @@
 - [ ] Implement autocomplete instead of select for location
 - [ ] Fix crash on google login popup close
 - [ ] Investigate 400 XHR failed error when trying to upload to uploadthing
+
+## 31.01.2025
+
+- [ ] Implement edit profile for:
+- - [ ] title
+- - [ ] location
+- - [ ] bio
