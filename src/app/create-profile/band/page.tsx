@@ -1,6 +1,6 @@
 import { getCountriesAction } from "./_actions/get-countries.action";
 import ProfileForm from "./profile-form";
-import { serverConfig } from "firebase.config";
+import { serverConfig } from "~/firebase.config";
 import { getTokens } from "next-firebase-auth-edge";
 import { cookies } from "next/headers";
 import { env } from "process";
