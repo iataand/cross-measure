@@ -11,6 +11,7 @@ import SelectGenres from "./select-genres";
 import getGenresAction from "./_actions/get-genres.action";
 import { EditButton } from "./edit-button";
 import { getCountries } from "~/data-access/countries/get-countries";
+import ConnectButton from "./connect-button";
 
 export default async function ProfilePage({
   params,
@@ -38,6 +39,7 @@ export default async function ProfilePage({
             location={profile.location}
             email={profile.email}
           />
+          <ConnectButton profileId={profileId} />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
