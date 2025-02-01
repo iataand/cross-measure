@@ -12,6 +12,7 @@
 - [ ] Fix crash on google login popup close
 - [x] Investigate 400 XHR failed error when trying to upload to uploadthing
 - [ ] Investigate why you can't scroll countries in edit profile modal
+- [ ] Implement zustand
 
 ## 31.01.2025
 
