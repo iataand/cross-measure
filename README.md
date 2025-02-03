@@ -20,3 +20,7 @@
 - - [x] title
 - - [x] location
 - - [x] bio
+
+## 03.02.2025
+
+- [ ] Implement e2e test with firebase login
