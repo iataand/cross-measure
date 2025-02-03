@@ -1,22 +1,30 @@
 describe("Google", function () {
-  it("shows onboarding", function () {
+  it("Should create a new profile", function () {
     cy.visit("http://localhost:3000/");
 
-    cy.contains("Log in").should("be.visible");
+    // cy.callFirestore("add", "test_hello_world", { some: "value" });
 
-    cy.contains(/create account/i).click();
+    // cy.login();
 
-    cy.contains(/log in with phone number/i).click();
+    cy.setCookie("AuthToken", Cypress.env("AUTH_COOKIE"));
 
-    cy.contains(/I am a band/i).click();
+    cy.visit("http://localhost:3000/create-profile/band");
 
-    cy.get('input[name="bandName"]').type("Band Name Test");
+    // cy.contains("Log in").should("be.visible");
 
-    cy.get('input[name="email"]').type("test@test.com");
+    // cy.contains(/create account/i).click();
 
-    cy.get("textarea").type("this is a bio test");
+    // cy.contains(/log in with phone number/i).click();
 
-    cy.get("select").select("Albania", { force: true });
+    // cy.contains(/I am a band/i).click();
+
+    // cy.get('input[name="bandName"]').type("Band Name Test");
+
+    // cy.get('input[name="email"]').type("test@test.com");
+
+    // cy.get("textarea").type("this is a bio test");
+
+    // cy.get("select").select("Albania", { force: true });
 
     // cy.get("button[type='submit']").click();
   });

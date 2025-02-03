@@ -47,3 +47,11 @@ yarn-error.log*
 
 # vscode
 .vscode
+
+#cypress env
+.cypress.env.json
+cypress.env.json
+
+./serviceAccount.json
+serviceAccount.json
+serviceAccount
