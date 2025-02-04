@@ -25,3 +25,7 @@
 ## 03.02.2025
 
 - [x] Implement e2e test with firebase login
+
+## 04.02.2025
+
+- [ ] Implement connect profiles functionality
