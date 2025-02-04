@@ -10,6 +10,8 @@ export type BandProfile = {
   email: string;
   location: string;
   genres: string[];
+  profileImageUrl: string;
+  currentProfileId: string;
 };
 
 export async function createBandProfile(

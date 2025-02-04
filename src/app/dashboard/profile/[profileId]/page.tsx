@@ -1,5 +1,5 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
-import Header from "./header";
+import Header from "../../header";
 import {
   Card,
   CardDescription,
@@ -28,7 +28,11 @@ export default async function ProfilePage({
 
   return (
     <div>
-      <Header name={profile.bandName} imageUrl={profileImageUrl} />
+      {/* <Header
+        profile={profile || undefined}
+        name={profile.bandName}
+        imageUrl={profileImageUrl}
+      /> */}
       <div className="m-auto mt-4 max-w-[800px] px-4">
         <Card className="relative">
           <EditButton

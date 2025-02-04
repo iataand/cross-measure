@@ -1,3 +1,5 @@
+"use client";
+
 import {
   IconSearch,
   IconMessage,
@@ -15,13 +17,16 @@ import {
   DrawerTrigger,
 } from "~/components/ui/drawer";
 import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/firebase.config";
 
 type PropTypes = {
   name: string;
-  imageUrl?: string;
 };
 
 export default function Header(props: PropTypes) {
+  const [user] = useAuthState(auth);
+
   return (
     <div className="m-auto flex h-[80px] max-w-[1080px] items-center justify-between px-2">
       <h2 className="text-2xl font-bold">CrossMeasure</h2>
@@ -41,7 +46,10 @@ export default function Header(props: PropTypes) {
       </ul>
       <Image
         className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
-        src={props.imageUrl || ""}
+        src={
+          user?.photoURL ??
+          "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
+        }
         width={50}
         height={50}
         alt="Profile Image"
@@ -59,12 +67,15 @@ export default function Header(props: PropTypes) {
                 <li className="flex items-center gap-1 rounded-md p-2">
                   <Image
                     className="mr-2 aspect-square cursor-pointer rounded-full object-cover"
-                    src={props.imageUrl || ""}
+                    src={
+                      user?.photoURL ??
+                      "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
+                    }
                     width={30}
                     height={30}
                     alt="Profile Image"
                   />
-                  {props.name}
+                  {user?.email}
                 </li>
                 <hr />
                 <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">

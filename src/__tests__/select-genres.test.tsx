@@ -7,8 +7,8 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach } from "node:test";
-import { describe, it, expect, vi, beforeEach, beforeAll } from "vitest";
-import SelectedGenres from "~/app/profile/[profileId]/select-genres";
+import { describe, it, expect, beforeAll } from "vitest";
+import SelectedGenres from "~/app/dashboard/profile/[profileId]/select-genres";
 import { useGenres } from "~/hooks/genres-modal";
 
 describe("SelectedGenres Component", () => {
@@ -34,11 +34,6 @@ describe("SelectedGenres Component", () => {
   afterEach(() => {
     cleanup();
   });
-
-  // it("should display an error message if genres are undefined", () => {
-  //   render(<SelectedGenres genres={undefined} />);
-  //   expect(screen.getByText("error")).toBeInTheDocument();
-  // });
 
   it("should render the add genres button correctly", async () => {
     const editButton = getAddGenresButton();
