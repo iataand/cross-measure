@@ -34,7 +34,10 @@ export default function SelectedGenres(props: PropTypes) {
     <div className="mt-4">
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="my-2 flex h-9 w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800">
+          <button
+            className="my-2 flex h-9 w-20 min-w-40 cursor-pointer items-center justify-center gap-1 rounded-3xl border-2 border-gray-600 py-2 hover:bg-gray-800"
+            data-cy="edit-genres"
+          >
             <IconPlus />
             {selectedGenres.length ? "Edit Genres" : "Add Genres"}
           </button>
@@ -56,21 +59,22 @@ export default function SelectedGenres(props: PropTypes) {
                 placeholder="search genre"
               />
             </fieldset>
-            <div
+            <ul
               className="no-scrollbar flex max-h-[289px] flex-wrap justify-center gap-x-2 gap-y-1 overflow-y-scroll"
               role="listbox"
             >
               {genres.map((genre) => (
-                <div
+                <li
                   role="option"
+                  data-cy={genre.name}
                   onClick={() => handleSelectGenre(genre.name)}
                   key={genre.id}
                   className={`cursor-pointer rounded-3xl border-2 border-gray-700 px-2 py-1 ${selectedGenresTemp.includes(genre.name) && "border-red-700"}`}
                 >
                   {genre.name}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
             {genres.length === 0 && "No genre found, try something else"}
             <div>
               <Dialog.Close asChild>
@@ -79,6 +83,7 @@ export default function SelectedGenres(props: PropTypes) {
                   className="w-40"
                   onClick={handleSave}
                   disabled={selectedGenresTemp.length < 3}
+                  data-cy="save"
                 >
                   Save ({selectedGenresTemp.length}/5)
                 </Button>
