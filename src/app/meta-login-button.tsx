@@ -4,7 +4,7 @@ import { Button } from "@radix-ui/themes";
 import { IconBrandMeta } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
-import { auth, singInWithFacebook } from "firebase.config";
+import { auth, singInWithFacebook } from "~/firebase.config";
 import { useRouter } from "next/navigation";
 
 export default function MetaLoginButton() {

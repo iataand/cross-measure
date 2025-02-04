@@ -9,7 +9,9 @@ export async function getProfileByEmail(
     where: (profiles, { eq }) => eq(profiles.email, email),
   });
 
-  console.log(bandProfile);
+  if (!bandProfile) {
+    throw new Error(`No profile found for email: ${email}`);
+  }
 
   return bandProfile as BandProfile;
 }

@@ -5,7 +5,7 @@ import {
   redirectToLogin,
 } from "next-firebase-auth-edge";
 import { env } from "./env";
-import { serverConfig } from "firebase.config";
+import { serverConfig } from "./firebase.config";
 
 const PUBLIC_PATHS = ["/register", "/login"];
 
@@ -53,4 +53,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/api/login", "/api/logout", "/create-profile/:path*"],
+  //use this for testing only
+  // matcher: [],
 };
