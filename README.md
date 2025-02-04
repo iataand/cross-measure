@@ -24,4 +24,4 @@
 
 ## 03.02.2025
 
-- [ ] Implement e2e test with firebase login
+- [x] Implement e2e test with firebase login
