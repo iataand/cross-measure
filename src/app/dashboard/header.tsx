@@ -20,11 +20,7 @@ import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "~/firebase.config";
 
-type PropTypes = {
-  name: string;
-};
-
-export default function Header(props: PropTypes) {
+export default function Header() {
   const [user] = useAuthState(auth);
 
   return (

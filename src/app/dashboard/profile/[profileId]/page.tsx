@@ -28,11 +28,6 @@ export default async function ProfilePage({
 
   return (
     <div>
-      {/* <Header
-        profile={profile || undefined}
-        name={profile.bandName}
-        imageUrl={profileImageUrl}
-      /> */}
       <div className="m-auto mt-4 max-w-[800px] px-4">
         <Card className="relative">
           <EditButton

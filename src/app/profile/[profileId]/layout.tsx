@@ -1,5 +1,5 @@
 import { CurrentProfileStoreProvider } from "~/providers/current-profile-provider";
-import Header from "./header";
+import { getCountries } from "~/data-access/countries/get-countries";
 
 export default async function RootLayout({
   children,
@@ -8,10 +8,5 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ profileId: string }>;
 }>) {
-  return (
-    <CurrentProfileStoreProvider>
-      <Header />
-      {children}
-    </CurrentProfileStoreProvider>
-  );
+  return <CurrentProfileStoreProvider>{children}</CurrentProfileStoreProvider>;
 }
