@@ -16,20 +16,10 @@ export type ConnectionType = {
     genres: string[] | null;
     profileImageUrl: string | null;
   };
-  secondProfile: string & {
-    id: number;
-    userId: string;
-    bandName: string;
-    bio: string;
-    email: string;
-    location: string;
-    genres: string[] | null;
-    profileImageUrl: string | null;
-  };
   isAccepted: boolean;
-}[];
+};
 
-export const getConnections = cache(async (): Promise<ConnectionType> => {
+export const getConnections = cache(async (): Promise<ConnectionType[]> => {
   const authProfileUid = await getAuthUid();
 
   if (!authProfileUid) {
@@ -37,10 +27,8 @@ export const getConnections = cache(async (): Promise<ConnectionType> => {
   }
 
   const res = await db.query.connections.findMany({
-    with: { firstProfile: true, secondProfile: true },
-    where:
-      eq(connections.firstProfile, authProfileUid) ||
-      eq(connections.secondProfile, authProfileUid),
+    with: { firstProfile: true },
+    where: eq(connections.firstProfile, authProfileUid),
   });
 
   return res;
