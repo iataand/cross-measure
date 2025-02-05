@@ -20,16 +20,27 @@ export const bandProfileTable = pgTable("bandProfiles", {
   ),
 });
 
+export const bandProfileRelations = relations(bandProfileTable, ({ many }) => ({
+  connections: many(connections),
+}));
+
 export const connections = pgTable("connections", {
   id: serial("id").primaryKey(),
-  firstProfile: varchar("first_profile_id")
-    .notNull()
-    .references(() => bandProfileTable.userId),
-  secondProfile: varchar("second_profile_id")
-    .notNull()
-    .references(() => bandProfileTable.userId),
+  firstProfile: varchar("first_profile_id").notNull(),
+  secondProfile: varchar("second_profile_id").notNull(),
   isAccepted: boolean().default(false),
 });
+
+export const connectionsRelations = relations(connections, ({ one }) => ({
+  firstProfile: one(bandProfileTable, {
+    fields: [connections.firstProfile],
+    references: [bandProfileTable.userId],
+  }),
+  secondProfile: one(bandProfileTable, {
+    fields: [connections.secondProfile],
+    references: [bandProfileTable.userId],
+  }),
+}));
 
 export const genresTable = pgTable("genres", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
