@@ -28,7 +28,7 @@ export const connections = pgTable("connections", {
   id: serial("id").primaryKey(),
   firstProfile: varchar("first_profile_id").notNull(),
   secondProfile: varchar("second_profile_id").notNull(),
-  isAccepted: boolean().default(false),
+  isAccepted: boolean().notNull().default(false),
 });
 
 export const connectionsRelations = relations(connections, ({ one }) => ({

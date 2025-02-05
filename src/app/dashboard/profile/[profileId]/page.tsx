@@ -26,10 +26,14 @@ export default async function ProfilePage({
   const authProfileUid = await getAuthUid();
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
-  let hasConnection = false;
+  let connection;
 
   if (authProfileUid !== profileId) {
-    hasConnection = await getConnectionByProfilesIdAction(profileId);
+    const res = await getConnectionByProfilesIdAction(profileId);
+
+    if (res) {
+      connection = res;
+    }
   }
 
   return (
@@ -45,9 +49,9 @@ export default async function ProfilePage({
             email={profile.email}
           />
           <ConnectButton
-            hasConnection={hasConnection}
             profileId={profileId}
             authProfileUid={authProfileUid}
+            connection={connection}
           />
           <CardHeader>
             <div className="flex gap-4">

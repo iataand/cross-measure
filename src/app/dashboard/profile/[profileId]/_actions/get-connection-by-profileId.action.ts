@@ -4,12 +4,8 @@ import getConnectionByProfilesId from "~/data-access/connections/get-connection-
 
 export default async function getConnectionByProfilesIdAction(
   profileToConnectWith: string,
-): Promise<boolean> {
+): Promise<{ isAccepted: boolean } | undefined> {
   const res = await getConnectionByProfilesId(profileToConnectWith);
-
-  if (!res) {
-    throw Error("Failed to fetch connection status");
-  }
 
   return res;
 }
