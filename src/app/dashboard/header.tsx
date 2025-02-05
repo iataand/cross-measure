@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "~/firebase.config";
+import Link from "next/link";
 
 export default function Header() {
   const [user] = useAuthState(auth);
@@ -41,16 +42,18 @@ export default function Header() {
         </li>
       </ul>
       {user ? (
-        <Image
-          className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
-          src={
-            user.photoURL ??
-            "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
-          }
-          width={50}
-          height={50}
-          alt="Profile Image"
-        />
+        <Link href={`/dashboard/profile/${user.uid}`}>
+          <Image
+            className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
+            src={
+              user.photoURL ??
+              "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
+            }
+            width={50}
+            height={50}
+            alt="Profile Image"
+          />
+        </Link>
       ) : (
         <div
           className="hidden aspect-square cursor-pointer rounded-full bg-gray-500 sm:block"
