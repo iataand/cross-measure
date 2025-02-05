@@ -1,5 +1,4 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
-import Header from "../../header";
 import {
   Card,
   CardDescription,
@@ -12,6 +11,7 @@ import getGenresAction from "./_actions/get-genres.action";
 import { EditButton } from "./edit-button";
 import { getCountries } from "~/data-access/countries/get-countries";
 import ConnectButton from "./connect-button";
+import getConnectionByProfilesIdAction from "./_actions/get-connection-by-profileId.action";
 
 export default async function ProfilePage({
   params,
@@ -22,6 +22,10 @@ export default async function ProfilePage({
   const profile = await getProfileByProfileIdAction(profileId);
   const genres = await getGenresAction();
   const countries = await getCountries();
+  const hasConnection = await getConnectionByProfilesIdAction(
+    profile.userId,
+    profileId,
+  );
 
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
@@ -38,7 +42,7 @@ export default async function ProfilePage({
             location={profile.location}
             email={profile.email}
           />
-          <ConnectButton profileId={profileId} />
+          <ConnectButton hasConnection={hasConnection} profileId={profileId} />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage
