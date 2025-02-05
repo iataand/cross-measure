@@ -36,10 +36,13 @@ export default function Header() {
           <IconMessage size={17} />
           Messages
         </li>
-        <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
+        <Link
+          href="/dashboard/connections"
+          className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800"
+        >
           <IconMusic size={17} />
           Connections
-        </li>
+        </Link>
       </ul>
       {user ? (
         <Link href={`/dashboard/profile/${user.uid}`}>
