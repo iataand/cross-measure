@@ -28,4 +28,11 @@
 
 ## 04.02.2025
 
-- [ ] Implement connect profiles functionality
+- [x] Implement connect profiles functionality
+
+## 06.02.2025
+
+- [ ] Implement accept connection feature
+- [ ] Display all connected profiles in connections tab
+- [ ] Implement delete connection feature
+- [ ] Implement a toast component

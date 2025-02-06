@@ -1,3 +1,4 @@
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -20,7 +21,10 @@ export default async function Connections() {
           <li key={profile.id}>
             <Card className="m-auto max-w-[750px] px-2">
               <CardHeader>
-                <CardTitle>{profile.bandName}</CardTitle>
+                <div className="flex justify-between">
+                  <CardTitle>{profile.bandName}</CardTitle>
+                  <Button variant="destructive">Delete connection</Button>
+                </div>
                 <CardDescription>{profile.bio}</CardDescription>
               </CardHeader>
               <CardContent className="flex grid-cols-2 flex-wrap gap-2 md:grid">
@@ -40,6 +44,9 @@ export default async function Connections() {
                   ))}
                 </ul>
               </CardContent>
+              <CardFooter className="flex justify-center gap-3">
+                <Button variant="default">Message</Button>
+              </CardFooter>
             </Card>
           </li>
         ))}
