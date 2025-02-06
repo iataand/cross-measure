@@ -21,7 +21,12 @@ export const bandProfileTable = pgTable("bandProfiles", {
 });
 
 export const bandProfileRelations = relations(bandProfileTable, ({ many }) => ({
-  connections: many(connections),
+  "profiles-connections_1": many(connections, {
+    relationName: "profiles-connections_1",
+  }),
+  "profiles-connections_2": many(connections, {
+    relationName: "profiles-connections_2",
+  }),
 }));
 
 export const connections = pgTable("connections", {
@@ -35,10 +40,12 @@ export const connectionsRelations = relations(connections, ({ one }) => ({
   firstProfile: one(bandProfileTable, {
     fields: [connections.firstProfile],
     references: [bandProfileTable.userId],
+    relationName: "profiles-connections_1",
   }),
   secondProfile: one(bandProfileTable, {
     fields: [connections.secondProfile],
     references: [bandProfileTable.userId],
+    relationName: "profiles-connections_2",
   }),
 }));
 
