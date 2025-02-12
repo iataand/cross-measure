@@ -29,7 +29,7 @@ export default function ButtonWrapper() {
         return;
       }
 
-      router.push(`/profile/${profile.id}`);
+      router.push(`/dashboard/profile/${profile.userId}`);
     } catch (error) {
       console.error(error);
     }
