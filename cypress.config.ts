@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-import admin from "firebase-admin";
+import admin from "firebaseAdmin.config";
 import { plugin as cypressFirebasePlugin } from "cypress-firebase";
 import serviceAccount from "./serviceAccount.json" with { type: "json" };
 

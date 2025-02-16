@@ -1,7 +1,7 @@
 "use client";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "~/components/ui/button";
-import { auth } from "~/firebase.config";
+import { auth } from "~/firebase";
 
 type propTypes = {
   profileId: string;

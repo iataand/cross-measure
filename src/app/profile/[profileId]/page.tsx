@@ -1,4 +1,5 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
+import { redirect } from 'next/navigation'
 import Header from "./header";
 import {
   Card,
@@ -25,6 +26,10 @@ export default async function ProfilePage({
 
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
+
+  if (!profile) {
+    redirect('/create-profile/band')
+  }
 
   return (
     <div>
