@@ -1,22 +1,14 @@
+import { cookies } from "next/headers";
 import { getCountriesAction } from "./_actions/get-countries.action";
 import ProfileForm from "./profile-form";
-import { serverConfig } from "~/firebase.config";
-import { getTokens } from "next-firebase-auth-edge";
-import { cookies } from "next/headers";
-import { env } from "process";
+import { adminAuth } from "~/firebaseAdmin";
 
 export default async function CreateProfile() {
   const countries = await getCountriesAction();
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get('sessionCookie');
+  const { user_id, email } = await adminAuth.verifySessionCookie(sessionCookie!.value);
 
-  const tokens = await getTokens(await cookies(), {
-    apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-    cookieName: serverConfig.cookieName,
-    cookieSignatureKeys: serverConfig.cookieSignatureKeys,
-    serviceAccount: serverConfig.serviceAccount,
-  });
-
-  const userId = tokens?.decodedToken.user_id;
-  const email = tokens?.decodedToken.email;
 
   return (
     <div className="p-2">
@@ -26,8 +18,8 @@ export default async function CreateProfile() {
       <div className="flex justify-center">
         <ProfileForm
           countries={countries ?? []}
-          userId={userId as string}
-          email={email as string}
+          userId={user_id}
+          email={email!}
         />
       </div>
     </div>
