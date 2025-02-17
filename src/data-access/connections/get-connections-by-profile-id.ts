@@ -7,38 +7,37 @@ import { BandProfile } from "../profiles/create-band-profile";
 
 export type ConnectionType = {
   id: number;
-  secondProfile: string & BandProfile;
-  firstProfile: string & BandProfile;
+  secondProfile: BandProfile;
+  firstProfile: BandProfile;
   isAccepted: boolean;
 };
 
 export const getConnections = cache(
-  async (): Promise<{ profile: BandProfile; id: number }[]> => {
-    const userData = await getAuthUid();
+  async (): Promise<
+    { profile: BandProfile; id: number; isAccepted: boolean }[]
+  > => {
+    const currentUser = await getAuthUid();
 
-    if (!userData) {
+    if (!currentUser?.user_id) {
       throw Error("User is not authenticated");
     }
 
     const res = await db.query.connections.findMany({
       with: { secondProfile: true, firstProfile: true },
       where: or(
-        eq(connections.firstProfile, userData.user_id),
-        eq(connections.secondProfile, userData.user_id),
+        eq(connections.firstProfile, currentUser.user_id),
+        eq(connections.secondProfile, currentUser.user_id),
       ),
     });
 
-    const profiles = res.map((connection: ConnectionType) => {
-      if (connection.firstProfile.userId === userData.user_id) {
-        return {
-          profile: connection.secondProfile,
-          id: connection.id,
-        };
-      }
-
+    const profiles = res.map((connection) => {
       return {
-        profile: connection.firstProfile,
+        profile:
+          connection.firstProfile.userId === currentUser.user_id
+            ? connection.firstProfile
+            : connection.secondProfile,
         id: connection.id,
+        isAccepted: connection.isAccepted,
       };
     });
 
