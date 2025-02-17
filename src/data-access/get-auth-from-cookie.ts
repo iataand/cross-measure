@@ -7,9 +7,7 @@ export default async function getAuthUid(): Promise<
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get("sessionCookie");
 
-  if (!sessionCookie) {
-    throw Error("Session cookie not found");
-  }
+  if (!sessionCookie) return;
 
   try {
     const { user_id, email } = await adminAuth.verifySessionCookie(

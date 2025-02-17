@@ -1,14 +1,17 @@
+import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/register", "/login"];
-
 export async function middleware(request: NextRequest) {
-  // console.log("from middleware", request);
-  return null;
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("sessionCookie");
+
+  if (!sessionCookie) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/api/login", "/api/logout", "/create-profile/:path*"],
-  //use this for testing only
-  // matcher: [],
+  matcher: ["/dashboard/:path*"],
 };
