@@ -9,6 +9,7 @@ import {
 } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import deleteConnectionAction from "./_actions/delete-connection.action";
+import Link from "next/link";
 
 type PropTypes = {
   connections: { profile: BandProfile; id: number }[];
@@ -27,7 +28,11 @@ export default function Connections(props: PropTypes) {
             <Card className="m-auto mt-4 max-w-[750px] px-2">
               <CardHeader>
                 <div className="flex justify-between">
-                  <CardTitle>{connection.profile.bandName}</CardTitle>
+                  <CardTitle>
+                    <Link href={`/dashboard/profile/${connection.profile.userId}`}>
+                      {connection.profile.bandName}
+                    </Link>
+                  </CardTitle>
                   <Button variant="destructive" onClick={() => deleteConnectionAction(connection.id)}>
                     Delete connection
                   </Button>

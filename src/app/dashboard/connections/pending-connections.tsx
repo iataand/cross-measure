@@ -9,6 +9,7 @@ import {
 import { acceptConnectionAction } from "./_actions/accept-connection.action";
 import { Button } from "~/components/ui/button";
 import deleteConnectionAction from "./_actions/delete-connection.action";
+import Link from "next/link";
 
 type PropTypes = {
   connections: { profile: BandProfile; id: number }[];
@@ -27,7 +28,11 @@ export default function PendingConnections(props: PropTypes) {
             <Card className="m-auto mt-4 max-w-[750px] px-2">
               <CardHeader>
                 <div className="flex justify-between">
-                  <CardTitle>{connection.profile.bandName}</CardTitle>
+                  <CardTitle>
+                    <Link href={`/dashboard/profile/${connection.profile.userId}`}>
+                      {connection.profile.bandName}
+                    </Link>
+                  </CardTitle>
                   <div className="flex gap-2">
                     <Button
                       variant="default"
@@ -63,6 +68,6 @@ export default function PendingConnections(props: PropTypes) {
             </Card>
           </li>
         ))}
-      </ul>
+      </ul >
     </>);
 }
