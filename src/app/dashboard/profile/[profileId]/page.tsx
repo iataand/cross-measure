@@ -1,4 +1,5 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
+import { redirect } from "next/navigation";
 import {
   Card,
   CardDescription,
@@ -23,17 +24,21 @@ export default async function ProfilePage({
   const profile = await getProfileByProfileIdAction(profileId);
   const genres = await getGenresAction();
   const countries = await getCountries();
-  const authProfileUid = await getAuthUid();
+  const userData = await getAuthUid();
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
   let connection;
 
-  if (authProfileUid !== profileId) {
+  if (userData?.user_id !== profileId) {
     const res = await getConnectionByProfilesIdAction(profileId);
 
     if (res) {
       connection = res;
     }
+  }
+
+  if (!profile) {
+    redirect("/create-profile/band");
   }
 
   return (
@@ -50,7 +55,7 @@ export default async function ProfilePage({
           />
           <ConnectButton
             profileId={profileId}
-            authProfileUid={authProfileUid}
+            authProfileUid={userData?.user_id}
             connection={connection}
           />
           <CardHeader>

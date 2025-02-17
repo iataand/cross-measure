@@ -2,7 +2,7 @@
 
 import { IconEdit, IconX } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "~/firebase.config";
+import { auth } from "~/firebase";
 import * as Dialog from "@radix-ui/react-dialog";
 import { profileFormSchema } from "~/utils/schemas/profile-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";

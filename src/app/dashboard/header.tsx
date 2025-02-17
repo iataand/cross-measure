@@ -18,8 +18,8 @@ import {
 } from "~/components/ui/drawer";
 import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "~/firebase.config";
 import Link from "next/link";
+import { auth } from "~/firebase";
 
 export default function Header() {
   const [user] = useAuthState(auth);

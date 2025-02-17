@@ -1,15 +1,23 @@
-import { getTokens } from "next-firebase-auth-edge";
 import { cookies } from "next/headers";
-import { env } from "process";
-import { serverConfig } from "~/firebase.config";
+import { adminAuth } from "~/firebaseAdmin";
 
-export default async function getAuthUid(): Promise<string | undefined> {
-  const token = await getTokens(await cookies(), {
-    apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-    cookieName: serverConfig.cookieName,
-    cookieSignatureKeys: serverConfig.cookieSignatureKeys,
-    serviceAccount: serverConfig.serviceAccount,
-  });
+export default async function getAuthUid(): Promise<
+  { user_id: string; email: string | undefined } | undefined
+> {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("sessionCookie");
 
-  return token?.decodedToken.uid;
+  if (!sessionCookie) {
+    throw Error("Session cookie not found");
+  }
+
+  try {
+    const { user_id, email } = await adminAuth.verifySessionCookie(
+      sessionCookie!.value,
+    );
+    return { user_id, email };
+  } catch (e) {
+    console.error(e);
+    throw Error("Invalid session cookie");
+  }
 }
