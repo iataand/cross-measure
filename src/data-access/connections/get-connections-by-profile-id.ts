@@ -12,30 +12,36 @@ export type ConnectionType = {
   isAccepted: boolean;
 };
 
-export const getConnections = cache(async (): Promise<any> => {
-  const authProfileUid = await getAuthUid();
+export const getConnections = cache(
+  async (): Promise<{ profile: BandProfile; id: number }[]> => {
+    const authProfileUid = await getAuthUid();
 
-  if (!authProfileUid) {
-    throw Error("User is not authenticated");
-  }
-
-  const res = await db.query.connections.findMany({
-    with: { secondProfile: true, firstProfile: true },
-    where: or(
-      eq(connections.firstProfile, authProfileUid),
-      eq(connections.secondProfile, authProfileUid),
-    ),
-  });
-
-  const profiles = res.map((connection: ConnectionType) => {
-    if (connection.firstProfile.userId === authProfileUid) {
-      return connection.secondProfile;
+    if (!authProfileUid) {
+      throw Error("User is not authenticated");
     }
 
-    if (connection.secondProfile.userId === authProfileUid) {
-      return connection.firstProfile;
-    }
-  });
+    const res = await db.query.connections.findMany({
+      with: { secondProfile: true, firstProfile: true },
+      where: or(
+        eq(connections.firstProfile, authProfileUid),
+        eq(connections.secondProfile, authProfileUid),
+      ),
+    });
 
-  return profiles;
-});
+    const profiles = res.map((connection: ConnectionType) => {
+      if (connection.firstProfile.userId === authProfileUid) {
+        return {
+          profile: connection.secondProfile,
+          id: connection.id,
+        };
+      }
+
+      return {
+        profile: connection.firstProfile,
+        id: connection.id,
+      };
+    });
+
+    return profiles;
+  },
+);

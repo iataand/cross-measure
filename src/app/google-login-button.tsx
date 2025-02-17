@@ -18,11 +18,11 @@ export default function ButtonWrapper() {
       const userData = await singInWithGoogle();
       const idToken = await userData.user.getIdToken();
 
-      await fetch("/api/login", {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
-      });
+      // await fetch("/api/login", {
+      //   headers: {
+      //     Authorization: `Bearer ${idToken}`,
+      //   },
+      // });
       const profile = await getProfileByEmailAction(userData.user.email!);
       if (!profile) {
         router.push("/create-profile/band");

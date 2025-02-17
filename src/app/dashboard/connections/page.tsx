@@ -4,5 +4,5 @@ import ToggleViews from "./toggle-view";
 export default async function Connections() {
   const connections = await getConnections();
 
-  return <ToggleViews profiles={connections}></ToggleViews>;
+  return <ToggleViews connections={connections}></ToggleViews>;
 }

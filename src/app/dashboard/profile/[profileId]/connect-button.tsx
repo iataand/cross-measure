@@ -15,7 +15,7 @@ export default function ConnectButton(props: propTypes) {
   }
 
   if (props.profileId === props.authProfileUid) {
-    return <></>;
+    return <>sdf</>;
   }
 
   if (props.connection && !props.connection.isAccepted) {
