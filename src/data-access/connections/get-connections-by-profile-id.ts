@@ -16,7 +16,7 @@ export const getConnections = cache(
   async (): Promise<{ profile: BandProfile; id: number }[]> => {
     const userData = await getAuthUid();
 
-    if (!userData?.user_id) {
+    if (!userData) {
       throw Error("User is not authenticated");
     }
 

@@ -61,7 +61,7 @@ export default function ProfileForm(props: PropTypes) {
         message: res.message,
       });
     }
-    router.push(`/profile/${props.userId}`);
+    router.push(`/dashboard/profile/${props.userId}`);
   }
 
   return (
