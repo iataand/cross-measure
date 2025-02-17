@@ -32,7 +32,7 @@
 
 ## 06.02.2025
 
-- [ ] Implement accept connection feature
+- [X] Implement accept connection feature
 - [X] Display all connected profiles in connections tab
-- [ ] Implement delete connection feature
+- [X] Implement delete connection feature
 - [ ] Implement a toast component
