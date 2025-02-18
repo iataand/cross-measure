@@ -10,12 +10,18 @@ import {
 import { Button } from "~/components/ui/button";
 import deleteConnectionAction from "./_actions/delete-connection.action";
 import Link from "next/link";
+import DeleteDialogue from "./delete-connection-dialog";
 
 type PropTypes = {
   connections: { profile: BandProfile; id: number }[];
 }
 
 export default function Connections(props: PropTypes) {
+
+  function handleDeleteConnection(connectionId: number) {
+    deleteConnectionAction(connectionId)
+  }
+
   return (
     <>
       <h1 className="mb-4 text-center text-2xl">All of your connections</h1>
@@ -33,9 +39,10 @@ export default function Connections(props: PropTypes) {
                       {connection.profile.bandName}
                     </Link>
                   </CardTitle>
-                  <Button variant="destructive" onClick={() => deleteConnectionAction(connection.id)}>
-                    Delete connection
-                  </Button>
+                  <DeleteDialogue
+                    handleDeleteConnection={() => handleDeleteConnection(connection.id)}
+                    connectionName={connection.profile.bandName}
+                  />
                 </div>
                 <CardDescription>{connection.profile.bio}</CardDescription>
               </CardHeader>

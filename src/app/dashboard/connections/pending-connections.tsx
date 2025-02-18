@@ -10,6 +10,7 @@ import { acceptConnectionAction } from "./_actions/accept-connection.action";
 import { Button } from "~/components/ui/button";
 import deleteConnectionAction from "./_actions/delete-connection.action";
 import Link from "next/link";
+import DeleteDialogue from "./delete-connection-dialog";
 
 type PropTypes = {
   connections: { profile: BandProfile; id: number }[];
@@ -39,11 +40,10 @@ export default function PendingConnections(props: PropTypes) {
                       onClick={() => acceptConnectionAction(connection.id)}>
                       Accept
                     </Button>
-                    <Button
-                      variant="destructive"
-                      onClick={() => deleteConnectionAction(connection.id)}>
-                      Decline
-                    </Button>
+                    <DeleteDialogue
+                      handleDeleteConnection={() => deleteConnectionAction(connection.id)}
+                      connectionName={connection.profile.bandName}
+                    />
                   </div>
                 </div>
                 <CardDescription>{connection.profile.bio}</CardDescription>

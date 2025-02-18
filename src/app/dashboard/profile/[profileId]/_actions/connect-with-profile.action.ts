@@ -7,13 +7,13 @@ import getAuthUid from "~/data-access/get-auth-from-cookie";
 export default async function connectWithProfileAction(
   profileToConnect: string,
 ) {
-  const authProfileId = await getAuthUid();
+  const userData = await getAuthUid();
 
-  if (!authProfileId) {
+  if (!userData) {
     throw Error("User is not authenticated");
   }
 
-  const res = await connectWithProfile(authProfileId, profileToConnect);
+  const res = await connectWithProfile(userData.user_id, profileToConnect);
 
   if (!res) {
     throw Error("Failed to establish connection");
