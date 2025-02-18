@@ -1,6 +1,5 @@
 import { getProfileByProfileIdAction } from "./_actions/get-profile-by-profileId.action";
-import { redirect } from 'next/navigation'
-import Header from "./header";
+import { redirect } from "next/navigation";
 import {
   Card,
   CardDescription,
@@ -13,6 +12,8 @@ import getGenresAction from "./_actions/get-genres.action";
 import { EditButton } from "./edit-button";
 import { getCountries } from "~/data-access/countries/get-countries";
 import ConnectButton from "./connect-button";
+import getConnectionByProfilesIdAction from "./_actions/get-connection-by-profileId.action";
+import getAuthUid from "~/data-access/get-auth-from-cookie";
 
 export default async function ProfilePage({
   params,
@@ -23,17 +24,25 @@ export default async function ProfilePage({
   const profile = await getProfileByProfileIdAction(profileId);
   const genres = await getGenresAction();
   const countries = await getCountries();
-
+  const userData = await getAuthUid();
   const profileImageUrl =
     profile.profileImageUrl ?? process.env.DEFAULT_PROFILE_IMAGE_URL!;
+  let connection;
+
+  if (userData?.user_id !== profileId) {
+    const res = await getConnectionByProfilesIdAction(profileId);
+
+    if (res) {
+      connection = res;
+    }
+  }
 
   if (!profile) {
-    redirect('/create-profile/band')
+    redirect("/create-profile/band");
   }
 
   return (
     <div>
-      <Header name={profile.bandName} imageUrl={profileImageUrl} />
       <div className="m-auto mt-4 max-w-[800px] px-4">
         <Card className="relative">
           <EditButton
@@ -44,7 +53,11 @@ export default async function ProfilePage({
             location={profile.location}
             email={profile.email}
           />
-          <ConnectButton profileId={profileId} />
+          <ConnectButton
+            profileId={profileId}
+            authProfileUid={userData?.user_id}
+            connection={connection}
+          />
           <CardHeader>
             <div className="flex gap-4">
               <ProfileImage

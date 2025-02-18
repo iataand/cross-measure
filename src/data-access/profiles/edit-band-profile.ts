@@ -14,7 +14,6 @@ export async function editBandProfile(
       .update(bandProfileTable)
       .set(bandProfile)
       .where(eq(bandProfileTable.userId, profileId));
-    console.log(res);
   } catch (e) {
     console.error(e);
   }

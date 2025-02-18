@@ -10,6 +10,12 @@ const config = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "v1ozxz7ru2.ufs.sh",
+        port: "",
+        pathname: "/f/*",
+      },
+      {
+        protocol: "https",
         hostname: "lh3.googleusercontent.com",
         port: "",
         pathname: "/a/**",

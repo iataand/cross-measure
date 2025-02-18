@@ -1,3 +1,5 @@
+"use client";
+
 import {
   IconSearch,
   IconMessage,
@@ -15,13 +17,13 @@ import {
   DrawerTrigger,
 } from "~/components/ui/drawer";
 import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Link from "next/link";
+import { auth } from "~/firebase";
 
-type PropTypes = {
-  name: string;
-  imageUrl?: string;
-};
+export default function Header() {
+  const [user] = useAuthState(auth);
 
-export default function Header(props: PropTypes) {
   return (
     <div className="m-auto flex h-[80px] max-w-[1080px] items-center justify-between px-2">
       <h2 className="text-2xl font-bold">CrossMeasure</h2>
@@ -34,18 +36,33 @@ export default function Header(props: PropTypes) {
           <IconMessage size={17} />
           Messages
         </li>
-        <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
+        <Link
+          href="/dashboard/connections"
+          className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800"
+        >
           <IconMusic size={17} />
           Connections
-        </li>
+        </Link>
       </ul>
-      <Image
-        className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
-        src={props.imageUrl || ""}
-        width={50}
-        height={50}
-        alt="Profile Image"
-      />
+      {user ? (
+        <Link href={`/dashboard/profile/${user.uid}`}>
+          <Image
+            className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
+            src={
+              user.photoURL ??
+              "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
+            }
+            width={50}
+            height={50}
+            alt="Profile Image"
+          />
+        </Link>
+      ) : (
+        <div
+          className="hidden aspect-square cursor-pointer rounded-full bg-gray-500 sm:block"
+          style={{ width: 50, height: 50 }}
+        />
+      )}
       <div className="sm:hidden">
         <Drawer direction="right">
           <DrawerTrigger>
@@ -56,16 +73,21 @@ export default function Header(props: PropTypes) {
               <DrawerTitle>CrossMeasure</DrawerTitle>
               <DrawerDescription />
               <ul className="mt-6">
-                <li className="flex items-center gap-1 rounded-md p-2">
-                  <Image
-                    className="mr-2 aspect-square cursor-pointer rounded-full object-cover"
-                    src={props.imageUrl || ""}
-                    width={30}
-                    height={30}
-                    alt="Profile Image"
-                  />
-                  {props.name}
-                </li>
+                {user && (
+                  <li className="flex items-center gap-1 rounded-md p-2">
+                    <Image
+                      className="mr-2 aspect-square cursor-pointer rounded-full object-cover"
+                      src={
+                        user.photoURL ??
+                        "https://utfs.io/f/3oEdKbrCvD62GzNLYihcEJPI9MynlVRDxHf1LdiovAm34gYU"
+                      }
+                      width={30}
+                      height={30}
+                      alt="Profile Image"
+                    />
+                    {user.email}
+                  </li>
+                )}
                 <hr />
                 <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
                   <IconSearch size={17} />
