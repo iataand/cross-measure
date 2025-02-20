@@ -18,7 +18,11 @@ export const getConnections = cache(
   > => {
     const currentUser = await getAuthUid();
 
-    if (!currentUser?.user_id) {
+    if (!currentUser) {
+      throw Error("Failed to fetch user");
+    }
+
+    if (!currentUser.user_id) {
       throw Error("User is not authenticated");
     }
 
@@ -34,8 +38,8 @@ export const getConnections = cache(
       return {
         profile:
           connection.firstProfile.userId === currentUser.user_id
-            ? connection.firstProfile
-            : connection.secondProfile,
+            ? connection.secondProfile
+            : connection.firstProfile,
         id: connection.id,
         isAccepted: connection.isAccepted,
       };

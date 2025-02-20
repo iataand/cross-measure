@@ -20,9 +20,7 @@ export default function DeleteDialogue(props: PropTypes) {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Button variant="destructive">
-          Delete
-        </Button>
+        Delete
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -9,7 +9,6 @@ export default async function CreateProfile() {
   const sessionCookie = cookieStore.get('sessionCookie');
   const { user_id, email } = await adminAuth.verifySessionCookie(sessionCookie!.value);
 
-
   return (
     <div className="p-2">
       <h2 className="py-6 text-center text-2xl font-bold">

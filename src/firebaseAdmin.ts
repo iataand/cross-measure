@@ -1,4 +1,4 @@
-import "server-only";
+// import "server-only";
 
 import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
@@ -15,7 +15,7 @@ function formatPrivateKey(key: string) {
 }
 
 export function createFirebaseAdminApp(params: FirebaseAdminAppParams) {
-  const privateKey = formatPrivateKey(params.privateKey);
+  // const privateKey = formatPrivateKey(params.privateKey);
 
   if (admin.apps.length > 0) {
     return admin.app();
@@ -24,7 +24,7 @@ export function createFirebaseAdminApp(params: FirebaseAdminAppParams) {
   const cert = admin.credential.cert({
     projectId: params.projectId,
     clientEmail: params.clientEmail,
-    privateKey,
+    privateKey: formatPrivateKey(params.privateKey),
   });
 
   return admin.initializeApp({
