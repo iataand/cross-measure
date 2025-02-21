@@ -1,25 +1,7 @@
 import { Text } from "@radix-ui/themes";
 import LoginModal from "~/app/login-modal";
-// import { getTokens } from "next-firebase-auth-edge";
-// import { cookies } from "next/headers";
-// import { notFound } from "next/navigation";
-// import { env } from "process";
-// import { serverConfig } from "~/lib/configs/firebase-config";
 
 export default function HomePage() {
-  // const tokens = await getTokens(await cookies(), {
-  //   apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-  //   cookieName: serverConfig.cookieName,
-  //   cookieSignatureKeys: serverConfig.cookieSignatureKeys,
-  //   serviceAccount: serverConfig.serviceAccount,
-  // });
-
-  // console.log(tokens);
-
-  // if (!tokens) {
-  //   notFound();
-  // }
-
   return (
     <main className="bg-[url('https://images.pexels.com/photos/145707/pexels-photo-145707.jpeg')] bg-cover">
       <div className="flex h-[72px] items-center justify-between p-4">

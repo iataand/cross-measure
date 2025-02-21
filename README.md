@@ -15,6 +15,8 @@
 - [ ] Implement zustand
 - [ ] Implement error boundary components
 - [ ] Implement a toast component
+- [ ] Configure e2e cypress tests with a custom cookie
+- [ ] Add an e2e test for profile connections
 
 ## 31.01.2025
 
@@ -39,6 +41,14 @@
 
 ## 17.02.2025
 
+- [X] Implement modal for connection deletion
+
+## 20.02.2025
+
+- [X] Implement text layout for text messaging
+
+## 21.02.2025
+
+- [X] Implement text messaging feature with firestore
 - [ ] Configure e2e cypress tests with a custom cookie
 - [ ] Add an e2e test for profile connections
-- [ ] Implement modal for connection deletion

@@ -1,10 +1,13 @@
 "use server";
 
-import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "~/firebase";
 import getAuthUid from "~/data-access/get-auth-from-cookie";
 
-export default async function sendMessageAction(): Promise<void> {
+export default async function sendMessageAction(
+  textMessage: string,
+  connectionId: number,
+): Promise<void> {
   const currentUser = await getAuthUid();
 
   if (!currentUser) {
@@ -16,14 +19,22 @@ export default async function sendMessageAction(): Promise<void> {
   }
 
   try {
-    const docRef = await setDoc(doc(db, "chatRooms", "3"), {
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA",
+    const chatRoomRef = collection(
+      db,
+      "chatRooms",
+      connectionId.toString(),
+      "messages",
+    );
+
+    const docRef = await addDoc(chatRoomRef, {
+      textMessage,
+      connectionId: connectionId.toString(),
       senderUid: currentUser.user_id,
       timestamp: serverTimestamp(),
     });
-    console.log("Document written with ID: ", docRef);
+
+    //TODO: return docref and add loading on message send
+    console.log(docRef);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

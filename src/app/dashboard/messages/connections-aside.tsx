@@ -12,7 +12,7 @@ type PropTypes = {
 }
 
 export default function ConnectionsAside(props: PropTypes) {
-  const { setCurrentProfileChat } = useCurrentConnectionChatStore((state) => state)
+  const { setCurrentProfileChat, currentConnection } = useCurrentConnectionChatStore((state) => state)
 
   return (
     <aside className="w-1/4 border">
@@ -20,7 +20,7 @@ export default function ConnectionsAside(props: PropTypes) {
         {props.connections.map((connection) =>
           <li
             key={connection.id}
-            className="p-4 border-b cursor-pointer hover:bg-gray-800"
+            className={`p-4 border-b cursor-pointer hover:bg-gray-800 ${connection.id === currentConnection.id ? 'bg-gray-900' : ''}`}
             onClick={() => setCurrentProfileChat(connection)}
           >
             {connection.profile.bandName}

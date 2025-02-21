@@ -2,7 +2,7 @@ import { createStore } from "zustand/vanilla";
 import { BandProfile } from "~/data-access/profiles/create-band-profile";
 
 export type CurrentConnectionChatState = {
-  connection: {
+  currentConnection: {
     profile: BandProfile | null;
     isAccepted: boolean;
     id: number;
@@ -11,7 +11,7 @@ export type CurrentConnectionChatState = {
 
 export type CurrentProfileActions = {
   setCurrentProfileChat: (
-    connection: CurrentConnectionChatState["connection"],
+    currentConnection: CurrentConnectionChatState["currentConnection"],
   ) => void;
 };
 
@@ -20,11 +20,11 @@ export type CurrentConnectionChatStore = CurrentConnectionChatState &
 
 export const initCurrentConnectionChatStore =
   (): CurrentConnectionChatState => {
-    return { connection: { profile: null, isAccepted: true, id: -1 } };
+    return { currentConnection: { profile: null, isAccepted: true, id: -1 } };
   };
 
 export const defaultInitState: CurrentConnectionChatState = {
-  connection: { profile: null, isAccepted: true, id: -1 },
+  currentConnection: { profile: null, isAccepted: true, id: -1 },
 };
 
 export const createCurrentConnectionChatStore = (
@@ -32,6 +32,7 @@ export const createCurrentConnectionChatStore = (
 ) => {
   return createStore<CurrentConnectionChatStore>()((set) => ({
     ...initState,
-    setCurrentProfileChat: (connection) => set(() => ({ connection })),
+    setCurrentProfileChat: (currentConnection) =>
+      set(() => ({ currentConnection })),
   }));
 };
