@@ -4,7 +4,11 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import useCurrentChat from "~/hooks/text-message";
 
-export default function CurrentChat() {
+type PropTypes = {
+  authUid: string
+}
+
+export default function CurrentChat(props: PropTypes) {
   const { handleSendMessage, currentConnection, currentMessage, messages, handleChangeInput } = useCurrentChat();
 
   if (currentConnection.profile === null) {
@@ -20,10 +24,10 @@ export default function CurrentChat() {
       </header>
       <div className="flex-1 p-4 overflow-y-auto">
         {messages.map((message, i) => (
-          <div
-            key={message.connectionId + i}
-          >
-            {message.textMessage}
+          <div key={message.connectionId + i} className={`flex ${message.senderUid === props.authUid && 'justify-end'}`}>
+            <div className="w-fit bg-gradient py-1 px-2 mb-2 rounded-xl rounded-br-none">
+              {message.textMessage}
+            </div>
           </div>)
         )}
       </div>

@@ -10,6 +10,9 @@ export default withUt({
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      backgroundImage: {
+        gradient: "var(--gradient)",
+      },
       colors: {
         transparent: "transparent",
         white: "#ffffff",
@@ -38,6 +41,7 @@ export default withUt({
           "900": "#871515",
           "950": "#4a0505",
         },
+        gradient: "hsl(var(--gradient))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -86,5 +90,4 @@ export default withUt({
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
 }) satisfies Config;
