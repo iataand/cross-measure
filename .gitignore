@@ -58,3 +58,4 @@ serviceAccount
 
 /cypress/support
 /cypress/support/e2e.ts
+cypress/support/e2e.ts
