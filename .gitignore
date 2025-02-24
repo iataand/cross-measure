@@ -55,3 +55,6 @@ cypress.env.json
 ./serviceAccount.json
 serviceAccount.json
 serviceAccount
+
+./cypress/support
+./cypress/support/e2e.ts
