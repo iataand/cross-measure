@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useRef, useEffect, useState, ChangeEvent } from "react";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "~/firebase";
 import { useCurrentConnectionChatStore } from "~/providers/current-connection-chat-provider";
@@ -14,14 +14,16 @@ export default function useCurrentChat() {
   const { currentConnection } = useCurrentConnectionChatStore((state) => state);
   const [currentMessage, setcurrentMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  const scrollDummy = useRef<null | HTMLDivElement>(null);
 
   function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
     setcurrentMessage(event.target.value);
   }
 
   async function handleSendMessage() {
-    setcurrentMessage("");
     await sendMessageAction(currentMessage, currentConnection.id);
+    setcurrentMessage("");
+    scrollDummy.current?.scrollIntoView({ behavior: "smooth" });
   }
 
   useEffect(() => {
@@ -56,5 +58,6 @@ export default function useCurrentChat() {
     currentConnection,
     messages,
     currentMessage,
+    scrollDummy,
   };
 }

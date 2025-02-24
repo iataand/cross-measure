@@ -9,10 +9,10 @@ type PropTypes = {
 }
 
 export default function CurrentChat(props: PropTypes) {
-  const { handleSendMessage, currentConnection, currentMessage, messages, handleChangeInput } = useCurrentChat();
+  const { handleSendMessage, currentConnection, currentMessage, messages, handleChangeInput, scrollDummy } = useCurrentChat();
 
   if (currentConnection.profile === null) {
-    return <>Select a connection from the left sidebar to start a conversation.</>
+    return <div className="w-full text-center mt-4">Select a connection from the left sidebar to start a conversation.</div>
   }
 
   const { profile } = currentConnection;
@@ -25,9 +25,10 @@ export default function CurrentChat(props: PropTypes) {
       <div className="flex-1 p-4 overflow-y-auto">
         {messages.map((message, i) => (
           <div key={message.connectionId + i} className={`flex ${message.senderUid === props.authUid && 'justify-end'}`}>
-            <div className="w-fit bg-gradient py-1 px-2 mb-2 rounded-xl rounded-br-none">
+            <div className="bg-gradient py-1 px-2 mb-2 rounded-xl rounded-br-none max-w-[400px] break-all">
               {message.textMessage}
             </div>
+            <div className="mt-2" ref={scrollDummy} />
           </div>)
         )}
       </div>
@@ -43,6 +44,7 @@ export default function CurrentChat(props: PropTypes) {
           type="submit"
           variant="gradient"
           className="ml-2 px-4 py-2 rounded"
+          disabled={currentMessage.trim().length === 0}
         >
           Send
         </Button>

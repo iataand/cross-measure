@@ -8,6 +8,7 @@ export default async function sendMessageAction(
   textMessage: string,
   connectionId: number,
 ): Promise<void> {
+  //TODO: Investigate whether this action can be replaced with an api route for better performance
   const currentUser = await getAuthUid();
 
   if (!currentUser) {
