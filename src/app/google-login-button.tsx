@@ -35,7 +35,7 @@ export default function ButtonWrapper() {
 
   if (!user) {
     return (
-      <span className="flex items-center gap-2 text-lg font-semibold">
+      <span className="flex items-center gap-2 text-lg font-semibold" onClick={handleClick}>
         <IconBrandGoogleFilled /> Login with google
       </span>
     );
