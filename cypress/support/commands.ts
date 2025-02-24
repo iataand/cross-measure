@@ -1,7 +1,3 @@
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      loginByGoogleApi(): Chainable<void>;
-    }
-  }
-}
+Cypress.Commands.add("setAuthCookie", () => {
+  cy.setCookie("sessionCookie", Cypress.env("sessionCookie"));
+});

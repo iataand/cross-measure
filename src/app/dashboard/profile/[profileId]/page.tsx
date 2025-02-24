@@ -65,7 +65,7 @@ export default async function ProfilePage({
                 profileId={profile.id}
               />
               <div className="flex flex-col justify-between">
-                <CardTitle>
+                <CardTitle data-cy="band-name">
                   {profile.bandName} <hr className="mt-1" />
                 </CardTitle>
                 <div className="flex grid-cols-2 flex-wrap gap-2 md:grid">
@@ -99,7 +99,7 @@ export default async function ProfilePage({
         </Card>
         <Card className="mt-4">
           <CardHeader>
-            <CardTitle>
+            <CardTitle data-cy="band-bio">
               Bio <hr className="mt-1" />
             </CardTitle>
             <CardDescription />

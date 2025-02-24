@@ -1,26 +1,28 @@
 describe("Profile create flow", function () {
-  it("should create a new account with test email", function () {
-    cy.visit("http://localhost:3000/");
+  before(() => {
+    cy.login();
+  });
 
-    cy.setCookie("AuthToken", Cypress.env("AUTH_COOKIE"));
+  it("should create a new account with test email", async function () {
+    cy.visit("/");
 
-    cy.visit("http://localhost:3000/create-profile/band");
+    cy.setCookie("sessionCookie", Cypress.env("SESSION_COOKIE"));
 
-    cy.get('input[name="bandName"]').type("Band Name Test");
+    cy.visit("/dashboard/connections");
 
-    cy.get("textarea").type("this is a bio test");
+    cy.get('[data-cy="profile-picture"]').click();
 
-    cy.get("select").select("Albania", { force: true });
+    cy.get('[data-cy="edit-profile-button"]').click();
 
-    cy.get("button[type='submit']").click();
+    cy.get('[data-cy="edit-name-input"]').type("test band name");
 
-    cy.get("[data-cy='edit-genres']").click();
+    cy.get('[data-cy="edit-bio-input"]').clear().type("test bio goes here");
 
-    cy.get("[data-cy='rock']").click();
-    cy.get("[data-cy='rap']").click();
-    cy.get("[data-cy='pop']").click();
-    cy.get("[data-cy='techno']").click();
+    cy.get('[data-cy="save-profile-button"]').as("btn").click();
+    cy.get("@btn").should("not.be", "visible");
 
-    cy.get("[data-cy='save']").click();
+    cy.get('[data-cy="band-name"]').should("contain", "test band name");
+
+    cy.contains("test bio goes here");
   });
 });

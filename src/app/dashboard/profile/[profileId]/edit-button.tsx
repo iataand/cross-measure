@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { IconEdit, IconX } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "~/firebase";
@@ -42,6 +43,7 @@ type PropTypes = {
 
 export function EditButton(props: PropTypes) {
   const [user] = useAuthState(auth);
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -57,6 +59,7 @@ export function EditButton(props: PropTypes) {
 
   async function onSubmit() {
     const data = form.getValues() as BandProfile;
+    setOpen(false);
 
     try {
       await editBandProfileAction(data, props.currentProfileId);
@@ -67,8 +70,8 @@ export function EditButton(props: PropTypes) {
 
   if (user?.uid === props.currentProfileId) {
     return (
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
+      <Dialog.Root open={open}>
+        <Dialog.Trigger asChild data-cy='edit-profile-button' onClick={() => setOpen(true)}>
           <IconEdit className="absolute left-[calc(100%-35px)] top-2 cursor-pointer" />
         </Dialog.Trigger>
         <Dialog.Portal>
@@ -92,6 +95,7 @@ export function EditButton(props: PropTypes) {
                             placeholder="your bands'name"
                             {...field}
                             className="border-gray-700 bg-black"
+                            data-cy="edit-name-input"
                           />
                         </FormControl>
                         <FormMessage />
@@ -128,6 +132,7 @@ export function EditButton(props: PropTypes) {
                             placeholder="a few words about your band..."
                             {...field}
                             className="border-gray-700 bg-black"
+                            data-cy="edit-bio-input"
                           />
                         </FormControl>
                         <FormMessage />
@@ -175,16 +180,19 @@ export function EditButton(props: PropTypes) {
                     )}
                   />
                 </div>
-                <Button
-                  variant="gradient"
-                  type="submit"
-                  className="mt-8 w-full max-w-64"
-                >
-                  Save
-                </Button>
+                <Dialog.Close asChild type="submit">
+                  <Button
+                    variant="gradient"
+                    type="submit"
+                    className="mt-8 w-full max-w-64"
+                    data-cy="save-profile-button"
+                  >
+                    Save
+                  </Button>
+                </Dialog.Close>
               </form>
             </Form>
-            <Dialog.Close asChild>
+            <Dialog.Close asChild onClick={() => setOpen(false)}>
               <IconX className="absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:bg-gray-50/10 focus:shadow-[0_0_0_2px] focus:outline-none" />
             </Dialog.Close>
           </Dialog.Content>

@@ -12,12 +12,11 @@ export default defineConfig({
       return cypressFirebasePlugin(on, config, admin, {
         // Here is where you can pass special options.
         // If you have not set the GCLOUD_PROJECT environment variable, give the projectId here, like so:
-        projectId: "cross-measure-dev",
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
         credential: admin.credential.cert(
           serviceAccount as admin.ServiceAccount,
         ),
-        // if your databaseURL is not just your projectId plus ".firebaseio.com", then you _must_ give it here, like so:
-        //    databaseURL: 'some-project-default-rtdb.europe-west1.firebasedatabase.app',
+        databaseURL: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
       });
     },
   },

@@ -47,7 +47,10 @@ export default function Header() {
         </Link>
       </ul>
       {user ? (
-        <Link href={`/dashboard/profile/${user.uid}`}>
+        <Link
+          href={`/dashboard/profile/${user.uid}`}
+          data-cy="profile-picture"
+        >
           <Image
             className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
             src={
