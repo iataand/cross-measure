@@ -50,5 +50,11 @@
 ## 21.02.2025
 
 - [X] Implement text messaging feature with firestore
-- [ ] Configure e2e cypress tests with a custom cookie
-- [ ] Add an e2e test for profile connections
+- [X] Configure e2e cypress tests with a custom cookie
+- [X] Add an e2e test for profile connections
+
+## 25.02.2025
+
+- [ ] Add an e2e for profile creation
+- [ ] Add an e2e test for creating connections
+- [ ] Add an e2e test for sending messages
