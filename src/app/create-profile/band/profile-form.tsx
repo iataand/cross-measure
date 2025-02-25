@@ -163,7 +163,12 @@ export default function ProfileForm(props: PropTypes) {
           />
         </div>
         <div className="mt-8 flex justify-center">
-          <Button variant="gradient" type="submit" className="w-full max-w-64">
+          <Button
+            variant="gradient"
+            type="submit"
+            className="w-full max-w-64"
+            data-cy="submit"
+          >
             Submit
           </Button>
         </div>

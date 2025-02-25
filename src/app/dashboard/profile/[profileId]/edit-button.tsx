@@ -31,6 +31,8 @@ import { editBandProfileAction } from "./_actions/edit-band-profile.action";
 import { Country } from "~/data-access/countries/get-countries";
 import { FixedSizeList } from "react-window";
 import { Button } from "~/components/ui/button";
+import { useRouter } from "next/navigation";
+import deleteProfileAction from "./_actions/delete-profile.action"
 
 type PropTypes = {
   bandName: string;
@@ -44,6 +46,7 @@ type PropTypes = {
 export function EditButton(props: PropTypes) {
   const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -66,6 +69,16 @@ export function EditButton(props: PropTypes) {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  async function handleDeleteProfile() {
+    if (!user) {
+      throw Error("You need to be logged in to perform this action");
+    }
+
+    await deleteProfileAction(user.uid);
+    //TODO: implement a toast here
+    router.refresh();
   }
 
   if (user?.uid === props.currentProfileId) {
@@ -182,10 +195,21 @@ export function EditButton(props: PropTypes) {
                 </div>
                 <Dialog.Close asChild type="submit">
                   <Button
-                    variant="gradient"
+                    variant="destructive"
                     type="submit"
                     className="mt-8 w-full max-w-64"
-                    data-cy="save-profile-button"
+                    data-cy="delete-profile"
+                    onClick={handleDeleteProfile}
+                  >
+                    Delete profile
+                  </Button>
+                </Dialog.Close>
+                <Dialog.Close asChild type="submit">
+                  <Button
+                    variant="gradient"
+                    type="submit"
+                    className="mt-8 ml-2 w-full max-w-64"
+                    data-cy="save-profile"
                   >
                     Save
                   </Button>

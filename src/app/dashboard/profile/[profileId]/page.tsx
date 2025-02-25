@@ -22,6 +22,12 @@ export default async function ProfilePage({
 }) {
   const profileId = (await params).profileId;
   const profile = await getProfileByProfileIdAction(profileId);
+
+  if (!profile) {
+    console.log(profile);
+    redirect("/create-profile/band");
+  }
+
   const genres = await getGenresAction();
   const countries = await getCountries();
   const userData = await getAuthUid();
@@ -35,10 +41,6 @@ export default async function ProfilePage({
     if (res) {
       connection = res;
     }
-  }
-
-  if (!profile) {
-    redirect("/create-profile/band");
   }
 
   return (
@@ -65,8 +67,8 @@ export default async function ProfilePage({
                 profileId={profile.id}
               />
               <div className="flex flex-col justify-between">
-                <CardTitle data-cy="band-name">
-                  {profile.bandName} <hr className="mt-1" />
+                <CardTitle >
+                  <h1 data-cy="band-name">{profile.bandName}</h1> <hr className="mt-1" />
                 </CardTitle>
                 <div className="flex grid-cols-2 flex-wrap gap-2 md:grid">
                   <div>
@@ -99,11 +101,13 @@ export default async function ProfilePage({
         </Card>
         <Card className="mt-4">
           <CardHeader>
-            <CardTitle data-cy="band-bio">
+            <CardTitle>
               Bio <hr className="mt-1" />
             </CardTitle>
             <CardDescription />
-            {profile.bio}
+            <h1 data-cy="band-bio">
+              {profile.bio}
+            </h1>
           </CardHeader>
         </Card>
       </div>
