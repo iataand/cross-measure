@@ -1,6 +1,6 @@
 "use client";
 
-import { profileFormSchema } from "~/utils/schemas/profile-form-schema";
+import { musicianFormSchema } from "~/utils/schemas/profile-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -25,8 +25,8 @@ import {
 import { Button } from "~/components/ui/button";
 import { Country } from "~/data-access/countries/get-countries";
 import { FixedSizeList } from "react-window";
-import { createBandProfileAction } from "../_actions/create-profile.action";
-import { BandProfile } from "~/data-access/profiles/create-band-profile";
+import { createMusicianProfileAction } from "../_actions/create-profile.action";
+import { MusicianProfile } from "~/data-access/profiles/create-band-profile";
 
 type PropTypes = {
   countries: Country[];
@@ -35,10 +35,10 @@ type PropTypes = {
 };
 
 export default function ProfileForm(props: PropTypes) {
-  const form = useForm<z.output<typeof profileFormSchema>>({
-    resolver: zodResolver(profileFormSchema),
+  const form = useForm<z.output<typeof musicianFormSchema>>({
+    resolver: zodResolver(musicianFormSchema),
     defaultValues: {
-      bandName: "",
+      musicianName: "",
       email: props.email,
       bio: "",
       location: "",
@@ -50,9 +50,9 @@ export default function ProfileForm(props: PropTypes) {
   const router = useRouter();
 
   async function onSubmit() {
-    const data = form.getValues() as BandProfile;
+    const data = form.getValues() as MusicianProfile;
 
-    const res = await createBandProfileAction({
+    const res = await createMusicianProfileAction({
       ...data,
       userId: props.userId,
     });
@@ -70,13 +70,13 @@ export default function ProfileForm(props: PropTypes) {
         <div className="flex min-w-[400px] flex-1 flex-col gap-2">
           <FormField
             control={form.control}
-            name="bandName"
+            name="musicianName"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Band Name</FormLabel>
+                <FormLabel>Your Name</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="your bands'name"
+                    placeholder="your name"
                     {...field}
                     className="border-gray-700 bg-black"
                   />

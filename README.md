@@ -14,6 +14,7 @@ Cross Measure is (going to be) website made for musicians looking for collaborat
 - [ ] Implement error boundary components
 - [ ] Implement a toast component
 - [ ] Add an e2e test for profile connections
+- [ ] Migrate from uploadthing to Firebase
 
 ## 31.01.2025
 
@@ -54,3 +55,4 @@ Cross Measure is (going to be) website made for musicians looking for collaborat
 
 - [x] Add an e2e for profile creation
 - [x] Add an e2e test for sending messages
+- [ ] Add a create solo musicians page

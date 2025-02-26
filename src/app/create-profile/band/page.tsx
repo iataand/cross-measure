@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { getCountriesAction } from "./_actions/get-countries.action";
+import { getCountriesAction } from "../_actions/get-countries.action";
 import ProfileForm from "./profile-form";
 import { adminAuth } from "~/firebaseAdmin";
 
