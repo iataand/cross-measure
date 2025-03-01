@@ -10,7 +10,7 @@ export async function editBandProfile(
   profileId: string,
 ): Promise<void> {
   try {
-    const res = await db
+    await db
       .update(bandProfileTable)
       .set(bandProfile)
       .where(eq(bandProfileTable.userId, profileId));

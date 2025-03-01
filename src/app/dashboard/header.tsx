@@ -25,17 +25,19 @@ export default function Header() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="m-auto flex h-[80px] max-w-[1080px] items-center justify-between px-2">
+    <div className="m-auto flex h-[80px] max-w-[1024px] items-center justify-between px-2 border-b">
       <h2 className="text-2xl font-bold">CrossMeasure</h2>
       <ul className="hidden gap-4 sm:flex">
         <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
           <IconSearch size={17} />
           Search
         </li>
-        <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
+        <Link
+          href="/dashboard/messages"
+          className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
           <IconMessage size={17} />
           Messages
-        </li>
+        </Link>
         <Link
           href="/dashboard/connections"
           className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800"
@@ -45,7 +47,10 @@ export default function Header() {
         </Link>
       </ul>
       {user ? (
-        <Link href={`/dashboard/profile/${user.uid}`}>
+        <Link
+          href={`/dashboard/profile/${user.uid}`}
+          data-cy="profile-picture"
+        >
           <Image
             className="hidden aspect-square cursor-pointer rounded-full object-cover sm:block"
             src={

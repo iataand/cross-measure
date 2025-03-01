@@ -18,29 +18,38 @@ export const getConnections = cache(
   > => {
     const currentUser = await getAuthUid();
 
-    if (!currentUser?.user_id) {
+    if (!currentUser) {
+      throw Error("Failed to fetch user");
+    }
+
+    if (!currentUser.user_id) {
       throw Error("User is not authenticated");
     }
 
-    const res = await db.query.connections.findMany({
-      with: { secondProfile: true, firstProfile: true },
-      where: or(
-        eq(connections.firstProfile, currentUser.user_id),
-        eq(connections.secondProfile, currentUser.user_id),
-      ),
-    });
+    try {
+      const res = await db.query.connections.findMany({
+        with: { secondProfile: true, firstProfile: true },
+        where: or(
+          eq(connections.firstProfile, currentUser.user_id),
+          eq(connections.secondProfile, currentUser.user_id),
+        ),
+      });
 
-    const profiles = res.map((connection) => {
-      return {
-        profile:
-          connection.firstProfile.userId === currentUser.user_id
-            ? connection.firstProfile
-            : connection.secondProfile,
-        id: connection.id,
-        isAccepted: connection.isAccepted,
-      };
-    });
+      const profiles = res.map((connection) => {
+        return {
+          profile:
+            connection.firstProfile.userId === currentUser.user_id
+              ? connection.secondProfile
+              : connection.firstProfile,
+          id: connection.id,
+          isAccepted: connection.isAccepted,
+        };
+      });
 
-    return profiles;
+      return profiles;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
   },
 );

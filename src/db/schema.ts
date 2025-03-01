@@ -20,6 +20,19 @@ export const bandProfileTable = pgTable("bandProfiles", {
   ),
 });
 
+export const musicianProfileTable = pgTable("musicianProfiles", {
+  id: integer().generatedAlwaysAsIdentity(),
+  userId: varchar({ length: 255 }).primaryKey(),
+  musicianName: varchar({ length: 255 }).notNull(),
+  bio: varchar({ length: 255 }).notNull(),
+  email: varchar({ length: 255 }).notNull().unique(),
+  location: varchar({ length: 255 }).notNull(),
+  genres: varchar({ length: 255 }).array(),
+  profileImageUrl: varchar({ length: 255 }).default(
+    process.env.DEFAULT_PROFILE_IMAGE_URL!,
+  ),
+});
+
 export const bandProfileRelations = relations(bandProfileTable, ({ many }) => ({
   "profiles-connections_1": many(connections, {
     relationName: "profiles-connections_1",

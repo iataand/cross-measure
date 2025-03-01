@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { getCountriesAction } from "./_actions/get-countries.action";
+import { getCountriesAction } from "../_actions/get-countries.action";
 import ProfileForm from "./profile-form";
 import { adminAuth } from "~/firebaseAdmin";
 
@@ -8,7 +8,6 @@ export default async function CreateProfile() {
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get('sessionCookie');
   const { user_id, email } = await adminAuth.verifySessionCookie(sessionCookie!.value);
-
 
   return (
     <div className="p-2">

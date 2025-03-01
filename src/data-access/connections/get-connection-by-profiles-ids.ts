@@ -11,14 +11,8 @@ export default async function getConnectionByProfilesId(
   const userData = await getAuthUid();
 
   if (!userData) {
-    // throw Error("User not authenticated");
-    return;
+    throw Error("User not authenticated");
   }
-  // const auth = getAuth();
-  // console.log(auth);
-  // const user = auth.currentUser;
-
-  // const [user] = useAuthState(auth);
 
   const res = await db.query.connections.findFirst({
     columns: { isAccepted: true },

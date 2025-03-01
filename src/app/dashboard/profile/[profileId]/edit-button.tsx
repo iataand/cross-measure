@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { IconEdit, IconX } from "@tabler/icons-react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "~/firebase";
@@ -30,6 +31,8 @@ import { editBandProfileAction } from "./_actions/edit-band-profile.action";
 import { Country } from "~/data-access/countries/get-countries";
 import { FixedSizeList } from "react-window";
 import { Button } from "~/components/ui/button";
+import { useRouter } from "next/navigation";
+import deleteProfileAction from "./_actions/delete-profile.action"
 
 type PropTypes = {
   bandName: string;
@@ -42,6 +45,8 @@ type PropTypes = {
 
 export function EditButton(props: PropTypes) {
   const [user] = useAuthState(auth);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -57,6 +62,7 @@ export function EditButton(props: PropTypes) {
 
   async function onSubmit() {
     const data = form.getValues() as BandProfile;
+    setOpen(false);
 
     try {
       await editBandProfileAction(data, props.currentProfileId);
@@ -65,10 +71,20 @@ export function EditButton(props: PropTypes) {
     }
   }
 
+  async function handleDeleteProfile() {
+    if (!user) {
+      throw Error("You need to be logged in to perform this action");
+    }
+
+    await deleteProfileAction(user.uid);
+    //TODO: implement a toast here
+    router.refresh();
+  }
+
   if (user?.uid === props.currentProfileId) {
     return (
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
+      <Dialog.Root open={open}>
+        <Dialog.Trigger asChild data-cy='edit-profile-button' onClick={() => setOpen(true)}>
           <IconEdit className="absolute left-[calc(100%-35px)] top-2 cursor-pointer" />
         </Dialog.Trigger>
         <Dialog.Portal>
@@ -92,6 +108,7 @@ export function EditButton(props: PropTypes) {
                             placeholder="your bands'name"
                             {...field}
                             className="border-gray-700 bg-black"
+                            data-cy="edit-name-input"
                           />
                         </FormControl>
                         <FormMessage />
@@ -128,6 +145,7 @@ export function EditButton(props: PropTypes) {
                             placeholder="a few words about your band..."
                             {...field}
                             className="border-gray-700 bg-black"
+                            data-cy="edit-bio-input"
                           />
                         </FormControl>
                         <FormMessage />
@@ -175,16 +193,30 @@ export function EditButton(props: PropTypes) {
                     )}
                   />
                 </div>
-                <Button
-                  variant="gradient"
-                  type="submit"
-                  className="mt-8 w-full max-w-64"
-                >
-                  Save
-                </Button>
+                <Dialog.Close asChild type="submit">
+                  <Button
+                    variant="destructive"
+                    type="submit"
+                    className="mt-8 w-full max-w-64"
+                    data-cy="delete-profile"
+                    onClick={handleDeleteProfile}
+                  >
+                    Delete profile
+                  </Button>
+                </Dialog.Close>
+                <Dialog.Close asChild type="submit">
+                  <Button
+                    variant="gradient"
+                    type="submit"
+                    className="mt-8 ml-2 w-full max-w-64"
+                    data-cy="save-profile"
+                  >
+                    Save
+                  </Button>
+                </Dialog.Close>
               </form>
             </Form>
-            <Dialog.Close asChild>
+            <Dialog.Close asChild onClick={() => setOpen(false)}>
               <IconX className="absolute right-2.5 top-2.5 inline-flex size-[25px] cursor-pointer appearance-none items-center justify-center rounded-full hover:bg-gray-50/10 focus:shadow-[0_0_0_2px] focus:outline-none" />
             </Dialog.Close>
           </Dialog.Content>

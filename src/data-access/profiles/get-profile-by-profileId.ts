@@ -7,9 +7,9 @@ export default async function getProfileByProfileId(profileId: string) {
     where: (profiles, { eq }) => eq(profiles.userId, profileId),
   });
 
-  if (!profile) {
-    throw new Error(`No profile found for profileId: ${profileId}`);
-  }
+  // if (!profile) {
+  //   throw new Error(`No profile found for profileId: ${profileId}`);
+  // }
 
   return profile;
 }
