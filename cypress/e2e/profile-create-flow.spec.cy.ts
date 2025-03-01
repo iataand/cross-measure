@@ -1,10 +1,10 @@
-describe("Profile create flow", function () {
+describe("Profile create flow", function() {
   before(() => {
     cy.login();
     cy.setCookie("sessionCookie", Cypress.env("SESSION_COOKIE"));
   });
 
-  it("should create a new account with a test email and delete it when it's done", async function () {
+  it("should create a new account with a test email and delete it when it's done", async function() {
     //TODO: add testing for genres as well
     cy.visit("/create-profile/band");
 
@@ -14,7 +14,7 @@ describe("Profile create flow", function () {
       "This is a test bio. We are testing and this is a bio.",
     );
 
-    cy.get("select").select("Germania", { force: true });
+    cy.get("select").select("Germany", { force: true });
 
     cy.get("[data-cy='submit']").as("btn").click();
     cy.get("@btn").should("not.be", "visible");

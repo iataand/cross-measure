@@ -13,7 +13,7 @@ describe("Create and edit a test profile", () => {
       "This is a test bio. We are testing and this is a bio.",
     );
 
-    cy.get("select").select("Germania", { force: true });
+    cy.get("select").select("Germany", { force: true });
 
     cy.get("[data-cy='submit']").as("btn").click();
     cy.get("@btn").should("not.be", "visible");
