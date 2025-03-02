@@ -28,10 +28,10 @@ export default function Header() {
     <div className="m-auto flex h-[80px] max-w-[1024px] items-center justify-between px-2 border-b">
       <h2 className="text-2xl font-bold">CrossMeasure</h2>
       <ul className="hidden gap-4 sm:flex">
-        <li className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
+        <Link href="/dashboard/search" className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
           <IconSearch size={17} />
           Search
-        </li>
+        </Link>
         <Link
           href="/dashboard/messages"
           className="flex cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-gray-800">
