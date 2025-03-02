@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { auth, singInWithGoogle } from "~/firebase";
+import getProfileByProfileId from "~/data-access/profiles/get-profile-by-profileId";
 
 export default function ButtonWrapper() {
   const [user] = useAuthState(auth);
@@ -24,8 +25,11 @@ export default function ButtonWrapper() {
         body: JSON.stringify({ idToken, csrfToken }),
       });
 
-      //TODO: find a better way to conditionally navigate to either profile page or create profile page
-      // router.push(`/dashboard/profile/${userData.user.uid}`);
+      if (user) {
+        await getProfileByProfileId(user.uid);
+        router.push(`/dashboard/profile/${userData.user.uid}`);
+        return;
+      }
 
       router.push('/create-profile/band');
     } catch (error) {
