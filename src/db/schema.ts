@@ -1,11 +1,13 @@
 import { relations } from "drizzle-orm";
 import {
+  index,
   integer,
   pgTable,
   serial,
   varchar,
   boolean,
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
 export const bandProfileTable = pgTable("bandProfiles", {
   id: integer().generatedAlwaysAsIdentity(),
@@ -18,7 +20,11 @@ export const bandProfileTable = pgTable("bandProfiles", {
   profileImageUrl: varchar({ length: 255 }).default(
     process.env.DEFAULT_PROFILE_IMAGE_URL!,
   ),
-});
+},
+  (table) => [
+    index('band_name_search_index').using('gin', sql`to_tsvector('english', ${table.bandName})`),
+  ]
+);
 
 export const musicianProfileTable = pgTable("musicianProfiles", {
   id: integer().generatedAlwaysAsIdentity(),
